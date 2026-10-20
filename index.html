@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "D4TP Coalition Dashboard",
+  "schemaVersion": 1,
+  "description": "Data for the People Coalition PM dashboard — 2026 legislative wins, retreat outcomes, 2027-28 policy agenda workplanning, bill tracker with leginfo links, and workgroup status."
+}
+</script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D4TP Coalition Dashboard</title>
+<style>
+  :root { color-scheme: light; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #F5F6F8; color: #1E293B; line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─── */
+  .site-header {
+    background: linear-gradient(135deg, #146462 0%, #0d4f4e 50%, #1E1B4B 100%);
+    color: #fff; padding: 16px 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .logo-circle {
+    width: 44px; height: 44px; background: rgba(255,255,255,.15);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 800; color: #E8907A; flex-shrink: 0;
+  }
+  .header-text h1 { font-size: 1.1rem; font-weight: 800; letter-spacing: -.3px; }
+  .header-text h1 span { color: #E8907A; }
+  .header-text .subtitle { font-size: .72rem; opacity: .7; margin-top: 1px; font-weight: 500; }
+
+  /* ─── PHASE BANNER ─── */
+  .phase-banner {
+    background: linear-gradient(90deg, #DCFCE7, #E6F4F3);
+    border-left: 5px solid #16A34A;
+    padding: 12px 20px; font-size: .78rem; color: #166534;
+  }
+  .phase-banner strong { color: #065F46; }
+
+  /* ─── TABS ─── */
+  .tab-bar {
+    display: flex; background: #fff; border-bottom: 2px solid #E2E8F0;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+  .tab-bar::-webkit-scrollbar { height: 0; }
+  .tab-btn {
+    padding: 10px 14px; font-size: .72rem; font-weight: 600;
+    color: #64748B; background: none; border: none;
+    border-bottom: 3px solid transparent; cursor: pointer;
+    white-space: nowrap; transition: all .15s; flex-shrink: 0;
+  }
+  .tab-btn:hover { color: #1A807E; background: #F0FDFA; }
+  .tab-btn.active { color: #146462; border-bottom-color: #1A807E; background: #F0FDFA; }
+  .tab-panel { display: none; padding: 16px; }
+  .tab-panel.active { display: block; }
+
+  /* ─── CARDS ─── */
+  .cards-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px; margin-bottom: 14px;
+  }
+  .card {
+    background: #fff; border-radius: 10px; padding: 12px 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06); border-left: 4px solid transparent;
+    transition: box-shadow .2s;
+  }
+  .card:hover { box-shadow: 0 3px 12px rgba(0,0,0,.1); }
+  .card.project  { border-left-color: #1A807E; }
+  .card.meeting  { border-left-color: #7C3AED; }
+  .card.hearing  { border-left-color: #DC2626; }
+  .card.deadline { border-left-color: #D97706; }
+  .card.tool     { border-left-color: #16A34A; }
+  .card.outreach { border-left-color: #E8907A; }
+  .card.win      { border-left-color: #16A34A; background: #F0FDF4; }
+  .card.planning { border-left-color: #7C3AED; background: #FAF5FF; }
+  .card.priority { border-left-color: #1E1B4B; background: #F8F7FF; }
+  .card.held     { border-left-color: #94A3B8; }
+
+  .tl {
+    display: inline-block; font-size: .58rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .4px;
+    padding: 1px 6px; border-radius: 4px; margin-bottom: 4px;
+  }
+  .tl.t-project  { background: #E6F4F3; color: #146462; }
+  .tl.t-meeting  { background: #EDE9FE; color: #5B21B6; }
+  .tl.t-hearing  { background: #FEE2E2; color: #991B1B; }
+  .tl.t-deadline { background: #FEF3C7; color: #92400E; }
+  .tl.t-tool     { background: #DCFCE7; color: #166534; }
+  .tl.t-outreach { background: #FDF0ED; color: #9A4B38; }
+  .tl.t-win      { background: #DCFCE7; color: #166534; }
+  .tl.t-process  { background: #E0F2FE; color: #075985; }
+  .tl.t-planning { background: #F3E8FF; color: #6B21A8; }
+  .tl.t-priority { background: #EEF2FF; color: #3730A3; }
+  .tl.t-held     { background: #F1F5F9; color: #64748B; }
+
+  .ct {
+    font-size: .82rem; font-weight: 700; color: #1E293B;
+    margin-bottom: 3px; display: flex; align-items: center; gap: 5px;
+  }
+  .ct a { color: #1A807E; text-decoration: none; border-bottom: 1.5px dashed #1A807E; }
+  .ct a:hover { color: #0F5654; }
+  .ci { font-size: .85rem; flex-shrink: 0; }
+  .cb { font-size: .74rem; color: #475569; margin-bottom: 4px; }
+  .cb ul { list-style: none; padding: 0; }
+  .cb ul li { margin-bottom: 2px; }
+  .cb ul li::before { content: "\203A"; color: #1A807E; font-weight: 700; margin-right: 5px; }
+
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 3px 8px;
+    font-size: .66rem; color: #94A3B8; margin-top: 5px;
+    padding-top: 5px; border-top: 1px solid #F1F5F9;
+  }
+  .ml { font-weight: 600; color: #64748B; }
+
+  .b {
+    display: inline-block; padding: 1px 7px; border-radius: 8px;
+    font-size: .6rem; font-weight: 700; letter-spacing: .3px;
+    text-transform: uppercase; vertical-align: middle;
+  }
+  .b.ip  { background: #E0F2FE; color: #0369A1; }
+  .b.dn  { background: #DCFCE7; color: #166534; }
+  .b.pa  { background: #F1F5F9; color: #64748B; }
+  .b.sig { background: #DCFCE7; color: #166534; }
+  .b.held{ background: #FEE2E2; color: #991B1B; }
+  .b.env { background: #FEF3C7; color: #92400E; }
+  .b.act { background: #E0F2FE; color: #0369A1; }
+  .b.pen { background: #FEF3C7; color: #92400E; }
+
+  /* ─── BILL PIPELINE ─── */
+  .pipeline {
+    display: flex; gap: 0; margin: 6px 0; font-size: .58rem; font-weight: 600;
+  }
+  .pipe-step {
+    padding: 3px 8px; background: #F1F5F9; color: #94A3B8;
+    white-space: nowrap;
+  }
+  .pipe-step:first-child { border-radius: 4px 0 0 4px; }
+  .pipe-step:last-child { border-radius: 0 4px 4px 0; }
+  .pipe-step.done { background: #DCFCE7; color: #166534; }
+  .pipe-step.active { background: #1A807E; color: #fff; }
+  .pipe-step.held-step { background: #FEE2E2; color: #991B1B; }
+
+  /* ─── ALERT BOX ─── */
+  .alert-box {
+    margin-top: 6px; padding: 6px 8px; border-radius: 6px; font-size: .72rem;
+  }
+  .alert-box.amber { background: #FEF3C7; border-left: 3px solid #D97706; }
+  .alert-box.green { background: #DCFCE7; border-left: 3px solid #16A34A; }
+  .alert-box .alert-title { font-size: .66rem; font-weight: 700; text-transform: uppercase; }
+  .alert-box.amber .alert-title { color: #92400E; }
+  .alert-box.green .alert-title { color: #166534; }
+  .alert-box .alert-body { color: #475569; margin-top: 2px; font-size: .7rem; }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-title {
+    font-size: .78rem; font-weight: 700; color: #146462;
+    text-transform: uppercase; letter-spacing: .4px;
+    margin: 14px 0 10px; padding-bottom: 6px;
+    border-bottom: 2px solid #E2E8F0;
+  }
+
+  /* ─── QUICK LINKS ─── */
+  .quick-links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .qlink {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 5px 12px; border-radius: 8px; font-size: .7rem; font-weight: 600;
+    text-decoration: none; color: #1A807E; background: #E6F4F3;
+    border: 1px solid #B2DFDB; transition: all .15s;
+  }
+  .qlink:hover { background: #1A807E; color: #fff; }
+
+  /* ─── PRIORITY CARDS ─── */
+  .priority-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; border-radius: 50%; background: #1E1B4B;
+    color: #fff; font-size: .7rem; font-weight: 800; flex-shrink: 0;
+  }
+
+  /* ─── STATS ROW ─── */
+  .stats-row {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px; margin-bottom: 16px;
+  }
+  .stat-card {
+    background: #fff; border-radius: 10px; padding: 14px;
+    text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .stat-num { font-size: 1.6rem; font-weight: 800; color: #146462; }
+  .stat-label { font-size: .68rem; color: #64748B; margin-top: 2px; }
+
+  /* ─── NOTES PILLS ─── */
+  .notes-bar {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-top: 14px; padding-top: 10px; border-top: 1px solid #E2E8F0;
+  }
+  .note-pill {
+    display: inline-block; padding: 3px 10px; border-radius: 12px;
+    font-size: .62rem; font-weight: 600; color: #64748B;
+    background: #F1F5F9; text-decoration: none; border: 1px solid #E2E8F0;
+  }
+  .note-pill:hover { background: #E2E8F0; color: #1E293B; }
+
+  /* ─── BILL TABLE ─── */
+  .bill-table { width: 100%; border-collapse: collapse; font-size: .72rem; margin-bottom: 14px; }
+  .bill-table th {
+    text-align: left; padding: 8px 10px; background: #F1F5F9;
+    color: #64748B; font-size: .62rem; text-transform: uppercase;
+    letter-spacing: .4px; border-bottom: 2px solid #E2E8F0;
+  }
+  .bill-table td {
+    padding: 8px 10px; border-bottom: 1px solid #F1F5F9;
+    vertical-align: top;
+  }
+  .bill-table tr:hover td { background: #F8FAFC; }
+  .bill-table a { color: #1A807E; text-decoration: none; font-weight: 600; }
+  .bill-table a:hover { text-decoration: underline; }
+
+  .refresh-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 14px; border-radius: 8px; font-size: .7rem; font-weight: 600;
+    color: #fff; background: #1A807E; border: none; cursor: pointer;
+    transition: background .15s;
+  }
+  .refresh-btn:hover { background: #146462; }
+
+  .site-footer {
+    text-align: center; padding: 14px; font-size: .66rem; color: #94A3B8;
+    border-top: 1px solid #E2E8F0; background: #fff;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="logo-circle">D4</div>
+  <div class="header-text">
+    <h1><span>#</span>Data <span>4</span> The People Coalition</h1>
+    <p class="subtitle">Project Management Dashboard — October 2026</p>
+  </div>
+</header>
+
+<!-- PHASE BANNER -->
+<div class="phase-banner">
+  <strong>2026 legislative session: complete.</strong> Five bills signed into law, four budget wins secured. Now workplanning the <strong>2027-2028 policy agenda</strong> — first draft due end of October.
+</div>
+
+<!-- TABS -->
+<nav class="tab-bar">
+  <button class="tab-btn active" data-tab="overview">Overview</button>
+  <button class="tab-btn" data-tab="wins">2026 Wins</button>
+  <button class="tab-btn" data-tab="bills">Bill Tracker</button>
+  <button class="tab-btn" data-tab="agenda">2027-28 Agenda</button>
+  <button class="tab-btn" data-tab="retreat">Retreat</button>
+  <button class="tab-btn" data-tab="ece">ECE</button>
+  <button class="tab-btn" data-tab="tk12">TK-12</button>
+  <button class="tab-btn" data-tab="hedwf">HED/WF</button>
+  <button class="tab-btn" data-tab="c2c">C2C</button>
+</nav>
+
+<!-- ═══ OVERVIEW ═══ -->
+<div class="tab-panel active" id="tab-overview">
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Bills Signed</div></div>
+    <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Budget Wins</div></div>
+    <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Retreats Held</div></div>
+    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">2027-28 Priorities</div></div>
+  </div>
+
+  <div class="quick-links">
+    <a class="qlink" href="https://docs.google.com/document/d/1570NfvhpObDPIXHTiUsdyHF-1kyXH4dQwuvgPiRobOo/" target="_blank">Meeting Notes</a>
+    <a class="qlink" href="https://docs.google.com/document/d/1Vatn3pItpge3NcpvaSVQVJa7D5shlu3J5XB_PhBkM6A/edit?tab=t.0" target="_blank">Policy Agenda</a>
+    <a class="qlink" href="https://docs.google.com/spreadsheets/d/12fHdl5189beMNgSwp7nJHG-zytR-Tr0PyZa9XSDlEzo/" target="_blank">Bill Tracker</a>
+    <a class="qlink" href="https://docs.google.com/document/d/1SAV3Wr1O83NZ-3D11tAH6p1V381ZhyQM0pszsJF75so/edit" target="_blank">Retreat Master Doc</a>
+    <a class="qlink" href="https://drive.google.com/drive/u/1/folders/1ZrcfjFmHe4fMt4odwFA3NuKBpPmULVmr" target="_blank">D4TP Drive</a>
+  </div>
+
+  <div class="section-title">Where We Are Right Now</div>
+  <div class="cards-grid">
+    <div class="card planning">
+      <span class="tl t-planning">Active</span>
+      <div class="ct">2027-28 Policy Agenda Draft</div>
+      <div class="cb">First draft due last week of October. Five priorities consolidated from seven, organized along the student journey. Workgroup ranking poll closed Oct 14.</div>
+      <div class="meta">
+        <span><span class="ml">Status:</span> <span class="b act">Drafting</span></span>
+        <span><span class="ml">Due:</span> End of October</span>
+      </div>
+    </div>
+    <div class="card planning">
+      <span class="tl t-planning">Active</span>
+      <div class="ct"><a href="https://docs.google.com/document/d/1eRtZSvOvWkF-eTpVZ5HZVsoDYASAPxRYHkhgOwkff7A/edit" target="_blank">C2C Governing Board Letter</a></div>
+      <div class="cb">Letter recommending an Early Learning Data Task Force. Addressed to Chair Gavin Payne. Target: Nov 6 Governing Board meeting.</div>
+      <div class="meta">
+        <span><span class="ml">Status:</span> <span class="b act">Draft</span></span>
+        <span><span class="ml">Target:</span> Nov 6 GB meeting</span>
+      </div>
+    </div>
+    <div class="card planning">
+      <span class="tl t-planning">Active</span>
+      <div class="ct">ECE Three-Recommendation Framework</div>
+      <div class="cb">
+        <ul>
+          <li><strong>Rec 1:</strong> C2C Early Learning Data Task Force</li>
+          <li><strong>Rec 2:</strong> Advance phased ECIDS</li>
+          <li><strong>Rec 3:</strong> Expand ECE workforce data access</li>
+        </ul>
+      </div>
+      <div class="meta"><span><span class="ml">Lead:</span> Liza Chu, LNC Consulting</span></div>
+    </div>
+  </div>
+
+  <div class="section-title">Coalition Tools</div>
+  <div class="cards-grid">
+    <div class="card tool">
+      <span class="tl t-tool">Internal Tool</span>
+      <div class="ct"><a href="https://docs.google.com/spreadsheets/d/12fHdl5189beMNgSwp7nJHG-zytR-Tr0PyZa9XSDlEzo/" target="_blank">Bill &amp; Budget Tracker</a></div>
+      <div class="cb">Live tracker for bills and budget items. Last updated Sept 4, 2026.</div>
+    </div>
+    <div class="card tool">
+      <span class="tl t-tool">Internal Tool</span>
+      <div class="ct"><a href="https://docs.google.com/spreadsheets/d/1mQ9rXiifGqc6gWU5qlS59oYYsgZw_tajRFvXequPz8g/" target="_blank">D4TP Contacts &amp; Sources</a></div>
+      <div class="cb">Coalition contacts, legislative staff, agency liaisons. Updated Oct 5.</div>
+    </div>
+    <div class="card tool">
+      <span class="tl t-tool">Internal Tool</span>
+      <div class="ct"><a href="https://docs.google.com/document/d/1UgVaha_qEEPy1JU0zaqpFfPhbjwkrKWBIqDAen0YiBI/edit" target="_blank">C2C Engagement Notes</a></div>
+      <div class="cb">Meeting notes from C2C engagement activities. Updated Sept 16.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 2026 WINS ═══ -->
+<div class="tab-panel" id="tab-wins">
+  <div class="alert-box green" style="margin-bottom:14px;">
+    <div class="alert-title">Clean sweep — all five bills signed into law</div>
+    <div class="alert-body">Governor signed all five D4TP-supported bills before the September 30 deadline. Combined with four budget wins, the 2026 session was a landmark year for education data policy in California.</div>
+  </div>
+
+  <div class="section-title">Budget Wins — Budget Act of 2026</div>
+  <div class="cards-grid">
+    <div class="card win">
+      <span class="tl t-win">Approved</span>
+      <div class="ct">$100M Dual Enrollment Investment</div>
+      <div class="cb">One-time investment for CCAP programs, early/middle colleges. More flexibility, priority outreach to underrepresented students, new technical assistance center.</div>
+      <div class="meta"><span><span class="ml">Lead:</span> Roy/Melissa</span></div>
+    </div>
+    <div class="card win">
+      <span class="tl t-win">Approved</span>
+      <div class="ct">Education Governance Reform</div>
+      <div class="cb">Cost-neutral consolidation. New Education Commissioner; 2 new SBE members appointed by Speaker and Pro Tem. Details in AB 181 TBL.</div>
+    </div>
+    <div class="card win">
+      <span class="tl t-win">Approved</span>
+      <div class="ct">Common Cloud Data Platform</div>
+      <div class="cb">Approved in Budget Act of 2026.</div>
+      <div class="meta"><span><span class="ml">Lead:</span> Melissa</span></div>
+    </div>
+    <div class="card win">
+      <span class="tl t-win">Approved</span>
+      <div class="ct">Workforce Pell — $1.3M to C2C</div>
+      <div class="cb">One-time funding to C2C for Workforce Pell data collection and reporting, plus higher ed omnibus implementation language. Implementing measure: AB 1534.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Bills Signed Into Law — 2025-2026 Session</div>
+  <div class="cards-grid">
+    <div class="card win">
+      <span class="tl t-win">Signed · Ch. 519</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1534" target="_blank">AB 1534</a> — Workforce Pell</div>
+      <div class="pipeline">
+        <span class="pipe-step done">Intro</span><span class="pipe-step done">Cmte</span><span class="pipe-step done">Approps</span><span class="pipe-step done">Floor</span><span class="pipe-step done">2nd House</span><span class="pipe-step done">Signed 9/27</span>
+      </div>
+      <div class="cb">State approval process for short-term workforce programs seeking federal Workforce Pell funds. Passed 78-0.</div>
+      <div class="meta"><span><span class="ml">Author:</span> Asm. Irwin</span><span><span class="ml">Lead:</span> Sarah / TICAS</span></div>
+    </div>
+    <div class="card win">
+      <span class="tl t-win">Signed · Ch. 881</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1581" target="_blank">AB 1581</a> — AI/AN Student Data</div>
+      <div class="pipeline">
+        <span class="pipe-step done">Intro</span><span class="pipe-step done">Cmte</span><span class="pipe-step done">Approps</span><span class="pipe-step done">Floor</span><span class="pipe-step done">2nd House</span><span class="pipe-step done">Signed 9/30</span>
+      </div>
+      <div class="cb">Strengthens CALPADS data collection for American Indian and Alaska Native students. Addresses 70% undercounting. Passed 77-0.</div>
+      <div class="meta"><span><span class="ml">Author:</span> Asm. Ramos/Patel</span><span><span class="ml">Lead:</span> Liza</span></div>
+    </div>
+    <div class="card win">
+      <span class="tl t-win">Signed · Ch. 555</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1871" target="_blank">AB 1871</a> — Dual Enrollment / CCAP</div>
+      <div class="pipeline">
+        <span class="pipe-step done">Intro</span><span class="pipe-step done">Cmte</span><span class="pipe-step done">Approps</span><span class="pipe-step done">Floor</span><span class="pipe-step done">2nd House</span><span class="pipe-step done">Signed 9/27</span>
+      </div>
+      <div class="cb">Reducing admin burden for CCAP participation. Unanimous at every step. Passed 79-0.</div>
+      <div class="meta"><span><span class="ml">Author:</span> Asm. Fong</span><span><span class="ml">Lead:</span> Melissa (ETW) / HOPE</span></div>
+    </div>
+    <div class="card win">
+      <span class="tl t-win">Signed · Ch. 906</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1904" target="_blank">AB 1904</a> — Educator Apprenticeships</div>
+      <div class="pipeline">
+        <span class="pipe-step done">Intro</span><span class="pipe-step done">Cmte</span><span class="pipe-step done">Approps</span><span class="pipe-step done">Floor</span><span class="pipe-step done">2nd House</span><span class="pipe-step done">Signed 9/30</span>
+      </div>
+      <div class="cb">CTC and DAS co-approval for educator apprenticeship programs. Earn-while-you-learn pathway to teaching credential. Passed 78-0.</div>
+      <div class="meta"><span><span class="ml">Author:</span> Asm. Gipson/Muratsuchi</span><span><span class="ml">Lead:</span> Jessica Sawko / Children Now</span></div>
+    </div>
+    <div class="card win">
+      <span class="tl t-win">Signed · Ch. 567</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1981" target="_blank">AB 1981</a> — True Cost of Child Care Act</div>
+      <div class="pipeline">
+        <span class="pipe-step done">Intro</span><span class="pipe-step done">Cmte</span><span class="pipe-step done">Approps</span><span class="pipe-step done">Floor</span><span class="pipe-step done">2nd House</span><span class="pipe-step done">Signed 9/27</span>
+      </div>
+      <div class="cb">Annual COLA for all subsidized childcare providers starting July 1, 2026. Transparent reporting on true cost of care. Urgency measure.</div>
+      <div class="meta"><span><span class="ml">Author:</span> Asm. Aguiar-Curry</span><span><span class="ml">Lead:</span> Alicia / Every Child CA</span></div>
+    </div>
+  </div>
+
+  <div class="section-title">Bills Held in 2026 — Candidates for 2027</div>
+  <div class="cards-grid">
+    <div class="card held">
+      <span class="tl t-held">Held · Asm Approps 5/14</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB2092" target="_blank">AB 2092</a> — ECIDS</div>
+      <div class="pipeline">
+        <span class="pipe-step done">Intro</span><span class="pipe-step done">Cmte</span><span class="pipe-step held-step">Approps</span><span class="pipe-step">Floor</span><span class="pipe-step">2nd House</span><span class="pipe-step">Gov</span>
+      </div>
+      <div class="cb">Early Childhood Integrated Data System. Passed policy committee 15-0. Held in Asm Appropriations suspense file 5/14/26. 2027 vehicle TBD (bill, budget, or agency action).</div>
+      <div class="meta"><span><span class="ml">Author:</span> Asm. Bonta</span><span><span class="ml">Lead:</span> ETW</span></div>
+    </div>
+    <div class="card held">
+      <span class="tl t-held">Held · Sen Approps 8/13</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB402" target="_blank">AB 402</a></div>
+      <div class="cb">Held in Senate Appropriations (8/13/26). Concerns from partners; lack of data from AICCU institutions on A-G outcomes.</div>
+    </div>
+    <div class="card held">
+      <span class="tl t-held">Held · Sen Approps 8/13</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB2236" target="_blank">AB 2236</a> — Course Articulation</div>
+      <div class="cb">Held in Senate Appropriations (8/13/26) after clearing Asm Floor (78-0) and Sen Ed (6-1). Coalition testified 6/24.</div>
+      <div class="meta"><span><span class="ml">Author:</span> Asm. Berman</span><span><span class="ml">Lead:</span> Marisa (Campaign)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BILL TRACKER ═══ -->
+<div class="tab-panel" id="tab-bills">
+  <div class="section-title" style="display:flex; justify-content:space-between; align-items:center;">
+    <span>D4TP Bill Tracker — 2025-2026 Session</span>
+    <button class="refresh-btn" onclick="sendPrompt('Check the current status of all D4TP tracked bills on leginfo.legislature.ca.gov and update the dashboard with any changes.')">Ask Claude to Refresh</button>
+  </div>
+  <p style="font-size:.7rem;color:#64748B;margin-bottom:12px;">Status confirmed from leginfo.legislature.ca.gov on October 19, 2026. Click any bill number to view its official status page. Click "Ask Claude to Refresh" to have Claude check leginfo for updates.</p>
+
+  <table class="bill-table">
+    <thead>
+      <tr><th>Bill</th><th>Topic</th><th>Author</th><th>Status</th><th>Date</th><th>Chapter</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1534" target="_blank">AB 1534</a></td>
+        <td>Workforce Pell</td>
+        <td>Irwin</td>
+        <td><span class="b sig">Signed</span></td>
+        <td>9/27/26</td>
+        <td>Ch. 519</td>
+      </tr>
+      <tr>
+        <td><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1581" target="_blank">AB 1581</a></td>
+        <td>AI/AN Student Data</td>
+        <td>Ramos/Patel</td>
+        <td><span class="b sig">Signed</span></td>
+        <td>9/30/26</td>
+        <td>Ch. 881</td>
+      </tr>
+      <tr>
+        <td><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1871" target="_blank">AB 1871</a></td>
+        <td>Dual Enrollment / CCAP</td>
+        <td>Fong</td>
+        <td><span class="b sig">Signed</span></td>
+        <td>9/27/26</td>
+        <td>Ch. 555</td>
+      </tr>
+      <tr>
+        <td><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1904" target="_blank">AB 1904</a></td>
+        <td>Educator Apprenticeships</td>
+        <td>Gipson</td>
+        <td><span class="b sig">Signed</span></td>
+        <td>9/30/26</td>
+        <td>Ch. 906</td>
+      </tr>
+      <tr>
+        <td><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1981" target="_blank">AB 1981</a></td>
+        <td>True Cost of Child Care</td>
+        <td>Aguiar-Curry</td>
+        <td><span class="b sig">Signed</span></td>
+        <td>9/27/26</td>
+        <td>Ch. 567</td>
+      </tr>
+      <tr style="background:#FEF2F2;">
+        <td><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB2092" target="_blank">AB 2092</a></td>
+        <td>ECIDS</td>
+        <td>Bonta</td>
+        <td><span class="b held">Held</span></td>
+        <td>5/14/26</td>
+        <td>—</td>
+      </tr>
+      <tr style="background:#FEF2F2;">
+        <td><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB402" target="_blank">AB 402</a></td>
+        <td>A-G Outcomes Data</td>
+        <td>—</td>
+        <td><span class="b held">Held</span></td>
+        <td>8/13/26</td>
+        <td>—</td>
+      </tr>
+      <tr style="background:#FEF2F2;">
+        <td><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB2236" target="_blank">AB 2236</a></td>
+        <td>Course Articulation</td>
+        <td>Berman</td>
+        <td><span class="b held">Held</span></td>
+        <td>8/13/26</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert-box green">
+    <div class="alert-title">How bill tracking works</div>
+    <div class="alert-body">This dashboard tracks D4TP bills using leginfo.legislature.ca.gov, the California Legislature's official status page. Click "Ask Claude to Refresh" to have Claude open leginfo in the browser, check each bill's current status, and update this dashboard. As the 2027 session begins, new bills will be added here with their full legislative journey.</div>
+  </div>
+
+  <div class="section-title" style="margin-top:20px;">2027 Session — Bills to Watch</div>
+  <p style="font-size:.74rem;color:#475569;margin-bottom:10px;">The 2027-2028 session begins in January 2027. Potential bill vehicles from the 2027-28 policy agenda:</p>
+  <div class="cards-grid">
+    <div class="card planning">
+      <span class="tl t-planning">TBD</span>
+      <div class="ct">ECIDS Vehicle</div>
+      <div class="cb">Could be a new bill, budget item, or agency action. ETW determining the best path. AB 2092 may be reintroduced.</div>
+    </div>
+    <div class="card planning">
+      <span class="tl t-planning">TBD</span>
+      <div class="ct">Course-Level Data Restoration</div>
+      <div class="cb">Restoring annual statewide course-level data. AB 2236 may be reintroduced with revised fiscal approach.</div>
+    </div>
+    <div class="card planning">
+      <span class="tl t-planning">TBD</span>
+      <div class="ct">Enhanced Wage Records</div>
+      <div class="cb">Reintroduction with tested cost estimate. Part of Priority 4 (Workforce Outcomes).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 2027-28 AGENDA ═══ -->
+<div class="tab-panel" id="tab-agenda">
+  <div class="section-title">2027-2028 Policy Agenda — Five Priorities</div>
+  <p style="font-size:.74rem;color:#475569;margin-bottom:14px;">Consolidated from seven to five priorities, organized along the student journey. Developed through the 2026 reflection survey, three September listening sessions, and October retreats.</p>
+
+  <div class="cards-grid">
+    <div class="card priority">
+      <div class="ct"><span class="priority-num">1</span> Early Childhood Data System &amp; TK-12 Connection</div>
+      <div class="cb">
+        <ul>
+          <li>Designate a lead agency for ECIDS with implementation timeline</li>
+          <li>Build an ECE-to-TK-12 data crosswalk (CDE, CDSS, Head Start, FCC, DLL)</li>
+          <li>Secure public disaggregated DLL data in CSPP; fund ECE workforce registry</li>
+        </ul>
+      </div>
+      <div class="meta"><span><span class="ml">Workgroup:</span> ECE</span></div>
+    </div>
+    <div class="card priority">
+      <div class="ct"><span class="priority-num">2</span> Restore &amp; Expand TK-12 Teaching &amp; Learning Data</div>
+      <div class="cb">
+        <ul>
+          <li>Restore annual statewide course-level data (not published since 2018-19)</li>
+          <li>Implement AB 2555 — reclassified students in accountability with EL typologies</li>
+          <li>Build educator workforce picture via CTC data matching</li>
+        </ul>
+      </div>
+      <div class="meta"><span><span class="ml">Workgroup:</span> TK-12</span></div>
+    </div>
+    <div class="card priority">
+      <div class="ct"><span class="priority-num">3</span> College Access, Affordability &amp; Success Data</div>
+      <div class="cb">
+        <ul>
+          <li>Standardize data definitions across CCC, CSU, and UC</li>
+          <li>Build public dual enrollment picture at C2C</li>
+          <li>Establish statewide student debt reporting framework</li>
+        </ul>
+      </div>
+      <div class="meta"><span><span class="ml">Workgroup:</span> HED/WF</span></div>
+    </div>
+    <div class="card priority">
+      <div class="ct"><span class="priority-num">4</span> Connect Education Data to Workforce Outcomes</div>
+      <div class="cb">
+        <ul>
+          <li>Reintroduce enhanced wage records with tested cost estimate</li>
+          <li>Build CA program-to-occupation crosswalk &amp; career outcomes dashboard</li>
+          <li>Set strong Workforce Pell definitions (high-skill, high-wage, in-demand)</li>
+        </ul>
+      </div>
+      <div class="meta"><span><span class="ml">Workgroup:</span> HED/WF</span></div>
+    </div>
+    <div class="card priority">
+      <div class="ct"><span class="priority-num">5</span> Protect &amp; Strengthen Statewide Data Infrastructure</div>
+      <div class="cb">
+        <ul>
+          <li>Protect and fund C2C and CEIC through gubernatorial transition</li>
+          <li>Build a distinct C2C advocacy track with coalition fluency</li>
+          <li>Standardize race/ethnicity data across agencies; improve public tools</li>
+        </ul>
+      </div>
+      <div class="meta"><span><span class="ml">Workgroup:</span> Cross-cutting</span></div>
+    </div>
+  </div>
+
+  <div class="notes-bar">
+    <a class="note-pill" href="https://docs.google.com/document/d/1VoyhMB2DbRtd27uMii-NSAjwjYzD8mHKUVGxC3KscnY/edit" target="_blank">Full Agenda Draft (Sept 17)</a>
+    <a class="note-pill" href="https://drive.google.com/drive/folders/1jBpSKy_CXLbjhZCKfLIWbNXeHLKelOvu" target="_blank">2027-28 Agenda Folder</a>
+  </div>
+</div>
+
+<!-- ═══ RETREAT ═══ -->
+<div class="tab-panel" id="tab-retreat">
+  <div class="section-title">2026 Strategic Retreat — Completed</div>
+  <div class="cards-grid">
+    <div class="card win">
+      <span class="tl t-win">Completed</span>
+      <div class="ct">Sacramento Retreat — Oct 5</div>
+      <div class="cb">Full-day session: 2026 reflection, 2027-28 policy agenda framework, SWOT breakout stations, C2C virtual presentation, Pathways Dashboard Demo, priority dot voting, work planning.</div>
+    </div>
+    <div class="card win">
+      <span class="tl t-win">Completed</span>
+      <div class="ct">LA Retreat — Oct 8</div>
+      <div class="cb">Same agenda as Sacramento. C2C Executive Director Mary Ann Bates presented (5-year anniversary, strategic plan, annual work plan update).</div>
+    </div>
+  </div>
+
+  <div class="section-title">Retreat Outcomes — ECE Priority (18 dots across retreats)</div>
+  <div class="cards-grid">
+    <div class="card planning">
+      <span class="tl t-planning">Rec 1 · 5 dots</span>
+      <div class="ct">C2C Early Learning Data Task Force</div>
+      <div class="cb">Letter to the Governing Board being drafted. Target: Nov 6 meeting. Folds in ECE-to-TK-12 crosswalk, DLL data, kindergarten entry form.</div>
+      <div class="meta">
+        <span><span class="ml">Lead:</span> ETW with LNC</span>
+        <span><span class="ml">Timeline:</span> Board decision possible 2027</span>
+      </div>
+    </div>
+    <div class="card planning">
+      <span class="tl t-planning">Rec 2 · 8 dots</span>
+      <div class="ct">Advance Phased ECIDS</div>
+      <div class="cb">Most supported item. 2027 vehicle TBD (bill, budget, or agency action). Scoped to 10 Super Questions, CDSS as lead agency, phased fiscal case. AB 2092 was held in Approps in 2026.</div>
+      <div class="meta">
+        <span><span class="ml">Lead:</span> ETW</span>
+        <span><span class="ml">Timeline:</span> Multi-year; first phase 2027</span>
+      </div>
+    </div>
+    <div class="card planning">
+      <span class="tl t-planning">Rec 3 · 5 dots</span>
+      <div class="ct">Expand ECE Workforce Data</div>
+      <div class="cb">Start from existing research (not new study). Two-page summary of existing findings and data gaps by Q1 2027. Connect to C2C and CEIC.</div>
+      <div class="meta">
+        <span><span class="ml">Lead:</span> CCRC (prospective)</span>
+        <span><span class="ml">Timeline:</span> Multi-year; 2027 builds case</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Q4 2026 Action Items (from retreats)</div>
+  <div class="cards-grid">
+    <div class="card project">
+      <div class="ct">Draft GB letter for Early Learning Task Force</div>
+      <div class="cb">Liza drafting; Roy and Kat share with teams. Open for coalition sign-on.</div>
+    </div>
+    <div class="card project">
+      <div class="ct">Connect with incoming Governor's administration</div>
+      <div class="cb">Susan Savage (CCRC) passes asks to Donna for admin meeting. Steve Sianez (UnidosUS) brings same asks.</div>
+    </div>
+    <div class="card project">
+      <div class="ct">Engage Early Childhood Policy Council</div>
+      <div class="cb">Susan checks with Donna and Alicia with Nina on alignment. Review Council materials for ECIDS position. Attend November public meeting.</div>
+    </div>
+    <div class="card project">
+      <div class="ct">CDSS intro meeting on data system revamp</div>
+      <div class="cb">Learn what's possible with CDSS's existing data system. Shape the phased ECIDS ask.</div>
+    </div>
+    <div class="card project">
+      <div class="ct">List differing ECE/TK-12 definitions</div>
+      <div class="cb">Which definitions differ across CDE, CDSS, Head Start, home visiting, FCC, DLL. Bring to task force request.</div>
+    </div>
+  </div>
+
+  <div class="notes-bar">
+    <a class="note-pill" href="https://docs.google.com/document/d/1SAV3Wr1O83NZ-3D11tAH6p1V381ZhyQM0pszsJF75so/edit" target="_blank">Retreat Master Document</a>
+    <a class="note-pill" href="https://docs.google.com/presentation/d/1SnzH97DwsZSjTuJylF9d8LPs7onoJnP8UQFQAjOKe4c/edit" target="_blank">Retreat Slide Deck</a>
+    <a class="note-pill" href="https://docs.google.com/document/d/1cRRd65zGQBiGe053X7LWzIFvhmTCot1YH1788kGIgFA/edit" target="_blank">ECE Three-Rec Framework</a>
+    <a class="note-pill" href="https://docs.google.com/document/d/1eRtZSvOvWkF-eTpVZ5HZVsoDYASAPxRYHkhgOwkff7A/edit" target="_blank">GB Letter Draft</a>
+  </div>
+</div>
+
+<!-- ═══ ECE ═══ -->
+<div class="tab-panel" id="tab-ece">
+  <div class="section-title">Early Care &amp; Education Workgroup</div>
+  <div class="cards-grid">
+    <div class="card planning">
+      <span class="tl t-planning">2027-28 Priority 1</span>
+      <div class="ct">Establish Early Childhood Data System &amp; Connect to TK-12</div>
+      <div class="cb">Three-recommendation framework from Oct retreats: C2C Task Force, phased ECIDS, ECE workforce data. This is the workgroup's central focus going into 2027.</div>
+    </div>
+    <div class="card project">
+      <span class="tl t-project">Q4 Active</span>
+      <div class="ct"><a href="https://docs.google.com/document/d/1eRtZSvOvWkF-eTpVZ5HZVsoDYASAPxRYHkhgOwkff7A/edit" target="_blank">C2C Governing Board Letter</a></div>
+      <div class="cb">Recommend Early Learning Data Task Force. Targeting Nov 6 board meeting. Sign-on open to coalition.</div>
+    </div>
+    <div class="card outreach">
+      <span class="tl t-outreach">Stakeholders</span>
+      <div class="ct">Key Contacts for 2027</div>
+      <div class="cb">
+        <ul>
+          <li><strong>Susan Savage</strong> (CCRC) — ECPC connection, workforce data</li>
+          <li><strong>Carla Bryan</strong> (DIALEE/UW) — joined workgroup</li>
+          <li><strong>Steve Sianez</strong> (UnidosUS) — EL Table, agency connections</li>
+          <li><strong>Karen Baw Vang</strong> — monitoring ECPC master plan</li>
+          <li><strong>Mario Snow</strong> (CalTog) — ECIDS/WestEd research</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">2026 ECE Legislative Outcomes</div>
+  <div class="cards-grid">
+    <div class="card win">
+      <span class="tl t-win">Signed · Ch. 567</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1981" target="_blank">AB 1981</a> — True Cost of Child Care Act</div>
+      <div class="cb">Annual COLA for subsidized childcare providers. Lead: Alicia / Every Child CA.</div>
+    </div>
+    <div class="card held">
+      <span class="tl t-held">Held — 2027 Retry</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB2092" target="_blank">AB 2092</a> — ECIDS</div>
+      <div class="cb">Passed policy committees 15-0, held in Assembly Appropriations 5/14/26. The 2027 vehicle (bill, budget, or agency action) is being determined by ETW.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TK-12 ═══ -->
+<div class="tab-panel" id="tab-tk12">
+  <div class="section-title">TK-12 Workgroup</div>
+  <div class="cards-grid">
+    <div class="card planning">
+      <span class="tl t-planning">2027-28 Priority 2</span>
+      <div class="ct">Restore &amp; Expand TK-12 Teaching &amp; Learning Data</div>
+      <div class="cb">Course-level data (not published since 2018-19), reclassified student outcomes (AB 2555), and educator workforce picture via CTC.</div>
+    </div>
+    <div class="card project">
+      <span class="tl t-project">Active</span>
+      <div class="ct"><a href="https://docs.google.com/document/d/1Qvldjspy2tTCHgLlBaD6ECTGW_8WflfsbaXD3GUtIX4/edit?tab=t.0" target="_blank">MLL Data Memo</a></div>
+      <div class="cb">Multilingual Learner data memo. Circulated for feedback. Tied to C2C proposal cycle and 2027-28 agenda.</div>
+      <div class="meta"><span><span class="ml">Lead:</span> Roy Tongilava, ETW</span></div>
+    </div>
+  </div>
+
+  <div class="section-title">2026 TK-12 Legislative Outcomes</div>
+  <div class="cards-grid">
+    <div class="card win">
+      <span class="tl t-win">Signed · Ch. 881</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1581" target="_blank">AB 1581</a> — AI/AN Student Data</div>
+      <div class="cb">Strengthens CALPADS for American Indian/Alaska Native students. Addresses 70% undercounting. Lead: Liza.</div>
+    </div>
+    <div class="card win">
+      <span class="tl t-win">Signed · Ch. 906</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1904" target="_blank">AB 1904</a> — Educator Apprenticeships</div>
+      <div class="cb">CTC/DAS co-approval for educator apprenticeship programs. Lead: Jessica Sawko / Children Now.</div>
+    </div>
+    <div class="card held">
+      <span class="tl t-held">Held</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB2236" target="_blank">AB 2236</a> — Course Articulation</div>
+      <div class="cb">Held in Senate Appropriations 8/13/26. Cleared Asm Floor (78-0) and Sen Ed (6-1). Coalition testified 6/24.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Key Relationships</div>
+  <div class="cards-grid">
+    <div class="card outreach">
+      <div class="ct">CEIC — New Executive Director</div>
+      <div class="cb">Director Cochrane named workforce data as a priority and asked how ECE becomes an interagency issue. Strategic opportunity for 2027.</div>
+    </div>
+    <div class="card outreach">
+      <div class="ct">PPIC CA Education Data Collaborative</div>
+      <div class="cb">Fall meeting attended (Sept 14). Notes in Drive.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HED/WF ═══ -->
+<div class="tab-panel" id="tab-hedwf">
+  <div class="section-title">Higher Ed &amp; Workforce Workgroup</div>
+  <div class="cards-grid">
+    <div class="card planning">
+      <span class="tl t-planning">2027-28 Priorities 3 &amp; 4</span>
+      <div class="ct">College Data Comparability + Workforce Outcomes</div>
+      <div class="cb">Priority 3: Standardize CCC/CSU/UC data, dual enrollment at C2C, student debt framework. Priority 4: Enhanced wage records, program-to-occupation crosswalk, Workforce Pell definitions.</div>
+    </div>
+  </div>
+
+  <div class="section-title">2026 HED/WF Legislative Outcomes</div>
+  <div class="cards-grid">
+    <div class="card win">
+      <span class="tl t-win">Signed · Ch. 519</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1534" target="_blank">AB 1534</a> — Workforce Pell</div>
+      <div class="cb">State approval process for short-term workforce programs. Passed 78-0. Lead: Sarah / TICAS.</div>
+    </div>
+    <div class="card win">
+      <span class="tl t-win">Signed · Ch. 555</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1871" target="_blank">AB 1871</a> — Dual Enrollment / CCAP</div>
+      <div class="cb">Reduced admin burden. Unanimous at every step. Lead: Melissa (ETW) / HOPE.</div>
+    </div>
+    <div class="card win">
+      <span class="tl t-win">Budget</span>
+      <div class="ct">$100M Dual Enrollment + Common Cloud Platform + Workforce Pell $1.3M</div>
+      <div class="cb">Three budget wins in the Budget Act of 2026.</div>
+    </div>
+    <div class="card held">
+      <span class="tl t-held">Held</span>
+      <div class="ct"><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB402" target="_blank">AB 402</a></div>
+      <div class="cb">Held in Senate Appropriations 8/13/26. Concerns about AICCU data on A-G outcomes.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Exploratory</div>
+  <div class="cards-grid">
+    <div class="card project">
+      <span class="tl t-project">Ongoing</span>
+      <div class="ct">Student Debt Data</div>
+      <div class="cb">CSU/UC hesitant. Exploring DFPI pathway and revived Schak C2C proposal. Tied to 2027-28 Priority 3.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ C2C ═══ -->
+<div class="tab-panel" id="tab-c2c">
+  <div class="section-title">Cradle-to-Career Data System</div>
+
+  <div class="card project" style="margin-bottom:14px;">
+    <span class="tl t-process">C2C 5-Year Anniversary</span>
+    <div class="ct">C2C Turns 5 — New Strategic Plan</div>
+    <div class="cb">Celebrated 5 years July 27. New 2026-31 strategic plan published. FY 2026-27 annual work plan update. ED Mary Ann Bates presented at the Oct 8 retreat.</div>
+    <div class="meta">
+      <span><a href="https://c2c.ca.gov/resources/california-cradle-to-career-data-system-2026-31-strategic-plan/" target="_blank" style="color:#1A807E;">Strategic Plan</a></span>
+      <span><a href="https://c2c.ca.gov/resources/california-cradle-to-career-data-system-12-month-work-plan-fy-2025-27/" target="_blank" style="color:#1A807E;">Work Plan</a></span>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card planning">
+      <span class="tl t-planning">Next Major Ask</span>
+      <div class="ct">Early Learning Data Task Force — Nov 6 GB</div>
+      <div class="cb">Letter to Chair Gavin Payne and Governing Board recommending an Early Learning Data Task Force. This is Rec 1 from the retreat. C2C's work plan commits to "initial milestones for the future import of early learning data."</div>
+    </div>
+    <div class="card planning">
+      <span class="tl t-planning">2027-28 Priority 5</span>
+      <div class="ct">Protect &amp; Strengthen C2C Through Transition</div>
+      <div class="cb">Ongoing dollars, staff positions, and legislative champions through the gubernatorial transition. Build a distinct advocacy track with coalition fluency.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Active C2C Proposals</div>
+  <div class="cards-grid">
+    <div class="card project">
+      <div class="ct">MLL Data Memo</div>
+      <div class="cb">Circulated for feedback. Part of Priority 2 (TK-12) in the new agenda.</div>
+    </div>
+    <div class="card project">
+      <div class="ct">Student Debt Data</div>
+      <div class="cb">Exploring DFPI pathway. Part of Priority 3 (HED/WF) in the new agenda.</div>
+    </div>
+    <div class="card project">
+      <div class="ct">Dual Enrollment Dashboard</div>
+      <div class="cb">Part of Priority 3 in the new agenda.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  Data for the People Coalition · Dashboard Artifact · Updated October 19, 2026 · Bill status verified from leginfo.legislature.ca.gov
+</footer>
+
+<!-- TAB SWITCHING -->
+<script>
+(function() {
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-tab');
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + target).classList.add('active');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
