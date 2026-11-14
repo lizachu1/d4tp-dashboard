@@ -1,0 +1,122 @@
+[
+  {
+    "date": "2019-06",
+    "kind": "law",
+    "title": "Budget Act funds C2C planning",
+    "detail": "2019 Budget Act (SB 75) funds a planning process for a statewide longitudinal data system, facilitated by WestEd."
+  },
+  {
+    "date": "2020-12",
+    "kind": "plan",
+    "title": "Master Plan for Early Learning and Care",
+    "detail": "Calls for integrated early childhood data. Same month: first C2C legislative report."
+  },
+  {
+    "date": "2021-07",
+    "kind": "law",
+    "title": "AB 132 establishes C2C",
+    "detail": "Education Code 10850-10875 creates the system and the Office of Cradle-to-Career Data in GovOps. Child care programs move from CDE to CDSS (AB 131)."
+  },
+  {
+    "date": "2021-07",
+    "kind": "law",
+    "title": "AB 133 creates the CalHHS Data Exchange Framework",
+    "detail": "Health and Safety Code 130290."
+  },
+  {
+    "date": "2022-07",
+    "kind": "launch",
+    "title": "CalKIDS newborn accounts begin",
+    "detail": "Every child born on or after July 1, 2022 gets a seeded account. Universal TK rollout begins in 2022-23."
+  },
+  {
+    "date": "2023-11",
+    "kind": "milestone",
+    "title": "First C2C data submissions",
+    "detail": "Eight initial data partners submit data in 2023."
+  },
+  {
+    "date": "2024-05",
+    "kind": "c2c",
+    "title": "DDS joins C2C",
+    "detail": "Resolution 24-02 adds Developmental Services data, including Early Start."
+  },
+  {
+    "date": "2024-07",
+    "kind": "launch",
+    "title": "CAPSDAC required for LEA-run state preschool",
+    "detail": "Education Code 60910 child, classroom and staff data."
+  },
+  {
+    "date": "2025-02",
+    "kind": "c2c",
+    "title": "ScholarShare (CalKIDS) joins C2C",
+    "detail": "Resolution 25-01."
+  },
+  {
+    "date": "2025-04",
+    "kind": "launch",
+    "title": "Student Pathways Dashboard launches",
+    "detail": "First public C2C tool, announced April 22, 2025."
+  },
+  {
+    "date": "2025-05",
+    "kind": "c2c",
+    "title": "Largest C2C expansion: workforce data",
+    "detail": "Board approves LWDA labor and training data, with CWDB and ETP as new partners and apprenticeship data from DAS."
+  },
+  {
+    "date": "2026-05",
+    "kind": "bill",
+    "title": "AB 2092 (ECIDS) held in Appropriations",
+    "detail": "Would have created an ECIDS under CDSS linked to C2C."
+  },
+  {
+    "date": "2026-05",
+    "kind": "c2c",
+    "title": "New EDD data points approved",
+    "detail": "Employer ID and name among new P20W points; EDD moves to Snowflake transfer."
+  },
+  {
+    "date": "2026-07",
+    "kind": "law",
+    "title": "SB 135 higher education trailer bill",
+    "detail": "Chapter 79, Statutes of 2026. Requires partner MOUs for data sharing and requests UC participation."
+  },
+  {
+    "date": "2026-07",
+    "kind": "milestone",
+    "title": "C2C five-year mark: 16 data partners",
+    "detail": "Up from 8 partners submitting data in 2023."
+  },
+  {
+    "date": "2026-08",
+    "kind": "plan",
+    "title": "C2C 2026-31 Strategic Plan and 2026-27 Work Plan",
+    "detail": "Transfer outcomes and teacher dashboards; initial milestones for early learning and care data import."
+  },
+  {
+    "date": "2026-08",
+    "kind": "bill",
+    "title": "SB 1054 (enhanced wage records) held",
+    "detail": "Held in Assembly Appropriations."
+  },
+  {
+    "date": "2026-09",
+    "kind": "law",
+    "title": "AB 1534 Workforce Pell oversight signed",
+    "detail": "Reported chaptered September 27, 2026. Creates a state approval process for Workforce Pell programs."
+  },
+  {
+    "date": "2026-10",
+    "kind": "launch",
+    "title": "CDE announces CDMIS 2.0",
+    "detail": "CDMIS Monthly Report replaces the 801A beginning July 2027."
+  },
+  {
+    "date": "2026-11",
+    "kind": "milestone",
+    "title": "D4TP letter on Early Learning Data Task Force",
+    "detail": "Coalition letter considered for the November 13 C2C Governing Board meeting."
+  }
+]

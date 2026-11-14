@@ -1,0 +1,674 @@
+[
+  {
+    "source": "cde_calpads",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "ccc_mis",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "csu_ers",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "uc_ss",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "csac",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "edd_wages",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "ctc_educator",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "sib_calkids",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "dds_earlystart",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "cwdb_caal",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "etp",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "ccgi",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "calsaws",
+    "target": "c2c",
+    "status": "c2c",
+    "mechanism": "Annual data submission matched into P20W",
+    "identifier": "Person matching (name, birth date, SSN or partner ID)",
+    "note": ""
+  },
+  {
+    "source": "cde_assess",
+    "target": "c2c",
+    "status": "periodic",
+    "mechanism": "Partial or unconfirmed participation",
+    "identifier": "Person matching",
+    "note": "Scope needs confirmation"
+  },
+  {
+    "source": "aiccu",
+    "target": "c2c",
+    "status": "periodic",
+    "mechanism": "Partial or unconfirmed participation",
+    "identifier": "Person matching",
+    "note": "Scope needs confirmation"
+  },
+  {
+    "source": "bppe",
+    "target": "c2c",
+    "status": "periodic",
+    "mechanism": "Partial or unconfirmed participation",
+    "identifier": "Person matching",
+    "note": "Scope needs confirmation"
+  },
+  {
+    "source": "edd_caljobs",
+    "target": "c2c",
+    "status": "periodic",
+    "mechanism": "Partial or unconfirmed participation",
+    "identifier": "Person matching",
+    "note": "Scope needs confirmation"
+  },
+  {
+    "source": "dhcs_medi_cal",
+    "target": "c2c",
+    "status": "periodic",
+    "mechanism": "Partial or unconfirmed participation",
+    "identifier": "Person matching",
+    "note": "Scope needs confirmation"
+  },
+  {
+    "source": "dmv",
+    "target": "c2c",
+    "status": "periodic",
+    "mechanism": "Partial or unconfirmed participation",
+    "identifier": "Person matching",
+    "note": "Scope needs confirmation"
+  },
+  {
+    "source": "ctc_permits",
+    "target": "c2c",
+    "status": "periodic",
+    "mechanism": "Partial or unconfirmed participation",
+    "identifier": "Person matching",
+    "note": "Scope needs confirmation"
+  },
+  {
+    "source": "dor",
+    "target": "c2c",
+    "status": "periodic",
+    "mechanism": "Partial or unconfirmed participation",
+    "identifier": "Person matching",
+    "note": "Scope needs confirmation"
+  },
+  {
+    "source": "cde_capsdac",
+    "target": "c2c",
+    "status": "planned",
+    "mechanism": "Approved or in C2C work plan, not yet imported",
+    "identifier": "To be determined",
+    "note": ""
+  },
+  {
+    "source": "cde_cdmis",
+    "target": "c2c",
+    "status": "planned",
+    "mechanism": "Approved or in C2C work plan, not yet imported",
+    "identifier": "To be determined",
+    "note": ""
+  },
+  {
+    "source": "cdss_ccdd",
+    "target": "c2c",
+    "status": "planned",
+    "mechanism": "Approved or in C2C work plan, not yet imported",
+    "identifier": "To be determined",
+    "note": ""
+  },
+  {
+    "source": "dir_das",
+    "target": "c2c",
+    "status": "planned",
+    "mechanism": "Approved or in C2C work plan, not yet imported",
+    "identifier": "To be determined",
+    "note": ""
+  },
+  {
+    "source": "ecids",
+    "target": "c2c",
+    "status": "planned",
+    "mechanism": "AB 2092 design: connect ECIDS to C2C at kindergarten entry",
+    "identifier": "Proposed",
+    "note": ""
+  },
+  {
+    "source": "cdph_birth",
+    "target": "sib_calkids",
+    "status": "routine",
+    "mechanism": "Monthly birth file opens newborn CalKIDS accounts",
+    "identifier": "Birth record",
+    "note": ""
+  },
+  {
+    "source": "cde_calpads",
+    "target": "sib_calkids",
+    "status": "routine",
+    "mechanism": "Student file opens school-based CalKIDS accounts",
+    "identifier": "SSID",
+    "note": ""
+  },
+  {
+    "source": "cdph_birth",
+    "target": "dhcs_medi_cal",
+    "status": "routine",
+    "mechanism": "Newborns of Medi-Cal mothers are deemed eligible",
+    "identifier": "CIN",
+    "note": ""
+  },
+  {
+    "source": "cdph_birth",
+    "target": "cdph_nbs",
+    "status": "routine",
+    "mechanism": "Screening tied to birth",
+    "identifier": "Birth record",
+    "note": ""
+  },
+  {
+    "source": "cdph_nbs",
+    "target": "dds_earlystart",
+    "status": "periodic",
+    "mechanism": "Referral of flagged infants",
+    "identifier": "None shared",
+    "note": ""
+  },
+  {
+    "source": "cdph_wic",
+    "target": "dhcs_medi_cal",
+    "status": "periodic",
+    "mechanism": "Adjunctive eligibility checks",
+    "identifier": "CIN",
+    "note": ""
+  },
+  {
+    "source": "calsaws",
+    "target": "dhcs_medi_cal",
+    "status": "routine",
+    "mechanism": "Shared eligibility through MEDS",
+    "identifier": "CIN",
+    "note": ""
+  },
+  {
+    "source": "calsaws",
+    "target": "cdss_hvp",
+    "status": "routine",
+    "mechanism": "CalWORKs families referred to home visiting",
+    "identifier": "CIN",
+    "note": ""
+  },
+  {
+    "source": "calsaws",
+    "target": "cdss_ccdd",
+    "status": "periodic",
+    "mechanism": "CalWORKs Stage 1 to Stage 2 child care handoff",
+    "identifier": "Case number (no statewide child ID)",
+    "note": ""
+  },
+  {
+    "source": "cde_cdmis",
+    "target": "cdss_ccdd",
+    "status": "periodic",
+    "mechanism": "Co-enrollment flag added to CSPP reporting in 2025",
+    "identifier": "Yes/no flag only",
+    "note": ""
+  },
+  {
+    "source": "cde_capsdac",
+    "target": "cde_calpads",
+    "status": "periodic",
+    "mechanism": "SSID encouraged in CAPSDAC",
+    "identifier": "SSID (optional)",
+    "note": ""
+  },
+  {
+    "source": "cde_calpads",
+    "target": "cde_assess",
+    "status": "routine",
+    "mechanism": "Assessments keyed to enrollment",
+    "identifier": "SSID",
+    "note": ""
+  },
+  {
+    "source": "cde_calpads",
+    "target": "cde_public",
+    "status": "routine",
+    "mechanism": "Aggregates feed Dashboard and DataQuest",
+    "identifier": "SSID",
+    "note": ""
+  },
+  {
+    "source": "cde_calpads",
+    "target": "ctc_educator",
+    "status": "routine",
+    "mechanism": "Staff assignments matched to credentials (TAMO)",
+    "identifier": "SEID",
+    "note": ""
+  },
+  {
+    "source": "cde_calpads",
+    "target": "cde_dircert",
+    "status": "routine",
+    "mechanism": "Weekly or monthly benefits match",
+    "identifier": "Name, birth date, address",
+    "note": ""
+  },
+  {
+    "source": "calsaws",
+    "target": "cde_dircert",
+    "status": "routine",
+    "mechanism": "CalFresh and CalWORKs rosters",
+    "identifier": "CIN",
+    "note": ""
+  },
+  {
+    "source": "dhcs_medi_cal",
+    "target": "cde_dircert",
+    "status": "routine",
+    "mechanism": "Medi-Cal rosters",
+    "identifier": "CIN",
+    "note": ""
+  },
+  {
+    "source": "cws",
+    "target": "cde_foster",
+    "status": "routine",
+    "mechanism": "Weekly foster youth match",
+    "identifier": "CWS client ID to SSID",
+    "note": ""
+  },
+  {
+    "source": "cde_foster",
+    "target": "cde_calpads",
+    "status": "routine",
+    "mechanism": "Foster flag written to CALPADS",
+    "identifier": "SSID",
+    "note": ""
+  },
+  {
+    "source": "dds_earlystart",
+    "target": "cde_calpads",
+    "status": "periodic",
+    "mechanism": "Part C to Part B transition at age 3 (local referral)",
+    "identifier": "UCI to SSID, local",
+    "note": ""
+  },
+  {
+    "source": "cde_calpads",
+    "target": "ccgi",
+    "status": "routine",
+    "mechanism": "Transcript and A-G data for students",
+    "identifier": "SSID",
+    "note": ""
+  },
+  {
+    "source": "ccgi",
+    "target": "csac",
+    "status": "routine",
+    "mechanism": "GPA and aid status exchange",
+    "identifier": "SSID",
+    "note": ""
+  },
+  {
+    "source": "cde_calpads",
+    "target": "csac",
+    "status": "routine",
+    "mechanism": "Cal Grant GPA upload and FAFSA completion tracking",
+    "identifier": "SSID and name",
+    "note": ""
+  },
+  {
+    "source": "cde_calpads",
+    "target": "calpass",
+    "status": "periodic",
+    "mechanism": "Voluntary MOU uploads",
+    "identifier": "SSID",
+    "note": ""
+  },
+  {
+    "source": "ccc_mis",
+    "target": "calpass",
+    "status": "periodic",
+    "mechanism": "Voluntary MOU uploads",
+    "identifier": "CCCID and SSN",
+    "note": ""
+  },
+  {
+    "source": "ccc_mis",
+    "target": "ccc_launchboard",
+    "status": "routine",
+    "mechanism": "Program outcomes reporting",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "edd_wages",
+    "target": "ccc_launchboard",
+    "status": "routine",
+    "mechanism": "Wage match for CTE outcomes",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "ccc_mis",
+    "target": "csu_ers",
+    "status": "periodic",
+    "mechanism": "Transfer verification",
+    "identifier": "SSN and name",
+    "note": ""
+  },
+  {
+    "source": "ccc_mis",
+    "target": "uc_ss",
+    "status": "periodic",
+    "mechanism": "Transfer verification",
+    "identifier": "SSN and name",
+    "note": ""
+  },
+  {
+    "source": "csac",
+    "target": "ccc_mis",
+    "status": "routine",
+    "mechanism": "Cal Grant and aid payment",
+    "identifier": "SSN or CADAA ID",
+    "note": ""
+  },
+  {
+    "source": "csac",
+    "target": "csu_ers",
+    "status": "routine",
+    "mechanism": "Cal Grant and aid payment",
+    "identifier": "SSN or CADAA ID",
+    "note": ""
+  },
+  {
+    "source": "csac",
+    "target": "uc_ss",
+    "status": "routine",
+    "mechanism": "Cal Grant and aid payment",
+    "identifier": "SSN or CADAA ID",
+    "note": ""
+  },
+  {
+    "source": "fed_fsa",
+    "target": "csac",
+    "status": "routine",
+    "mechanism": "FAFSA ISIR records",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "edd_caljobs",
+    "target": "edd_wages",
+    "status": "routine",
+    "mechanism": "WIOA performance wage match",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "cwdb_caal",
+    "target": "edd_wages",
+    "status": "routine",
+    "mechanism": "Program outcome wage match",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "dor",
+    "target": "cwdb_caal",
+    "status": "routine",
+    "mechanism": "VR participant data",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "etp",
+    "target": "cwdb_caal",
+    "status": "periodic",
+    "mechanism": "Program data",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "caep",
+    "target": "edd_wages",
+    "status": "periodic",
+    "mechanism": "Partial wage match for adult learners with SSN",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "swis",
+    "target": "edd_caljobs",
+    "status": "periodic",
+    "mechanism": "Out-of-state wages for WIOA performance only",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "cde_calpads",
+    "target": "cde_expanded",
+    "status": "missing",
+    "mechanism": "Expanded learning participation not reported by SSID",
+    "identifier": "None",
+    "note": ""
+  },
+  {
+    "source": "head_start",
+    "target": "cde_calpads",
+    "status": "missing",
+    "mechanism": "No record of Head Start at kindergarten entry",
+    "identifier": "None",
+    "note": ""
+  },
+  {
+    "source": "first5",
+    "target": "cde_calpads",
+    "status": "missing",
+    "mechanism": "No record of First 5 services at school entry",
+    "identifier": "None",
+    "note": ""
+  },
+  {
+    "source": "cdss_ccdd",
+    "target": "cde_calpads",
+    "status": "missing",
+    "mechanism": "No record of subsidized child care at school entry",
+    "identifier": "None",
+    "note": ""
+  },
+  {
+    "source": "drdp",
+    "target": "cde_calpads",
+    "status": "missing",
+    "mechanism": "Preschool developmental data not carried into TK/K",
+    "identifier": "Local ID",
+    "note": ""
+  },
+  {
+    "source": "chvp",
+    "target": "ecids",
+    "status": "missing",
+    "mechanism": "Home visiting not part of any linked system",
+    "identifier": "None",
+    "note": ""
+  },
+  {
+    "source": "dhcs_medi_cal",
+    "target": "ecids",
+    "status": "missing",
+    "mechanism": "Developmental screening not linked to early learning",
+    "identifier": "CIN",
+    "note": ""
+  },
+  {
+    "source": "ece_registry",
+    "target": "ctc_permits",
+    "status": "missing",
+    "mechanism": "ECE employment not tied to permit records",
+    "identifier": "None",
+    "note": ""
+  },
+  {
+    "source": "ctc_permits",
+    "target": "edd_wages",
+    "status": "missing",
+    "mechanism": "ECE workforce wages and retention not tracked",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "fed_fsa",
+    "target": "c2c",
+    "status": "missing",
+    "mechanism": "Federal loan and debt data unavailable",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "nsc",
+    "target": "c2c",
+    "status": "missing",
+    "mechanism": "Out-of-state and most private college enrollment unseen",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "swis",
+    "target": "c2c",
+    "status": "missing",
+    "mechanism": "Out-of-state, federal and military wages unseen",
+    "identifier": "SSN",
+    "note": ""
+  },
+  {
+    "source": "ftb",
+    "target": "c2c",
+    "status": "missing",
+    "mechanism": "Self-employment and gig income unseen",
+    "identifier": "SSN or ITIN",
+    "note": ""
+  },
+  {
+    "source": "cdcr",
+    "target": "c2c",
+    "status": "missing",
+    "mechanism": "Justice-involved learners and reentry unseen",
+    "identifier": "None",
+    "note": ""
+  },
+  {
+    "source": "caep",
+    "target": "c2c",
+    "status": "missing",
+    "mechanism": "K-12 adult schools not in C2C",
+    "identifier": "SSN (often missing)",
+    "note": ""
+  },
+  {
+    "source": "hdis",
+    "target": "cde_calpads",
+    "status": "missing",
+    "mechanism": "Homeless services and McKinney-Vento counts not reconciled",
+    "identifier": "None",
+    "note": ""
+  },
+  {
+    "source": "dxf",
+    "target": "ecids",
+    "status": "missing",
+    "mechanism": "No bridge between health exchange and early learning data",
+    "identifier": "None",
+    "note": ""
+  },
+  {
+    "source": "cdph_birth",
+    "target": "c2c",
+    "status": "missing",
+    "mechanism": "No birth anchor for the lifelong record (beyond CalKIDS)",
+    "identifier": "Birth record",
+    "note": ""
+  },
+  {
+    "source": "bppe",
+    "target": "edd_wages",
+    "status": "missing",
+    "mechanism": "Private vocational school outcomes not wage matched by the state",
+    "identifier": "SSN",
+    "note": ""
+  }
+]

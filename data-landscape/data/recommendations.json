@@ -1,0 +1,244 @@
+[
+  {
+    "id": "R1",
+    "horizon": "Phase 1: Foundations (2027-2028)",
+    "title": "Stand up an Early Learning Data Task Force at C2C",
+    "what": "Ask the C2C Governing Board to charter a task force that defines the first early learning data points (program, entry age, duration, family income, DLL status), adopts an ECE-to-TK crosswalk, and sets an import date for CDE and CDSS data.",
+    "vehicle": "C2C Governing Board action",
+    "bodies": "C2C Governing Board, CDE, CDSS, Early Childhood Policy Council",
+    "priority": [
+      "P1",
+      "P5"
+    ],
+    "gaps": [
+      "G1",
+      "G2"
+    ],
+    "metric": "Early learning records present in P20W for the 2028 kindergarten cohort"
+  },
+  {
+    "id": "R2",
+    "horizon": "Phase 1: Foundations (2027-2028)",
+    "title": "Assign a matchable ID at first contact with any state-funded ECE program",
+    "what": "Require SSID (or a C2C-issued token) in CAPSDAC and in the new CDE and CDSS CDMIS monthly reports that start in July 2027, so preschool and child care records can match to kindergarten.",
+    "vehicle": "Budget trailer bill or CDE/CDSS management bulletin",
+    "bodies": "CDE, CDSS, CSIS",
+    "priority": [
+      "P1"
+    ],
+    "gaps": [
+      "G1"
+    ],
+    "metric": "Share of CSPP and CDSS child records with a valid SSID or token"
+  },
+  {
+    "id": "R3",
+    "horizon": "Phase 1: Foundations (2027-2028)",
+    "title": "Authorize and fund a phased ECIDS connected to C2C",
+    "what": "Bring back the AB 2092 framework with a tested cost estimate and phasing: Phase A links CDE and CDSS child records; Phase B adds Early Start, home visiting and Medi-Cal screening; all phases connect to C2C at kindergarten entry.",
+    "vehicle": "Legislation plus budget ask",
+    "bodies": "CDSS (lead), CDE, CDPH, DHCS, DDS, First 5 California",
+    "priority": [
+      "P1",
+      "P5"
+    ],
+    "gaps": [
+      "G2",
+      "G3"
+    ],
+    "metric": "Unduplicated count of children 0 to 5 served by state programs, published annually"
+  },
+  {
+    "id": "R4",
+    "horizon": "Phase 1: Foundations (2027-2028)",
+    "title": "Enhance UI wage records with occupation and hours",
+    "what": "Reintroduce SB 1054-style reporting with a lower-cost phase-in: large employers first, SOC occupation and hours before other fields, and alignment with CalSAWS work-requirement verification to share costs.",
+    "vehicle": "Legislation",
+    "bodies": "EDD, LWDA, CDSS, DHCS",
+    "priority": [
+      "P4"
+    ],
+    "gaps": [
+      "G4"
+    ],
+    "metric": "Share of UI wage records with occupation and hours"
+  },
+  {
+    "id": "R5",
+    "horizon": "Phase 1: Foundations (2027-2028)",
+    "title": "Return postsecondary outcomes to schools through the CCI",
+    "what": "Link C2C postsecondary enrollment and completion back to the College/Career Indicator, and extend the Student Pathways Dashboard from 9 to 13 years of data.",
+    "vehicle": "C2C Governing Board and State Board of Education",
+    "bodies": "C2C, CDE, SBE",
+    "priority": [
+      "P2",
+      "P5"
+    ],
+    "gaps": [
+      "G13"
+    ],
+    "metric": "CCI reports include C2C-verified college enrollment"
+  },
+  {
+    "id": "R6",
+    "horizon": "Phase 1: Foundations (2027-2028)",
+    "title": "Adopt common definitions across agencies",
+    "what": "Publish a statewide data standards register starting with race and ethnicity (including MENA), dual language learner, transfer, completion and program codes, and require new C2C points to use it.",
+    "vehicle": "C2C Governance Manual and CEIC coordination",
+    "bodies": "C2C, CEIC, CCCCO, CSU, UC, CDE",
+    "priority": [
+      "P5",
+      "P3"
+    ],
+    "gaps": [
+      "G9"
+    ],
+    "metric": "Number of core elements with one shared definition"
+  },
+  {
+    "id": "R7",
+    "horizon": "Phase 1: Foundations (2027-2028)",
+    "title": "Put student debt data into C2C",
+    "what": "Revive the student debt proposal with CSAC, CSU and UC data points and a FERPA analysis, and pursue aggregate federal loan data agreements.",
+    "vehicle": "C2C Data and Tools Advisory Board proposal",
+    "bodies": "C2C, CSAC, CSU, UC",
+    "priority": [
+      "P3"
+    ],
+    "gaps": [
+      "G8"
+    ],
+    "metric": "Debt at completion available by segment and program"
+  },
+  {
+    "id": "R8",
+    "horizon": "Phase 2: Connect the edges (2029-2032)",
+    "title": "Finish the workforce expansion and build a program-to-occupation crosswalk",
+    "what": "Complete import of DAS apprenticeship, CalJOBS, ETP and DOR data; bring K-12 adult schools and BPPE student records in; and publish a CIP/TOP-to-SOC crosswalk so Workforce Pell and short-term programs can be judged on outcomes.",
+    "vehicle": "C2C work plan, AB 1534 Workforce Pell implementation",
+    "bodies": "C2C, LWDA, CWDB, DIR, CSAC, BPPE, CDE",
+    "priority": [
+      "P4"
+    ],
+    "gaps": [
+      "G4",
+      "G7",
+      "G9"
+    ],
+    "metric": "Outcomes published for every publicly funded short-term program"
+  },
+  {
+    "id": "R9",
+    "horizon": "Phase 2: Connect the edges (2029-2032)",
+    "title": "Bridge early childhood health and human services data",
+    "what": "Use the CalHHS Data Exchange Framework and a consent strategy to add Medi-Cal developmental screening, WIC, home visiting and Early Start participation to ECIDS, with only de-identified results flowing to C2C.",
+    "vehicle": "Interagency agreement under CalHHS; ECIDS phase B",
+    "bodies": "CalHHS, HCAI, DHCS, CDPH, DDS, CDSS",
+    "priority": [
+      "P1",
+      "P5"
+    ],
+    "gaps": [
+      "G3"
+    ],
+    "metric": "Share of kindergartners whose early screening history is known in aggregate"
+  },
+  {
+    "id": "R10",
+    "horizon": "Phase 2: Connect the edges (2029-2032)",
+    "title": "Close the missing-outcomes gap",
+    "what": "Negotiate NSC enrollment data, SWIS and federal wage access for C2C research, and an FTB match for self-employment income, using identity methods that do not require an SSN.",
+    "vehicle": "Statute (FTB) and interagency or federal agreements",
+    "bodies": "C2C, FTB, EDD, U.S. DOL",
+    "priority": [
+      "P4",
+      "P5"
+    ],
+    "gaps": [
+      "G5",
+      "G6",
+      "G7"
+    ],
+    "metric": "Share of graduates with any known outcome"
+  },
+  {
+    "id": "R11",
+    "horizon": "Phase 2: Connect the edges (2029-2032)",
+    "title": "Track the whole educator pipeline, birth to grade 12",
+    "what": "Link Child Development Permits, the ECE Workforce Registry and licensed-site staffing to CTC and SEID records so ECE and TK-12 workforce data appear together in the C2C teacher dashboard.",
+    "vehicle": "CTC and CDSS licensing rules; C2C dashboard scope",
+    "bodies": "CTC, CDSS, CDE, C2C",
+    "priority": [
+      "P1",
+      "P2"
+    ],
+    "gaps": [
+      "G10"
+    ],
+    "metric": "Annual ECE workforce turnover and wage report from administrative data"
+  },
+  {
+    "id": "R12",
+    "horizon": "Phase 2: Connect the edges (2029-2032)",
+    "title": "Follow students who cross systems",
+    "what": "Add CDCR and Rising Scholars, HDIS homelessness data, extended foster care and juvenile justice records as C2C partners with strict use limits.",
+    "vehicle": "C2C Governing Board (Education Code 10866)",
+    "bodies": "C2C, CDCR, Cal ICH, CDSS",
+    "priority": [
+      "P5"
+    ],
+    "gaps": [
+      "G11"
+    ],
+    "metric": "Postsecondary and earnings outcomes reported for foster, homeless and justice-involved learners"
+  },
+  {
+    "id": "R13",
+    "horizon": "Phase 3: Whole learner, whole life (2033-2037)",
+    "title": "Build a privacy-preserving California Learner Identifier",
+    "what": "Turn C2C person matching into a statewide token service: issued at birth or first public contact, never based on SSN, used by every partner for matching, and never exposed outside the system.",
+    "vehicle": "Statute and multi-year IT budget",
+    "bodies": "C2C, GovOps, CDT, all partners",
+    "priority": [
+      "P5"
+    ],
+    "gaps": [
+      "G1",
+      "G5"
+    ],
+    "metric": "Match rate across partners, including for students without SSNs"
+  },
+  {
+    "id": "R14",
+    "horizon": "Phase 3: Whole learner, whole life (2033-2037)",
+    "title": "Make participation and funding durable",
+    "what": "Require participation by every public entity that receives state education, workforce or early learning funds; fund dedicated data staff at each partner; and publish an annual linkage scorecard.",
+    "vehicle": "Statute and ongoing budget",
+    "bodies": "Legislature, Governor, C2C, CEIC",
+    "priority": [
+      "P5"
+    ],
+    "gaps": [
+      "G8",
+      "G12"
+    ],
+    "metric": "Annual linkage scorecard, with every segment in this map rated"
+  },
+  {
+    "id": "R15",
+    "horizon": "Phase 3: Whole learner, whole life (2033-2037)",
+    "title": "Put linked data to work for families",
+    "what": "Use the linked system to automate eligibility (child care, Cal Grant, CalKIDS claims), warm handoffs at each transition, and family-facing pathway tools, under community oversight.",
+    "vehicle": "Operational tools under C2C and CalHHS",
+    "bodies": "C2C, CalHHS, CSAC, SIB, CCGI",
+    "priority": [
+      "P5",
+      "P1",
+      "P4"
+    ],
+    "gaps": [
+      "G13"
+    ],
+    "metric": "Benefits and supports delivered automatically at each transition"
+  }
+]
