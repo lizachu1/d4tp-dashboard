@@ -1,0 +1,2176 @@
+[
+  {
+    "id": "cdph_birth",
+    "name": "Birth records (Birth Statistical Master File)",
+    "segment": "birth",
+    "owner": "CDPH Center for Health Statistics and Informatics",
+    "owner_type": "state",
+    "age_min": -0.5,
+    "age_max": 0,
+    "population": "Every birth in California",
+    "unit": "individual",
+    "system_type": "Vital records",
+    "key_variables": [
+      "Date and county of birth",
+      "Birthweight and gestational age",
+      "Prenatal care start",
+      "Principal payer (Medi-Cal or private)",
+      "Parent age, education, race/ethnicity",
+      "Plurality, delivery method"
+    ],
+    "identifiers": [
+      "birth_cert"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Health and Safety Code 102100 et seq.",
+      "CPHS review for research"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not a C2C partner. Birth data reaches CalKIDS, which is a C2C partner, so a narrow indirect path exists.",
+    "url": "https://www.cdph.ca.gov/Programs/CHSI/Pages/default.aspx",
+    "notes": "The only universal record of every child. Linking it forward would anchor a true cradle-to-career chain.",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "cdph_nbs",
+      "dhcs_medi_cal",
+      "sib_calkids"
+    ],
+    "missing_links": [
+      "c2c"
+    ]
+  },
+  {
+    "id": "cdph_nbs",
+    "name": "Newborn Screening Program",
+    "segment": "birth",
+    "owner": "CDPH Genetic Disease Screening Program",
+    "owner_type": "state",
+    "age_min": 0,
+    "age_max": 0.2,
+    "population": "Nearly all newborns",
+    "unit": "individual",
+    "system_type": "Health screening",
+    "key_variables": [
+      "Screening results for metabolic, genetic and endocrine conditions",
+      "Hearing screening referral",
+      "Follow-up status"
+    ],
+    "identifiers": [
+      "birth_cert"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Health and Safety Code 124975 et seq.",
+      "HIPAA"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not in C2C. Relevant for Early Start referral pathways.",
+    "url": "https://www.cdph.ca.gov/Programs/CFH/DGDS/Pages/nbs/default.aspx",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "cdph_birth",
+      "dds_earlystart"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "cdph_wic",
+    "name": "WIC (Women, Infants and Children)",
+    "segment": "birth",
+    "owner": "CDPH WIC Division",
+    "owner_type": "state",
+    "age_min": -0.5,
+    "age_max": 5,
+    "population": "Low-income pregnant and postpartum people, infants, and children under 5",
+    "unit": "individual",
+    "system_type": "Benefit program",
+    "key_variables": [
+      "Enrollment and certification category",
+      "Nutrition risk",
+      "Breastfeeding status",
+      "Height/weight",
+      "Household income"
+    ],
+    "identifiers": [
+      "wic_id"
+    ],
+    "access": "restricted",
+    "legal": [
+      "7 CFR 246.26 (WIC confidentiality)"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not in C2C. WIC participation could signal early need but is invisible to education data.",
+    "url": "https://www.cdph.ca.gov/Programs/CFH/DWICSN/Pages/Program-Landing1.aspx",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "dhcs_medi_cal"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "sib_calkids",
+    "name": "CalKIDS college savings accounts",
+    "segment": "birth",
+    "owner": "ScholarShare Investment Board (State Treasurer)",
+    "owner_type": "state",
+    "age_min": 0,
+    "age_max": 26,
+    "population": "Every child born in CA since July 1, 2022, plus low-income public school students (over 5.6 million funded accounts by April 2026)",
+    "unit": "individual",
+    "system_type": "Benefit program",
+    "key_variables": [
+      "Account seeded (newborn or school-based)",
+      "Account claimed by family",
+      "Family deposits",
+      "Funds used for postsecondary"
+    ],
+    "identifiers": [
+      "calkids_id",
+      "birth_cert",
+      "ssid"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Education Code 69996 et seq."
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "Approved as a C2C data provider in February 2025 (Resolution 25-01) to study CalKIDS use and college access.",
+    "url": "https://calkids.org/",
+    "notes": "Accounts are opened from CDPH birth data and CDE student data. SIB's own 2025 annual report flags those data linkages as a challenge to strengthen.",
+    "confidence": "verified",
+    "linked_to": [
+      "c2c",
+      "cde_calpads",
+      "cdph_birth"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "cde_capsdac",
+    "name": "California Preschool Data Collection (CAPSDAC 2.0)",
+    "segment": "early",
+    "owner": "CDE Early Education Division",
+    "owner_type": "state",
+    "age_min": 3,
+    "age_max": 5,
+    "population": "Children, classrooms and staff in LEA-operated California State Preschool Program (CSPP)",
+    "unit": "individual",
+    "system_type": "Administrative (child-level)",
+    "key_variables": [
+      "Child enrollment and attendance",
+      "Classroom assignment",
+      "Staff and qualifications",
+      "Child demographics",
+      "Dual language learner status"
+    ],
+    "identifiers": [
+      "local_child_id",
+      "ssid"
+    ],
+    "access": "internal",
+    "legal": [
+      "Education Code 60910",
+      "FERPA (LEA programs)"
+    ],
+    "c2c_status": "planned",
+    "c2c_note": "Not yet imported to C2C. The 2026-27 C2C work plan sets initial milestones for importing early learning and care data.",
+    "url": "https://www.cde.ca.gov/sp/cd/ci/",
+    "notes": "Required since July 2024 for LEA-run CSPP. SSID use is encouraged, not required, so many preschool records cannot be matched to later K-12 records.",
+    "confidence": "verified",
+    "linked_to": [
+      "c2c",
+      "cde_calpads"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "cde_cdmis",
+    "name": "CDE CDMIS and 801A monthly population report (CSPP)",
+    "segment": "early",
+    "owner": "CDE Early Education Division",
+    "owner_type": "state",
+    "age_min": 0,
+    "age_max": 5,
+    "population": "Families and children in CDE-contracted CSPP (all operators, including non-LEA)",
+    "unit": "individual",
+    "system_type": "Administrative (child-level, monthly)",
+    "key_variables": [
+      "Family size and income",
+      "Reason for need and eligibility",
+      "Child age, ethnicity, primary language",
+      "Days of enrollment",
+      "Co-enrollment in a CDSS child care program (added 2025)"
+    ],
+    "identifiers": [
+      "local_child_id"
+    ],
+    "access": "internal",
+    "legal": [
+      "Education Code 8200 et seq.",
+      "Welfare and Institutions Code 10850"
+    ],
+    "c2c_status": "planned",
+    "c2c_note": "C2C planned early learning entry age, enrollment duration and family income from CDE since 2023 but had not received them.",
+    "url": "https://www.cde.ca.gov/sp/cd/ci/",
+    "notes": "CDE announced CDMIS 2.0 in October 2026. A new CDMIS Monthly Report replaces the 801A starting with July 2027.",
+    "confidence": "verified",
+    "linked_to": [
+      "c2c",
+      "cdss_ccdd"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "cdss_ccdd",
+    "name": "CDSS child care subsidy data (CDD-801A in CDSS CDMIS)",
+    "segment": "early",
+    "owner": "CDSS Child Care and Development Division",
+    "owner_type": "state",
+    "age_min": 0,
+    "age_max": 12,
+    "population": "Families in CDSS child care programs: general child care, migrant, family child care networks, alternative payment, CalWORKs Stages 2 and 3",
+    "unit": "individual",
+    "system_type": "Administrative (child-level, monthly)",
+    "key_variables": [
+      "Family income and size",
+      "Eligibility and need",
+      "Provider type and setting",
+      "Child age and demographics",
+      "Subsidy amount and hours"
+    ],
+    "identifiers": [
+      "local_child_id"
+    ],
+    "access": "internal",
+    "legal": [
+      "Welfare and Institutions Code 10207 et seq.",
+      "Welfare and Institutions Code 10850",
+      "CCDF 45 CFR 98"
+    ],
+    "c2c_status": "planned",
+    "c2c_note": "CDSS is a C2C partner for social services data, but child care records are not yet in the P20W data set.",
+    "url": "https://www.cdss.ca.gov/inforesources/child-care-and-development",
+    "notes": "Most child care programs moved from CDE to CDSS in July 2021 (AB 131). Since October 2024 all CDSS contract-type child data goes to the CDSS CDMIS.",
+    "confidence": "verified",
+    "linked_to": [
+      "c2c",
+      "calsaws",
+      "cde_cdmis"
+    ],
+    "missing_links": [
+      "cde_calpads"
+    ]
+  },
+  {
+    "id": "cdss_ccld",
+    "name": "Community Care Licensing (child care facilities)",
+    "segment": "early",
+    "owner": "CDSS Community Care Licensing Division",
+    "owner_type": "state",
+    "age_min": 0,
+    "age_max": 12,
+    "population": "Every licensed child care center and family child care home",
+    "unit": "facility",
+    "system_type": "Licensing",
+    "key_variables": [
+      "License number and type",
+      "Licensed capacity by age group",
+      "Address and county",
+      "Inspection and citation history",
+      "Status (open, closed, on probation)"
+    ],
+    "identifiers": [],
+    "access": "public_detail",
+    "legal": [
+      "Health and Safety Code 1596.70 et seq."
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Facility-level only. Useful for supply and desert analysis, not for following children.",
+    "url": "https://www.ccld.dss.ca.gov/carefacilitysearch/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": []
+  },
+  {
+    "id": "rr_network",
+    "name": "Child Care Resource and Referral data",
+    "segment": "early",
+    "owner": "Local R&R agencies and the CA Child Care Resource & Referral Network",
+    "owner_type": "nonprofit",
+    "age_min": 0,
+    "age_max": 12,
+    "population": "Families seeking care and licensed providers in each county",
+    "unit": "aggregate",
+    "system_type": "Supply and demand",
+    "key_variables": [
+      "Licensed slots by age and setting",
+      "Referral requests and unmet need",
+      "Provider vacancies",
+      "Cost of care"
+    ],
+    "identifiers": [],
+    "access": "public_aggregate",
+    "legal": [
+      "Contract terms with CDSS"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not in C2C.",
+    "url": "https://rrnetwork.org/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": []
+  },
+  {
+    "id": "head_start",
+    "name": "Head Start and Early Head Start (Program Information Report)",
+    "segment": "early",
+    "owner": "Federal Office of Head Start (ACF); local grantees",
+    "owner_type": "federal",
+    "age_min": -0.5,
+    "age_max": 5,
+    "population": "Low-income pregnant people, infants, toddlers and preschoolers in federally funded programs",
+    "unit": "aggregate",
+    "system_type": "Federal grantee reporting",
+    "key_variables": [
+      "Funded and cumulative enrollment",
+      "Child health insurance and medical home",
+      "Disability services",
+      "Family services",
+      "Staff qualifications"
+    ],
+    "identifiers": [
+      "local_child_id"
+    ],
+    "access": "public_aggregate",
+    "legal": [
+      "Head Start Act, 45 CFR 1303 (privacy)"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "No state child-level data. Grantees keep records in their own systems. California's Head Start State Collaboration Office sits at CDE but holds no child records.",
+    "url": "https://eclkc.ohs.acf.hhs.gov/data-ongoing-monitoring/article/program-information-report-pir",
+    "notes": "Head Start children can enroll in TK or kindergarten with no record of their preschool experience.",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": [
+      "cde_calpads"
+    ]
+  },
+  {
+    "id": "first5",
+    "name": "First 5 California and county commissions",
+    "segment": "early",
+    "owner": "First 5 California and 58 county First 5 commissions",
+    "owner_type": "state_local",
+    "age_min": -0.5,
+    "age_max": 5,
+    "population": "Children 0 to 5 and families served by Prop 10 funded programs",
+    "unit": "mixed",
+    "system_type": "Program and evaluation",
+    "key_variables": [
+      "Services delivered by result area",
+      "Home visiting and family support participation",
+      "Quality improvement participation",
+      "Annual Prop 10 outcomes reporting"
+    ],
+    "identifiers": [
+      "local_child_id"
+    ],
+    "access": "public_aggregate",
+    "legal": [
+      "Health and Safety Code 130100 et seq. (Prop 10)"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not in C2C. Each county uses its own data system.",
+    "url": "https://www.ccfc.ca.gov/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": [
+      "cde_calpads"
+    ]
+  },
+  {
+    "id": "qcc",
+    "name": "Quality Counts California (QRIS)",
+    "segment": "early",
+    "owner": "CDE, CDSS and First 5 California with county consortia",
+    "owner_type": "state_local",
+    "age_min": 0,
+    "age_max": 5,
+    "population": "Participating ECE sites and educators",
+    "unit": "facility",
+    "system_type": "Quality rating",
+    "key_variables": [
+      "Site quality tier and element ratings",
+      "Educator qualifications and training",
+      "CLASS and environment rating scores"
+    ],
+    "identifiers": [],
+    "access": "public_aggregate",
+    "legal": [
+      "Program terms"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not in C2C. Site data could link to children only if child records carried a site ID and a matchable child ID.",
+    "url": "https://qualitycountsca.net/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": []
+  },
+  {
+    "id": "drdp",
+    "name": "Desired Results Developmental Profile (DRDP)",
+    "segment": "early",
+    "owner": "CDE (Early Education and Special Education divisions)",
+    "owner_type": "state",
+    "age_min": 0,
+    "age_max": 5,
+    "population": "Children in CSPP, CDSS-funded centers and preschool special education",
+    "unit": "individual",
+    "system_type": "Child assessment",
+    "key_variables": [
+      "Developmental ratings across domains (language, literacy, math, social-emotional, physical)",
+      "Assessment period",
+      "IEP status"
+    ],
+    "identifiers": [
+      "local_child_id",
+      "ssid"
+    ],
+    "access": "internal",
+    "legal": [
+      "FERPA",
+      "IDEA (special education)"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not in C2C. Special education DRDP uses SSID. General early learning DRDP mostly uses local IDs.",
+    "url": "https://www.desiredresults.us/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": [
+      "cde_calpads"
+    ]
+  },
+  {
+    "id": "dds_earlystart",
+    "name": "DDS Early Start and regional center services",
+    "segment": "early",
+    "owner": "Department of Developmental Services and 21 regional centers",
+    "owner_type": "state",
+    "age_min": 0,
+    "age_max": 99,
+    "population": "Infants and toddlers with or at risk of delays (IDEA Part C), and people with developmental disabilities",
+    "unit": "individual",
+    "system_type": "Service program",
+    "key_variables": [
+      "Eligibility and diagnosis category",
+      "Early Start service receipt",
+      "Regional center",
+      "IFSP and transition at age 3",
+      "Level of support"
+    ],
+    "identifiers": [
+      "uci"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Welfare and Institutions Code 4514",
+      "IDEA Part C"
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "Approved as a C2C data provider in May 2024 (Resolution 24-02). Proposed points include eligibility, enrollment and receipt of Early Start services.",
+    "url": "https://www.dds.ca.gov/services/early-start/",
+    "notes": "",
+    "confidence": "verified",
+    "linked_to": [
+      "c2c",
+      "cde_calpads",
+      "cdph_nbs"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "chvp",
+    "name": "California Home Visiting Program (MIECHV)",
+    "segment": "early",
+    "owner": "CDPH Maternal, Child and Adolescent Health",
+    "owner_type": "state",
+    "age_min": -0.5,
+    "age_max": 5,
+    "population": "Families enrolled in evidence-based home visiting in participating counties",
+    "unit": "individual",
+    "system_type": "Service program",
+    "key_variables": [
+      "Enrollment and visit dosage",
+      "Developmental and depression screening",
+      "Child injury and ED visits",
+      "Benchmarks required by HRSA"
+    ],
+    "identifiers": [
+      "local_child_id"
+    ],
+    "access": "restricted",
+    "legal": [
+      "HRSA MIECHV requirements",
+      "HIPAA"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not in C2C.",
+    "url": "https://www.cdph.ca.gov/Programs/CFH/DMCAH/CHVP/Pages/default.aspx",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": [
+      "ecids"
+    ]
+  },
+  {
+    "id": "cdss_hvp",
+    "name": "CalWORKs Home Visiting Program",
+    "segment": "early",
+    "owner": "CDSS with counties",
+    "owner_type": "state_local",
+    "age_min": -0.5,
+    "age_max": 2,
+    "population": "CalWORKs families who are pregnant or have a child under 24 months",
+    "unit": "individual",
+    "system_type": "Service program",
+    "key_variables": [
+      "Enrollment and visit completion",
+      "Family goals",
+      "Program model"
+    ],
+    "identifiers": [
+      "cin"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Welfare and Institutions Code 10850"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not in C2C.",
+    "url": "https://www.cdss.ca.gov/inforesources/calworks-home-visiting-program",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "calsaws"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "ece_registry",
+    "name": "California ECE Workforce Registry",
+    "segment": "early",
+    "owner": "Child Care Resource Center (statewide operator)",
+    "owner_type": "nonprofit",
+    "age_min": 18,
+    "age_max": 70,
+    "population": "Early educators who create a profile (voluntary; required in some local programs)",
+    "unit": "individual",
+    "system_type": "Workforce registry",
+    "key_variables": [
+      "Employment history and site",
+      "Education and permits",
+      "Training hours",
+      "Compensation (some sites)"
+    ],
+    "identifiers": [],
+    "access": "restricted",
+    "legal": [
+      "Participant consent"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not in C2C. Voluntary participation means the data does not represent the whole workforce.",
+    "url": "https://www.caregistry.org/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": [
+      "ctc_permits"
+    ]
+  },
+  {
+    "id": "cscce_study",
+    "name": "California ECE Workforce Study",
+    "segment": "early",
+    "owner": "UC Berkeley Center for the Study of Child Care Employment",
+    "owner_type": "research",
+    "age_min": 18,
+    "age_max": 70,
+    "population": "Survey of more than 10,000 early educators (2025 round)",
+    "unit": "survey",
+    "system_type": "Research survey",
+    "key_variables": [
+      "Wages and benefits",
+      "Education and credentials",
+      "Demographics and languages",
+      "Turnover intent"
+    ],
+    "identifiers": [],
+    "access": "public_aggregate",
+    "legal": [
+      "Research consent"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Research survey, not linkable.",
+    "url": "https://cscce.berkeley.edu/projects/california-early-care-and-education-workforce-study",
+    "notes": "",
+    "confidence": "verified",
+    "linked_to": [],
+    "missing_links": []
+  },
+  {
+    "id": "ctc_permits",
+    "name": "Child Development Permits",
+    "segment": "early",
+    "owner": "Commission on Teacher Credentialing",
+    "owner_type": "state",
+    "age_min": 18,
+    "age_max": 70,
+    "population": "ECE teachers and directors holding a Child Development Permit (Associate Teacher to Program Director)",
+    "unit": "individual",
+    "system_type": "Licensing",
+    "key_variables": [
+      "Permit type and level",
+      "Issue and expiration dates",
+      "Coursework and units"
+    ],
+    "identifiers": [
+      "ctc_doc"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Education Code 44000 et seq."
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "CTC is a C2C partner for credential data. Whether permit records are in P20W, and whether ECE employment is captured, needs confirmation.",
+    "url": "https://www.ctc.ca.gov/credentials/leaflets/child-development-permits",
+    "notes": "",
+    "confidence": "needs_verification",
+    "linked_to": [
+      "c2c"
+    ],
+    "missing_links": [
+      "ece_registry",
+      "edd_wages"
+    ]
+  },
+  {
+    "id": "cde_calpads",
+    "name": "CALPADS (student and staff records)",
+    "segment": "k12",
+    "owner": "CDE with CSIS (FCMAT)",
+    "owner_type": "state",
+    "age_min": 4,
+    "age_max": 22,
+    "population": "About 5.8 million public TK-12 students and all school staff",
+    "unit": "individual",
+    "system_type": "Administrative (longitudinal)",
+    "key_variables": [
+      "Enrollment, TK and grade level",
+      "Race/ethnicity, gender, language and EL status",
+      "Reclassification (RFEP) and State Seal of Biliteracy",
+      "Special education and 504",
+      "Socioeconomically disadvantaged, foster, homeless, migrant flags",
+      "Attendance and chronic absence",
+      "Courses, grades, A-G and CTE completion (grades 7-12)",
+      "Dual enrollment courses",
+      "Graduation and dropout",
+      "Discipline"
+    ],
+    "identifiers": [
+      "ssid",
+      "seid"
+    ],
+    "access": "restricted",
+    "legal": [
+      "FERPA",
+      "Education Code 49076",
+      "Education Code 60900"
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "Core C2C data provider since the first data submissions in 2023.",
+    "url": "https://www.cde.ca.gov/ds/sp/cl/",
+    "notes": "The backbone of state education data. No field records preschool or child care history at kindergarten entry.",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "c2c",
+      "calpass",
+      "ccgi",
+      "cde_assess",
+      "cde_capsdac",
+      "cde_dircert",
+      "cde_foster",
+      "cde_public",
+      "csac",
+      "ctc_educator",
+      "dds_earlystart",
+      "sib_calkids"
+    ],
+    "missing_links": [
+      "cde_expanded",
+      "cdss_ccdd",
+      "drdp",
+      "first5",
+      "hdis",
+      "head_start"
+    ]
+  },
+  {
+    "id": "cde_assess",
+    "name": "CAASPP and ELPAC assessments",
+    "segment": "k12",
+    "owner": "CDE (ETS contractor)",
+    "owner_type": "state",
+    "age_min": 7,
+    "age_max": 18,
+    "population": "Students in tested grades; English learners for ELPAC",
+    "unit": "individual",
+    "system_type": "Assessment",
+    "key_variables": [
+      "Smarter Balanced ELA and math scale scores",
+      "CAST science",
+      "ELPAC summative and initial",
+      "Alternate assessments"
+    ],
+    "identifiers": [
+      "ssid"
+    ],
+    "access": "restricted",
+    "legal": [
+      "FERPA",
+      "Education Code 60640"
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "Some assessment results are part of the K-12 data CDE provides. Item-level and early-grade measures are not.",
+    "url": "https://www.cde.ca.gov/ta/tg/ca/",
+    "notes": "",
+    "confidence": "needs_verification",
+    "linked_to": [
+      "c2c",
+      "cde_calpads"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "cde_public",
+    "name": "California School Dashboard, DataQuest and College/Career Indicator",
+    "segment": "k12",
+    "owner": "CDE",
+    "owner_type": "state",
+    "age_min": 4,
+    "age_max": 18,
+    "population": "Every public school, district and student group",
+    "unit": "aggregate",
+    "system_type": "Public reporting",
+    "key_variables": [
+      "Dashboard indicators (academic, ELPI, graduation, chronic absence, suspension)",
+      "College/Career Indicator (CCI)",
+      "Enrollment and staffing downloads"
+    ],
+    "identifiers": [],
+    "access": "public_aggregate",
+    "legal": [
+      "Education Code 52064.5"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "D4TP is asking C2C to link postsecondary outcomes back to the CCI so schools see what happened to graduates.",
+    "url": "https://www.caschooldashboard.org/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "cde_calpads"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "ctc_educator",
+    "name": "Educator preparation, credentials and TAMO",
+    "segment": "k12",
+    "owner": "Commission on Teacher Credentialing",
+    "owner_type": "state",
+    "age_min": 18,
+    "age_max": 70,
+    "population": "Credential candidates, completers and credential holders; teacher assignments",
+    "unit": "individual",
+    "system_type": "Licensing and workforce",
+    "key_variables": [
+      "Credentials and authorizations",
+      "Preparation program and pathway",
+      "Completer surveys",
+      "Teaching Assignment Monitoring Outcomes (TAMO)",
+      "Teacher supply report"
+    ],
+    "identifiers": [
+      "ctc_doc",
+      "seid"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Education Code 44230 et seq."
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "CTC is a C2C partner. C2C is building a teacher training and retention dashboard in its 2026-27 work plan.",
+    "url": "https://www.ctc.ca.gov/commission/reports/data",
+    "notes": "",
+    "confidence": "verified",
+    "linked_to": [
+      "c2c",
+      "cde_calpads"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "cde_dircert",
+    "name": "Direct Certification match (school meals)",
+    "segment": "k12",
+    "owner": "CDE Nutrition Services with CDSS and DHCS",
+    "owner_type": "state",
+    "age_min": 4,
+    "age_max": 18,
+    "population": "Students in households enrolled in CalFresh, CalWORKs or Medi-Cal",
+    "unit": "individual",
+    "system_type": "Operational match",
+    "key_variables": [
+      "Matched program participation",
+      "Free or reduced-price meal eligibility",
+      "Socioeconomically disadvantaged status"
+    ],
+    "identifiers": [
+      "ssid",
+      "cin"
+    ],
+    "access": "internal",
+    "legal": [
+      "National School Lunch Act 42 USC 1758",
+      "Welfare and Institutions Code 10850 exceptions"
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "Results flow into CALPADS socioeconomic flags, which C2C receives. The underlying CIN link is not kept.",
+    "url": "https://www.cde.ca.gov/ls/nu/sn/dircert.asp",
+    "notes": "A working proof that human services and education records can be matched routinely at scale.",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "calsaws",
+      "cde_calpads",
+      "dhcs_medi_cal"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "cde_foster",
+    "name": "Foster youth match (CDE and CDSS)",
+    "segment": "k12",
+    "owner": "CDE with CDSS",
+    "owner_type": "state",
+    "age_min": 4,
+    "age_max": 21,
+    "population": "Students in foster care",
+    "unit": "individual",
+    "system_type": "Operational match",
+    "key_variables": [
+      "Foster status",
+      "County of jurisdiction",
+      "Social worker contact (to LEAs)"
+    ],
+    "identifiers": [
+      "ssid",
+      "cws_id"
+    ],
+    "access": "internal",
+    "legal": [
+      "Education Code 49085",
+      "Welfare and Institutions Code 827"
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "Foster flag appears in CALPADS data provided to C2C.",
+    "url": "https://www.cde.ca.gov/ls/pf/fy/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "cde_calpads",
+      "cws"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "cde_expanded",
+    "name": "Expanded learning (ELO-P, ASES, 21st CCLC)",
+    "segment": "k12",
+    "owner": "CDE Expanded Learning Division",
+    "owner_type": "state",
+    "age_min": 4,
+    "age_max": 18,
+    "population": "Students in before, after and summer school programs",
+    "unit": "aggregate",
+    "system_type": "Program reporting",
+    "key_variables": [
+      "Program attendance (site level)",
+      "Funding and slots",
+      "Outcome reports (federal 21st CCLC)"
+    ],
+    "identifiers": [],
+    "access": "public_aggregate",
+    "legal": [
+      "Education Code 46120, 8482 et seq."
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Participation is not reported by SSID, so it cannot be linked to outcomes. Raised as a TK-12 workgroup idea.",
+    "url": "https://www.cde.ca.gov/ls/ex/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": [
+      "cde_calpads"
+    ]
+  },
+  {
+    "id": "cde_private",
+    "name": "Private School Affidavit",
+    "segment": "k12",
+    "owner": "CDE",
+    "owner_type": "state",
+    "age_min": 5,
+    "age_max": 18,
+    "population": "Private schools and homeschool filers",
+    "unit": "aggregate",
+    "system_type": "Registration",
+    "key_variables": [
+      "School name and address",
+      "Enrollment by grade (counts)",
+      "Staff counts"
+    ],
+    "identifiers": [],
+    "access": "public_aggregate",
+    "legal": [
+      "Education Code 33190"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "No student-level data. Students who start in private school or homeschool have no SSID until they enter public school.",
+    "url": "https://www.cde.ca.gov/ds/si/ps/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": []
+  },
+  {
+    "id": "ccgi",
+    "name": "CaliforniaColleges.edu and eTranscript California",
+    "segment": "k12",
+    "owner": "California College Guidance Initiative (Foundation for CCC)",
+    "owner_type": "state_nonprofit",
+    "age_min": 11,
+    "age_max": 20,
+    "population": "Students in participating districts (most public high school students)",
+    "unit": "individual",
+    "system_type": "Operational tool",
+    "key_variables": [
+      "Student accounts and career exploration",
+      "Verified transcripts and A-G progress",
+      "Cal Grant and FAFSA/CADAA status",
+      "College applications"
+    ],
+    "identifiers": [
+      "ssid"
+    ],
+    "access": "restricted",
+    "legal": [
+      "FERPA",
+      "Education Code 10870 et seq."
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "C2C's operational tools for college and career planning and electronic transcripts.",
+    "url": "https://www.californiacolleges.edu/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "c2c",
+      "cde_calpads",
+      "csac"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "calpass",
+    "name": "Cal-PASS Plus",
+    "segment": "k12",
+    "owner": "Educational Results Partnership and San Joaquin Delta College",
+    "owner_type": "nonprofit",
+    "age_min": 12,
+    "age_max": 30,
+    "population": "Students in K-12 districts and colleges that sign data-sharing MOUs",
+    "unit": "individual",
+    "system_type": "Voluntary data exchange",
+    "key_variables": [
+      "K-12 course and grade data",
+      "College placement and course outcomes",
+      "Regional pathway reports"
+    ],
+    "identifiers": [
+      "ssid",
+      "cccid",
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "FERPA study exception",
+      "Local MOUs"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Predates C2C. Voluntary coverage means gaps by district.",
+    "url": "https://www.calpassplus.org/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "ccc_mis",
+      "cde_calpads"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "ccc_mis",
+    "name": "Community College MIS and CCCApply",
+    "segment": "post",
+    "owner": "California Community Colleges Chancellor's Office",
+    "owner_type": "state",
+    "age_min": 14,
+    "age_max": 99,
+    "population": "About 2 million students a year at 116 colleges, including dual enrollment and noncredit",
+    "unit": "individual",
+    "system_type": "Administrative (longitudinal)",
+    "key_variables": [
+      "Applications (CCCApply), including SSID when provided",
+      "Course enrollment and grades",
+      "Awards (degrees, certificates)",
+      "Transfer-level milestones",
+      "Financial aid (Promise, Pell, Cal Grant)",
+      "Dual enrollment (CCAP)",
+      "EOPS, DSPS, CalWORKs, veterans",
+      "Program (TOP code)"
+    ],
+    "identifiers": [
+      "cccid",
+      "ssn",
+      "ssid"
+    ],
+    "access": "restricted",
+    "legal": [
+      "FERPA",
+      "Education Code 70901, 72620"
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "Core C2C data provider.",
+    "url": "https://datamart.cccco.edu/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "c2c",
+      "calpass",
+      "ccc_launchboard",
+      "csac",
+      "csu_ers",
+      "uc_ss"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "ccc_launchboard",
+    "name": "LaunchBoard, Student Success Metrics and Strong Workforce outcomes",
+    "segment": "post",
+    "owner": "CCCCO with Cal-PASS Plus and WestEd",
+    "owner_type": "state",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "CCC students and CTE program completers",
+    "unit": "aggregate",
+    "system_type": "Public reporting",
+    "key_variables": [
+      "Program completion",
+      "Employment and median earnings (EDD wage match)",
+      "Living wage attainment",
+      "CTE Outcomes Survey"
+    ],
+    "identifiers": [
+      "ssn"
+    ],
+    "access": "public_aggregate",
+    "legal": [
+      "FERPA",
+      "Unemployment Insurance Code 1095"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Earnings outcomes depend on SSN-based EDD matching, so students without SSNs are missing.",
+    "url": "https://www.calpassplus.org/LaunchBoard/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "ccc_mis",
+      "edd_wages"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "csu_ers",
+    "name": "CSU enrollment and degree reporting (ERS)",
+    "segment": "post",
+    "owner": "California State University Chancellor's Office",
+    "owner_type": "state",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "About 460,000 students at 23 campuses",
+    "unit": "individual",
+    "system_type": "Administrative (longitudinal)",
+    "key_variables": [
+      "Applications and admissions",
+      "Enrollment and units",
+      "Degrees and majors (CIP)",
+      "Transfer origin",
+      "Financial aid"
+    ],
+    "identifiers": [
+      "csu_id",
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "FERPA",
+      "Education Code 89000 et seq."
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "Core C2C data provider. D4TP members report FERPA interpretations limit student debt data sharing.",
+    "url": "https://www.calstate.edu/data-center",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "c2c",
+      "ccc_mis",
+      "csac"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "uc_ss",
+    "name": "UC student data (Corporate Student System)",
+    "segment": "post",
+    "owner": "University of California Office of the President",
+    "owner_type": "state_constitutional",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "About 300,000 students at 10 campuses",
+    "unit": "individual",
+    "system_type": "Administrative (longitudinal)",
+    "key_variables": [
+      "Applications and admissions",
+      "Enrollment",
+      "Degrees and majors",
+      "Transfer origin",
+      "Financial aid and debt at graduation"
+    ],
+    "identifiers": [
+      "uc_id",
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "FERPA",
+      "Constitutional autonomy (Art. IX, Sec. 9)"
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "C2C data provider. Because of constitutional autonomy, statute requests rather than requires UC participation (restated in SB 135, 2026).",
+    "url": "https://www.universityofcalifornia.edu/about-us/information-center",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "c2c",
+      "ccc_mis",
+      "csac"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "aiccu",
+    "name": "Independent nonprofit colleges (AICCU members)",
+    "segment": "post",
+    "owner": "Association of Independent California Colleges and Universities",
+    "owner_type": "nonprofit",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Students at participating private nonprofit institutions",
+    "unit": "individual",
+    "system_type": "Voluntary submission",
+    "key_variables": [
+      "Enrollment",
+      "Degrees",
+      "Cal Grant recipients"
+    ],
+    "identifiers": [
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "FERPA",
+      "Voluntary agreement"
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "Represented on the C2C Governing Board. Participation is voluntary and institution by institution.",
+    "url": "https://aiccu.edu/",
+    "notes": "",
+    "confidence": "needs_verification",
+    "linked_to": [
+      "c2c"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "bppe",
+    "name": "Private postsecondary institutions (BPPE)",
+    "segment": "post",
+    "owner": "Bureau for Private Postsecondary Education (DCA)",
+    "owner_type": "state",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Students at for-profit and private vocational schools approved by BPPE",
+    "unit": "aggregate",
+    "system_type": "Regulatory reporting",
+    "key_variables": [
+      "Annual reports",
+      "Student Performance Fact Sheets (completion, placement, licensure)",
+      "Complaints and enforcement"
+    ],
+    "identifiers": [],
+    "access": "public_aggregate",
+    "legal": [
+      "Education Code 94800 et seq."
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "Listed as a C2C data partner, but BPPE collects institution-level reports, not student records, so students in these programs are largely invisible.",
+    "url": "https://www.bppe.ca.gov/",
+    "notes": "",
+    "confidence": "needs_verification",
+    "linked_to": [
+      "c2c"
+    ],
+    "missing_links": [
+      "edd_wages"
+    ]
+  },
+  {
+    "id": "csac",
+    "name": "CSAC financial aid (Grant Delivery System, WebGrants)",
+    "segment": "post",
+    "owner": "California Student Aid Commission",
+    "owner_type": "state",
+    "age_min": 16,
+    "age_max": 30,
+    "population": "FAFSA and CA Dream Act filers; Cal Grant, Middle Class Scholarship, Chafee and other awardees",
+    "unit": "individual",
+    "system_type": "Administrative (aid)",
+    "key_variables": [
+      "FAFSA and CADAA completion",
+      "High school GPA uploads",
+      "Cal Grant eligibility and award",
+      "Middle Class Scholarship",
+      "Payment and renewal"
+    ],
+    "identifiers": [
+      "ssn",
+      "itin_cadaa",
+      "ssid"
+    ],
+    "access": "restricted",
+    "legal": [
+      "FERPA",
+      "Education Code 69400 et seq.",
+      "Higher Education Act (FAFSA data)"
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "C2C data provider. Financial aid data points added to P20W in 2024.",
+    "url": "https://www.csac.ca.gov/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "c2c",
+      "ccc_mis",
+      "ccgi",
+      "cde_calpads",
+      "csu_ers",
+      "fed_fsa",
+      "uc_ss"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "fed_fsa",
+    "name": "Federal student aid and loans (FAFSA, NSLDS)",
+    "segment": "post",
+    "owner": "U.S. Department of Education",
+    "owner_type": "federal",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Federal aid applicants and borrowers",
+    "unit": "individual",
+    "system_type": "Federal administrative",
+    "key_variables": [
+      "FAFSA/ISIR data",
+      "Pell receipt",
+      "Federal loan balances and repayment status"
+    ],
+    "identifiers": [
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Higher Education Act 483",
+      "Privacy Act"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Loan data is not available to C2C. Student debt is a priority gap for D4TP (TICAS, Public Advocates).",
+    "url": "https://studentaid.gov/data-center",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "csac"
+    ],
+    "missing_links": [
+      "c2c"
+    ]
+  },
+  {
+    "id": "nsc",
+    "name": "National Student Clearinghouse",
+    "segment": "post",
+    "owner": "National Student Clearinghouse (nonprofit)",
+    "owner_type": "nonprofit",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Enrollment and degrees at most U.S. colleges, including out of state",
+    "unit": "individual",
+    "system_type": "Third-party verification",
+    "key_variables": [
+      "Enrollment by term at any participating college",
+      "Degrees",
+      "Institution type and state"
+    ],
+    "identifiers": [
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "FERPA",
+      "Contract"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not in C2C, so students who leave California or attend most private colleges disappear from the state picture.",
+    "url": "https://www.studentclearinghouse.org/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": [
+      "c2c"
+    ]
+  },
+  {
+    "id": "ipeds",
+    "name": "IPEDS and College Scorecard",
+    "segment": "post",
+    "owner": "U.S. Department of Education (NCES)",
+    "owner_type": "federal",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Every Title IV institution",
+    "unit": "aggregate",
+    "system_type": "Public reporting",
+    "key_variables": [
+      "Enrollment and completions by CIP",
+      "Graduation rates",
+      "Net price",
+      "Earnings after entry (Scorecard, from IRS)",
+      "Debt at completion"
+    ],
+    "identifiers": [],
+    "access": "public_aggregate",
+    "legal": [
+      "Higher Education Act"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Institution-level public data.",
+    "url": "https://collegescorecard.ed.gov/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": []
+  },
+  {
+    "id": "caep",
+    "name": "Adult education (CAEP, TOPSpro Enterprise)",
+    "segment": "post",
+    "owner": "CDE and CCCCO (California Adult Education Program) with CASAS",
+    "owner_type": "state",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Adult school and noncredit students: ESL, adult secondary, CTE, citizenship",
+    "unit": "individual",
+    "system_type": "Program reporting",
+    "key_variables": [
+      "Enrollment and hours",
+      "CASAS test gains",
+      "High school equivalency",
+      "Employment and wage outcomes (partial)"
+    ],
+    "identifiers": [
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "WIOA Title II",
+      "Education Code 84900 et seq."
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Adult schools run by K-12 districts are not in C2C. Many adult learners have no SSN on file.",
+    "url": "https://caladulted.org/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "edd_wages"
+    ],
+    "missing_links": [
+      "c2c"
+    ]
+  },
+  {
+    "id": "edd_wages",
+    "name": "UI base wage records (DE 9C)",
+    "segment": "work",
+    "owner": "Employment Development Department",
+    "owner_type": "state",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Workers in UI-covered jobs",
+    "unit": "individual",
+    "system_type": "Administrative (quarterly)",
+    "key_variables": [
+      "Quarterly wages by employer",
+      "Employer account and industry (NAICS)",
+      "County of employer"
+    ],
+    "identifiers": [
+      "ssn",
+      "employer_id"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Unemployment Insurance Code 1094-1095",
+      "20 CFR 603"
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "C2C data provider. In May 2026 the Governing Board approved new EDD P20W points, including employer ID and name, and EDD became the first partner to transmit via Snowflake.",
+    "url": "https://edd.ca.gov/",
+    "notes": "No occupation, hours or job title. Excludes self-employed, gig, federal, military and out-of-state work. SB 1054 (Cabaldon, 2026) would add these fields; it was held in Assembly Appropriations.",
+    "confidence": "verified",
+    "linked_to": [
+      "c2c",
+      "caep",
+      "ccc_launchboard",
+      "cwdb_caal",
+      "edd_caljobs"
+    ],
+    "missing_links": [
+      "bppe",
+      "ctc_permits"
+    ]
+  },
+  {
+    "id": "edd_caljobs",
+    "name": "CalJOBS (WIOA participant records)",
+    "segment": "work",
+    "owner": "Employment Development Department",
+    "owner_type": "state",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Job seekers and WIOA Title I and III participants at America's Job Centers",
+    "unit": "individual",
+    "system_type": "Case management",
+    "key_variables": [
+      "Services and training received",
+      "Credential attainment",
+      "Employment and earnings (WIOA performance)",
+      "Barriers to employment"
+    ],
+    "identifiers": [
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "WIOA 116",
+      "20 CFR 677"
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "Part of the LWDA workforce data expansion approved by the C2C board in May 2025 and amended in late 2025.",
+    "url": "https://www.caljobs.ca.gov/",
+    "notes": "",
+    "confidence": "needs_verification",
+    "linked_to": [
+      "c2c",
+      "edd_wages",
+      "swis"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "edd_lmi",
+    "name": "Labor Market Information (OES, QCEW, projections)",
+    "segment": "work",
+    "owner": "EDD Labor Market Information Division",
+    "owner_type": "state",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Employers and occupations statewide",
+    "unit": "aggregate",
+    "system_type": "Public statistics",
+    "key_variables": [
+      "Employment and wages by occupation (OES)",
+      "Employment and wages by industry (QCEW)",
+      "Occupational projections"
+    ],
+    "identifiers": [],
+    "access": "public_aggregate",
+    "legal": [
+      "BLS cooperative agreements"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Aggregate context. Needed for a program-to-occupation crosswalk.",
+    "url": "https://labormarketinfo.edd.ca.gov/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": []
+  },
+  {
+    "id": "dir_das",
+    "name": "Registered apprenticeship records",
+    "segment": "work",
+    "owner": "Division of Apprenticeship Standards (DIR)",
+    "owner_type": "state",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Registered apprentices and pre-apprentices",
+    "unit": "individual",
+    "system_type": "Program registration",
+    "key_variables": [
+      "Apprenticeship program and occupation",
+      "Registration, completion and cancellation",
+      "Sponsor",
+      "Related instruction provider"
+    ],
+    "identifiers": [
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Labor Code 3070 et seq."
+    ],
+    "c2c_status": "planned",
+    "c2c_note": "Included in the LWDA expansion the C2C board approved in May 2025 (described as its largest expansion). Import status should be confirmed.",
+    "url": "https://www.dir.ca.gov/das/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "c2c"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "cwdb_caal",
+    "name": "CAAL-Skills workforce program data",
+    "segment": "work",
+    "owner": "California Workforce Development Board",
+    "owner_type": "state",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Participants in 13 workforce programs across 7 state agencies",
+    "unit": "individual",
+    "system_type": "Cross-program data system",
+    "key_variables": [
+      "Program participation",
+      "Services received",
+      "Employment and earnings outcomes",
+      "Participant characteristics"
+    ],
+    "identifiers": [
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Unemployment Insurance Code 14013",
+      "Interagency agreements"
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "CWDB became a C2C data partner in May 2025.",
+    "url": "https://cwdb.ca.gov/caal-skills",
+    "notes": "",
+    "confidence": "verified",
+    "linked_to": [
+      "c2c",
+      "dor",
+      "edd_wages",
+      "etp"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "etp",
+    "name": "Employment Training Panel",
+    "segment": "work",
+    "owner": "Employment Training Panel",
+    "owner_type": "state",
+    "age_min": 18,
+    "age_max": 99,
+    "population": "Incumbent and new workers trained under ETP contracts",
+    "unit": "individual",
+    "system_type": "Program records",
+    "key_variables": [
+      "Employer contract",
+      "Training hours",
+      "Retention and wage after training"
+    ],
+    "identifiers": [
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Unemployment Insurance Code 10200 et seq."
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "Became a C2C data partner in May 2025.",
+    "url": "https://etp.ca.gov/",
+    "notes": "",
+    "confidence": "verified",
+    "linked_to": [
+      "c2c",
+      "cwdb_caal"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "dor",
+    "name": "Vocational rehabilitation (WIOA Title IV)",
+    "segment": "work",
+    "owner": "Department of Rehabilitation",
+    "owner_type": "state",
+    "age_min": 14,
+    "age_max": 99,
+    "population": "People with disabilities receiving VR and pre-employment transition services",
+    "unit": "individual",
+    "system_type": "Case management",
+    "key_variables": [
+      "Eligibility and disability",
+      "Services and pre-ETS for students",
+      "Employment outcomes"
+    ],
+    "identifiers": [
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "34 CFR 361.38"
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "VR participant data reaches CWDB's CAAL-Skills. Direct C2C participation needs confirmation.",
+    "url": "https://www.dor.ca.gov/",
+    "notes": "",
+    "confidence": "needs_verification",
+    "linked_to": [
+      "c2c",
+      "cwdb_caal"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "cdcr",
+    "name": "Corrections education (CDCR, Rising Scholars)",
+    "segment": "work",
+    "owner": "CDCR Office of Correctional Education; CCC Rising Scholars",
+    "owner_type": "state",
+    "age_min": 18,
+    "age_max": 99,
+    "population": "Incarcerated students and people on parole",
+    "unit": "individual",
+    "system_type": "Administrative",
+    "key_variables": [
+      "Education program enrollment",
+      "Credits and degrees in prison",
+      "Release and parole"
+    ],
+    "identifiers": [],
+    "access": "restricted",
+    "legal": [
+      "Penal Code 11105",
+      "Penal Code 2053.1"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not in C2C. CCC records capture Rising Scholars coursework, but release, reentry and employment are not linked.",
+    "url": "https://www.cdcr.ca.gov/rehabilitation/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": [
+      "c2c"
+    ]
+  },
+  {
+    "id": "ftb",
+    "name": "State income tax records",
+    "segment": "work",
+    "owner": "Franchise Tax Board",
+    "owner_type": "state",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "State tax filers, including self-employed and CalEITC recipients",
+    "unit": "individual",
+    "system_type": "Tax records",
+    "key_variables": [
+      "Self-employment income",
+      "CalEITC and Young Child Tax Credit",
+      "Household income"
+    ],
+    "identifiers": [
+      "ssn",
+      "itin_cadaa"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Revenue and Taxation Code 19542"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not linked. The only state source that sees self-employment and gig income, and it covers ITIN filers.",
+    "url": "https://www.ftb.ca.gov/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": [
+      "c2c"
+    ]
+  },
+  {
+    "id": "swis",
+    "name": "Out-of-state and federal wages (SWIS, FEDES)",
+    "segment": "work",
+    "owner": "U.S. DOL with state workforce agencies",
+    "owner_type": "federal",
+    "age_min": 16,
+    "age_max": 99,
+    "population": "Workers employed in other states, federal civilian jobs and the military",
+    "unit": "individual",
+    "system_type": "Wage exchange",
+    "key_variables": [
+      "Quarterly wages from other states",
+      "Federal and military employment"
+    ],
+    "identifiers": [
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "SWIS data sharing agreement (WIOA performance only)"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Use is limited to WIOA performance reporting. C2C cannot see Californians who work out of state.",
+    "url": "https://www.dol.gov/agencies/eta/performance/swis",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "edd_caljobs"
+    ],
+    "missing_links": [
+      "c2c"
+    ]
+  },
+  {
+    "id": "hcai_hw",
+    "name": "Health workforce data",
+    "segment": "work",
+    "owner": "Department of Health Care Access and Information (HCAI)",
+    "owner_type": "state",
+    "age_min": 18,
+    "age_max": 99,
+    "population": "Licensed health professionals and health workforce program participants",
+    "unit": "individual",
+    "system_type": "Licensing survey",
+    "key_variables": [
+      "License type",
+      "Practice location",
+      "Education and training",
+      "Languages"
+    ],
+    "identifiers": [],
+    "access": "public_aggregate",
+    "legal": [
+      "Health and Safety Code 128050"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "A model for linking licensure to training, not connected to C2C.",
+    "url": "https://hcai.ca.gov/data/healthcare-workforce/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": []
+  },
+  {
+    "id": "dmv",
+    "name": "DMV identity records",
+    "segment": "work",
+    "owner": "Department of Motor Vehicles",
+    "owner_type": "state",
+    "age_min": 15,
+    "age_max": 99,
+    "population": "Driver license and state ID holders",
+    "unit": "individual",
+    "system_type": "Identity",
+    "key_variables": [
+      "Name and birth date history",
+      "Address"
+    ],
+    "identifiers": [],
+    "access": "restricted",
+    "legal": [
+      "Vehicle Code 1808 et seq."
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "Reported as a C2C data partner added in August 2025, likely to improve identity matching. Needs confirmation.",
+    "url": "https://www.dmv.ca.gov/",
+    "notes": "",
+    "confidence": "needs_verification",
+    "linked_to": [
+      "c2c"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "dhcs_medi_cal",
+    "name": "Medi-Cal eligibility and claims (MEDS, encounters)",
+    "segment": "hhs",
+    "owner": "Department of Health Care Services",
+    "owner_type": "state",
+    "age_min": 0,
+    "age_max": 99,
+    "population": "About 15 million members, roughly half of California's children",
+    "unit": "individual",
+    "system_type": "Administrative (health)",
+    "key_variables": [
+      "Eligibility and aid code",
+      "Well-child visits and developmental screening",
+      "Dental and vision",
+      "Behavioral health services",
+      "Managed care plan"
+    ],
+    "identifiers": [
+      "cin",
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Welfare and Institutions Code 14100.2",
+      "HIPAA",
+      "42 CFR 431.300"
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "DHCS sits on the C2C Governing Board. Exactly which Medi-Cal points are in P20W needs confirmation.",
+    "url": "https://www.dhcs.ca.gov/dataandstats",
+    "notes": "Developmental screening and well-child visit data could show which children enter school without early supports.",
+    "confidence": "needs_verification",
+    "linked_to": [
+      "c2c",
+      "calsaws",
+      "cde_dircert",
+      "cdph_birth",
+      "cdph_wic"
+    ],
+    "missing_links": [
+      "ecids"
+    ]
+  },
+  {
+    "id": "dhcs_cybhi",
+    "name": "School-linked behavioral health fee schedule (CYBHI)",
+    "segment": "hhs",
+    "owner": "DHCS with CDE",
+    "owner_type": "state",
+    "age_min": 0,
+    "age_max": 25,
+    "population": "Students receiving behavioral health services at or near school",
+    "unit": "individual",
+    "system_type": "Claims",
+    "key_variables": [
+      "Service type and provider",
+      "Payer",
+      "School/LEA"
+    ],
+    "identifiers": [
+      "cin",
+      "ssid"
+    ],
+    "access": "restricted",
+    "legal": [
+      "HIPAA",
+      "FERPA"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "New since 2024. A potential bridge between school and health records.",
+    "url": "https://www.dhcs.ca.gov/CYBHI/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": []
+  },
+  {
+    "id": "calsaws",
+    "name": "CalSAWS (CalFresh, CalWORKs, Medi-Cal eligibility)",
+    "segment": "hhs",
+    "owner": "CalSAWS consortium of 58 counties, overseen by CDSS and DHCS",
+    "owner_type": "state_local",
+    "age_min": 0,
+    "age_max": 99,
+    "population": "Households applying for or receiving CalFresh, CalWORKs, Stage 1 child care, General Assistance and Medi-Cal",
+    "unit": "individual",
+    "system_type": "Eligibility system",
+    "key_variables": [
+      "Program enrollment and benefit",
+      "Household composition",
+      "Income and employment",
+      "CalWORKs Welfare-to-Work and Stage 1 child care"
+    ],
+    "identifiers": [
+      "cin",
+      "ssn"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Welfare and Institutions Code 10850",
+      "7 CFR 272.1"
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "CDSS is a C2C data provider for selected social services participation indicators.",
+    "url": "https://www.calsaws.org/",
+    "notes": "",
+    "confidence": "needs_verification",
+    "linked_to": [
+      "c2c",
+      "cde_dircert",
+      "cdss_ccdd",
+      "cdss_hvp",
+      "dhcs_medi_cal"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "cws",
+    "name": "Child welfare (CWS/CMS, CWS-CARES)",
+    "segment": "hhs",
+    "owner": "CDSS with county child welfare agencies",
+    "owner_type": "state_local",
+    "age_min": 0,
+    "age_max": 21,
+    "population": "Children with abuse or neglect reports, in foster care, or in extended foster care",
+    "unit": "individual",
+    "system_type": "Case management",
+    "key_variables": [
+      "Referrals and substantiations",
+      "Placements and moves",
+      "Exits to permanency",
+      "Extended foster care (18 to 21)"
+    ],
+    "identifiers": [
+      "cws_id"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Welfare and Institutions Code 827, 10850"
+    ],
+    "c2c_status": "partial",
+    "c2c_note": "Foster status reaches C2C through CALPADS. Public dashboards via the California Child Welfare Indicators Project (UC Berkeley).",
+    "url": "https://ccwip.berkeley.edu/",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [
+      "cde_foster"
+    ],
+    "missing_links": []
+  },
+  {
+    "id": "hdis",
+    "name": "Homelessness data (HMIS, HDIS)",
+    "segment": "hhs",
+    "owner": "Continuums of Care; CA Interagency Council on Homelessness (HDIS)",
+    "owner_type": "state_local",
+    "age_min": 0,
+    "age_max": 99,
+    "population": "People served by homeless services",
+    "unit": "individual",
+    "system_type": "Service records",
+    "key_variables": [
+      "Program enrollment",
+      "Household type",
+      "Exits to housing"
+    ],
+    "identifiers": [],
+    "access": "restricted",
+    "legal": [
+      "HUD HMIS standards"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Not linked. Schools separately identify McKinney-Vento students, and the two counts rarely meet.",
+    "url": "https://bcsh.ca.gov/calich/hdis.html",
+    "notes": "",
+    "confidence": "agency_docs",
+    "linked_to": [],
+    "missing_links": [
+      "cde_calpads"
+    ]
+  },
+  {
+    "id": "c2c",
+    "name": "Cradle-to-Career Data System (P20W data set and tools)",
+    "segment": "hub",
+    "owner": "Office of Cradle-to-Career Data (Government Operations Agency)",
+    "owner_type": "state",
+    "age_min": 0,
+    "age_max": 99,
+    "population": "People matched across 16 data partners (as of July 2026)",
+    "unit": "individual",
+    "system_type": "Statewide longitudinal data system",
+    "key_variables": [
+      "Linked education, aid, social services and wage records",
+      "Query Builder and Student Pathways Dashboard",
+      "Expedited and comprehensive data requests",
+      "Research library and secure data enclave",
+      "Planned transfer outcomes and teacher dashboards"
+    ],
+    "identifiers": [
+      "c2c_pid"
+    ],
+    "access": "public_aggregate",
+    "legal": [
+      "Education Code 10850-10875 (AB 132, 2021)",
+      "SB 135 (2026)"
+    ],
+    "c2c_status": "yes",
+    "c2c_note": "The hub. Partners grew from 8 submitting data in 2023 to 16 in 2026. Early learning and care is the largest remaining hole.",
+    "url": "https://c2c.ca.gov/",
+    "notes": "Student Pathways Dashboard launched April 22, 2025. 2026-31 Strategic Plan adopted August 2026.",
+    "confidence": "verified",
+    "linked_to": [
+      "aiccu",
+      "bppe",
+      "calsaws",
+      "ccc_mis",
+      "ccgi",
+      "cde_assess",
+      "cde_calpads",
+      "cde_capsdac",
+      "cde_cdmis",
+      "cdss_ccdd",
+      "csac",
+      "csu_ers",
+      "ctc_educator",
+      "ctc_permits",
+      "cwdb_caal",
+      "dds_earlystart",
+      "dhcs_medi_cal",
+      "dir_das",
+      "dmv",
+      "dor",
+      "ecids",
+      "edd_caljobs",
+      "edd_wages",
+      "etp",
+      "sib_calkids",
+      "uc_ss"
+    ],
+    "missing_links": [
+      "caep",
+      "cdcr",
+      "cdph_birth",
+      "fed_fsa",
+      "ftb",
+      "nsc",
+      "swis"
+    ]
+  },
+  {
+    "id": "ecids",
+    "name": "Early Childhood Integrated Data System (proposed)",
+    "segment": "hub",
+    "owner": "CDSS (lead, as proposed in AB 2092)",
+    "owner_type": "state",
+    "age_min": -0.5,
+    "age_max": 5,
+    "population": "Children 0 to 5 across child care, preschool, health, home visiting and early intervention",
+    "unit": "individual",
+    "system_type": "Proposed linkage system",
+    "key_variables": [
+      "Unduplicated count of children served",
+      "Program participation over time",
+      "Workforce and supply",
+      "Link to C2C at kindergarten entry"
+    ],
+    "identifiers": [],
+    "access": "none",
+    "legal": [
+      "AB 2092 (Bonta, 2026) held in Assembly Appropriations"
+    ],
+    "c2c_status": "planned",
+    "c2c_note": "Designed to connect to C2C. Not yet authorized or funded. The 2020 Master Plan for Early Learning and Care called for it.",
+    "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB2092",
+    "notes": "",
+    "confidence": "verified",
+    "linked_to": [
+      "c2c"
+    ],
+    "missing_links": [
+      "chvp",
+      "dhcs_medi_cal",
+      "dxf"
+    ]
+  },
+  {
+    "id": "dxf",
+    "name": "CalHHS Data Exchange Framework",
+    "segment": "hub",
+    "owner": "HCAI (administrator under SB 660, 2026); CalHHS",
+    "owner_type": "state",
+    "age_min": 0,
+    "age_max": 99,
+    "population": "Health plans, hospitals, providers, counties and social services organizations that sign the Data Sharing Agreement",
+    "unit": "individual",
+    "system_type": "Health and social services exchange",
+    "key_variables": [
+      "Real-time exchange of health and social services information",
+      "Consent management (in development)"
+    ],
+    "identifiers": [
+      "cin"
+    ],
+    "access": "restricted",
+    "legal": [
+      "Health and Safety Code 130290 (AB 133, 2021)",
+      "SB 660 (2026)",
+      "HIPAA"
+    ],
+    "c2c_status": "no",
+    "c2c_note": "Separate from C2C. Social services organizations began required exchange January 31, 2026. A future bridge for early childhood health data.",
+    "url": "https://dxf.chhs.ca.gov/",
+    "notes": "",
+    "confidence": "verified",
+    "linked_to": [],
+    "missing_links": [
+      "ecids"
+    ]
+  }
+]

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>California Learner Data Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Where California's data on children, students and workers connects from birth to career, where it breaks, and a 10-year plan to link it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a working atlas. Sticky tab bar, one view at a time, a shared detail drawer for any source. */
+:root {
+  --bg: #F4F6F6;
+  --surface: #FFFFFF;
+  --surface-2: #EAF0EF;
+  --fg: #16232A;
+  --muted: #55666D;
+  --line: #D5DFDE;
+  --accent: #146462;      /* D4TP teal */
+  --accent-2: #C8694F;    /* D4TP coral, darkened for text */
+  --ink: #1E1B4B;         /* D4TP indigo */
+  --head-bg: #10302F;
+  --head-fg: #F2F7F6;
+
+  --seg-birth: #C2410C; --seg-early: #C2366F; --seg-k12: #13807C; --seg-post: #5352C9;
+  --seg-work: #9A7400; --seg-hhs: #4D7C2A; --seg-hub: #334155;
+
+  --st-yes: #146462; --st-partial: #5FA8A4; --st-planned: #D99A1E; --st-no: #B9C3C6;
+  --ln-routine: #2C3E46; --ln-c2c: #13807C; --ln-periodic: #7A8B91; --ln-planned: #D99A1E; --ln-missing: #C2410C;
+
+  --h0: #E3F1EE; --h1: #C9E3D6; --h2: #F4DFA6; --h3: #EDA97C; --h4: #C8503A;
+  --h-text-dark: #16232A; --h-text-light: #FFFFFF;
+
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1719; --surface: #152124; --surface-2: #1C2B2F; --fg: #E4ECEC; --muted: #9AABB0; --line: #2A3B3F;
+    --accent: #4FC1BB; --accent-2: #F0A08A; --ink: #B8B5F5; --head-bg: #0A2422; --head-fg: #F2F7F6;
+    --seg-birth: #F08A4B; --seg-early: #EE78A6; --seg-k12: #3FC1BA; --seg-post: #9A99F2;
+    --seg-work: #E0B73E; --seg-hhs: #8DC062; --seg-hub: #A9B6C4;
+    --st-yes: #3FC1BA; --st-partial: #2D7C78; --st-planned: #E0A93A; --st-no: #3A4A4F;
+    --ln-routine: #C9D6DA; --ln-c2c: #3FC1BA; --ln-periodic: #7D9095; --ln-planned: #E0A93A; --ln-missing: #F08A4B;
+    --h0: #17393A; --h1: #1F5550; --h2: #7A6420; --h3: #A2532F; --h4: #D9513A;
+    --h-text-dark: #E4ECEC; --h-text-light: #FFFFFF;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1719; --surface: #152124; --surface-2: #1C2B2F; --fg: #E4ECEC; --muted: #9AABB0; --line: #2A3B3F;
+  --accent: #4FC1BB; --accent-2: #F0A08A; --ink: #B8B5F5; --head-bg: #0A2422; --head-fg: #F2F7F6;
+  --seg-birth: #F08A4B; --seg-early: #EE78A6; --seg-k12: #3FC1BA; --seg-post: #9A99F2;
+  --seg-work: #E0B73E; --seg-hhs: #8DC062; --seg-hub: #A9B6C4;
+  --st-yes: #3FC1BA; --st-partial: #2D7C78; --st-planned: #E0A93A; --st-no: #3A4A4F;
+  --ln-routine: #C9D6DA; --ln-c2c: #3FC1BA; --ln-periodic: #7D9095; --ln-planned: #E0A93A; --ln-missing: #F08A4B;
+  --h0: #17393A; --h1: #1F5550; --h2: #7A6420; --h3: #A2532F; --h4: #D9513A;
+  --h-text-dark: #E4ECEC; --h-text-light: #FFFFFF;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+a { color: var(--accent); }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+button { font: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.num { font-variant-numeric: tabular-nums; }
+.mono { font-family: var(--font-mono); font-size: 0.82em; }
+
+/* Header */
+.masthead { background: var(--head-bg); color: var(--head-fg); }
+.masthead .wrap { padding-block: 28px 24px; display: grid; gap: 10px; }
+.crumb { font-size: 0.8rem; opacity: 0.8; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.crumb a { color: inherit; }
+.masthead h1 { font-size: clamp(1.6rem, 3.6vw, 2.5rem); line-height: 1.12; max-width: 22ch; }
+.masthead h1 em { font-style: normal; color: #F2A58F; }
+.masthead p { margin: 0; max-width: 70ch; opacity: 0.88; }
+.age-ruler { margin-top: 8px; display: grid; grid-template-columns: 0.6fr 2.6fr 3fr 1.6fr 2fr; gap: 3px; font-family: var(--font-mono); font-size: 0.7rem; }
+.age-ruler span { border-top: 3px solid; padding-top: 4px; opacity: 0.92; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Tabs */
+.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.tabs .wrap { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+.tabs .wrap::-webkit-scrollbar { display: none; }
+.tab { border: 0; background: none; color: var(--muted); padding: 13px 14px 11px; font-weight: 600; font-size: 0.86rem; border-bottom: 3px solid transparent; white-space: nowrap; cursor: pointer; }
+.tab:hover { color: var(--fg); }
+.tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+
+main .wrap { padding-block: 24px 64px; }
+.view { display: grid; gap: 22px; }
+.view-head { display: grid; gap: 6px; max-width: 78ch; }
+.view-head h2 { font-size: 1.45rem; }
+.view-head p { margin: 0; color: var(--muted); }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; min-width: 0; }
+.panel h3 { font-size: 1.02rem; margin-bottom: 10px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.hint { font-size: 0.8rem; color: var(--muted); }
+
+/* KPI row */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; display: grid; gap: 2px; }
+.kpi .v { font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1.05; }
+.kpi .l { font-size: 0.82rem; color: var(--muted); }
+.kpi.alert .v { color: var(--accent-2); }
+
+.grid-2 { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px; }
+@media (max-width: 860px) { .grid-2 { grid-template-columns: minmax(0, 1fr); } }
+
+.findings { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: f; }
+.findings li { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; }
+.findings li::before { counter-increment: f; content: counter(f); font-family: var(--font-display); font-weight: 700; color: var(--accent); font-size: 1.25rem; line-height: 1.2; }
+.findings strong { display: block; }
+.findings span { color: var(--muted); font-size: 0.9rem; }
+
+/* Legends and chips */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.8rem; color: var(--muted); align-items: center; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 5px; vertical-align: -2px; }
+.legend .line { width: 22px; height: 0; border-top: 3px solid; border-radius: 0; vertical-align: 3px; }
+.chip { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 600; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); white-space: nowrap; }
+.chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+.st { font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.04em; }
+.st-yes { background: var(--st-yes); color: #fff; }
+.st-partial { background: var(--st-partial); color: #fff; }
+.st-planned { background: var(--st-planned); color: #2A1E00; }
+.st-no { background: var(--st-no); color: var(--fg); }
+.toggle { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); cursor: pointer; font-size: 0.8rem; color: var(--fg); }
+.toggle[aria-pressed="false"] { opacity: 0.45; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.controls label { font-size: 0.78rem; color: var(--muted); display: grid; gap: 3px; }
+.controls input, .controls select { font: inherit; font-size: 0.86rem; padding: 7px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); min-width: 0; }
+.controls input[type="search"] { width: min(280px, 100%); }
+
+/* SVG text */
+svg text { fill: var(--fg); font-family: var(--font-body); }
+svg .muted { fill: var(--muted); }
+svg .mono { font-family: var(--font-mono); }
+
+/* Journey */
+#journey-svg .bar { cursor: pointer; }
+#journey-svg .bar:hover rect, #journey-svg .bar:focus rect { stroke: var(--fg); stroke-width: 1.5; }
+
+/* Network */
+#net-wrap { position: relative; height: 640px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+#net-wrap svg { width: 100%; height: 100%; display: block; touch-action: none; }
+.node circle { cursor: pointer; }
+.node text { font-size: 10.5px; pointer-events: none; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
+@media (max-width: 640px) { #net-wrap { height: 520px; } }
+
+/* Heatmap */
+.heat { border-collapse: separate; border-spacing: 3px; font-size: 0.82rem; min-width: 760px; }
+.heat th { font-weight: 600; color: var(--muted); text-align: left; padding: 4px 6px; vertical-align: bottom; font-size: 0.76rem; }
+.heat th.col { text-align: center; width: 92px; }
+.heat td.cell { text-align: center; font-weight: 700; border-radius: 6px; height: 38px; font-family: var(--font-mono); cursor: default; }
+.heat td.rowname { padding: 4px 8px 4px 0; font-weight: 600; min-width: 220px; }
+.heat tr.sel td.rowname { color: var(--accent); }
+.heat tbody tr { cursor: pointer; }
+.heat td.avg { font-family: var(--font-mono); color: var(--muted); text-align: center; }
+
+.gap-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.gap { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; display: grid; gap: 6px; align-content: start; }
+.gap .top { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.sev { display: inline-flex; gap: 2px; }
+.sev b { width: 9px; height: 9px; border-radius: 2px; background: var(--line); display: inline-block; }
+.sev b.on { background: var(--h4); }
+.gap h4 { margin: 0; font-family: var(--font-display); font-size: 1rem; }
+.gap p { margin: 0; font-size: 0.86rem; }
+.gap .ev { color: var(--muted); font-size: 0.78rem; }
+
+/* Sources table */
+table.src { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 820px; }
+table.src th { text-align: left; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); padding: 8px; border-bottom: 2px solid var(--line); position: sticky; top: 0; background: var(--surface); }
+table.src td { padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.src tbody tr { cursor: pointer; }
+table.src tbody tr:hover { background: var(--surface-2); }
+.segdot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; }
+.conf-needs_verification { color: var(--accent-2); }
+
+/* Roadmap */
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.timeline li { display: grid; grid-template-columns: 78px 18px 1fr; gap: 10px; }
+.timeline .d { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); padding-top: 2px; text-align: right; }
+.timeline .rail { position: relative; }
+.timeline .rail::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; border-left: 2px solid var(--line); }
+.timeline .rail::after { content: ""; position: absolute; left: 3px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 3px solid var(--k, var(--accent)); }
+.timeline .body { padding-bottom: 14px; }
+.timeline .body strong { display: block; font-size: 0.92rem; }
+.timeline .body span { font-size: 0.84rem; color: var(--muted); }
+.phases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 960px) { .phases { grid-template-columns: minmax(0, 1fr); } }
+.phase { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; align-content: start; min-width: 0; }
+.rec .chip { white-space: normal; }
+.phase-head { padding: 12px 14px; border-radius: var(--radius); background: var(--head-bg); color: var(--head-fg); }
+.phase-head .eyebrow { color: inherit; opacity: 0.75; }
+.phase-head h3 { font-size: 1.05rem; margin: 2px 0 0; }
+.rec { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; display: grid; gap: 6px; }
+.rec h4 { margin: 0; font-size: 0.95rem; font-family: var(--font-display); }
+.rec p { margin: 0; font-size: 0.84rem; }
+.rec .meta { display: flex; flex-wrap: wrap; gap: 5px; }
+.rec .metric { font-size: 0.78rem; color: var(--muted); }
+.rec.dim { opacity: 0.3; }
+.pchip { font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--surface-2); border: 1px solid var(--line); }
+
+/* Drawer */
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(440px, 100%); background: var(--surface); border-left: 1px solid var(--line); box-shadow: -10px 0 30px rgba(0,0,0,0.12); z-index: 20; transform: translateX(105%); transition: transform 0.22s ease; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px); }
+.drawer.open { transform: none; }
+.drawer header { display: flex; justify-content: space-between; align-items: start; gap: 10px; padding: 16px 18px 10px; border-bottom: 1px solid var(--line); }
+.drawer header h3 { font-size: 1.1rem; }
+.drawer .close { border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); border-radius: 8px; padding: 4px 10px; cursor: pointer; }
+.drawer .content { overflow-y: auto; padding: 14px 18px 30px; display: grid; gap: 14px; font-size: 0.88rem; }
+.drawer dl { margin: 0; display: grid; gap: 10px; }
+.drawer dt { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.drawer dd { margin: 2px 0 0; }
+.drawer ul { margin: 4px 0 0; padding-left: 18px; }
+.linkbtn { border: 0; background: none; color: var(--accent); padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; text-align: left; }
+@media (prefers-reduced-motion: reduce) { .drawer { transition: none; } }
+
+.downloads { display: flex; flex-wrap: wrap; gap: 8px; }
+.downloads a { font-size: 0.82rem; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; text-decoration: none; background: var(--surface); }
+footer { color: var(--muted); font-size: 0.8rem; }
+footer .wrap { padding-block: 0 40px; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="crumb"><a href="../index.html">D4TP Coalition Dashboard</a><span aria-hidden="true">/</span><span>Data landscape</span><span aria-hidden="true">·</span><span id="asof" class="mono"></span></div>
+    <h1>From cradle to career: where California's data <em>connects</em>, and where it breaks</h1>
+    <p>A working map of the public data systems that follow a Californian from birth through early care, school, college and work: who holds each one, what it contains, how the systems link, and what a 10-year statewide linkage strategy would need to fix.</p>
+    <div class="age-ruler" aria-hidden="true">
+      <span style="border-color:var(--seg-birth)">Birth</span>
+      <span style="border-color:var(--seg-early)">0 to 5 · early care</span>
+      <span style="border-color:var(--seg-k12)">TK to 12</span>
+      <span style="border-color:var(--seg-post)">College</span>
+      <span style="border-color:var(--seg-work)">Career</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Views">
+  <div class="wrap" role="tablist" id="tabbar"></div>
+</nav>
+
+<main><div class="wrap" id="views"></div></main>
+
+<footer><div class="wrap">
+  <p>Prepared for Data 4 the People. Research current as of <span class="asof-plain"></span>. Each source carries a confidence rating; entries marked "needs verification" should be confirmed with the agency before external use. Full method, gap analysis and recommendations are in <a href="REPORT.md">REPORT.md</a>; field definitions are in <a href="data/DATA_DICTIONARY.md">the data dictionary</a>.</p>
+</div></footer>
+
+<aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="drawer-title">
+  <header><div><div class="eyebrow" id="drawer-eyebrow"></div><h3 id="drawer-title"></h3></div><button class="close" id="drawer-close" aria-label="Close details">Close</button></header>
+  <div class="content" id="drawer-content"></div>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="data/data.js"></script>
+<script>
+(function () {
+  const D = window.D4TP_LANDSCAPE;
+  const byId = Object.fromEntries(D.sources.map(s => [s.id, s]));
+  const segById = Object.fromEntries(D.segments.map(s => [s.id, s]));
+  const identById = Object.fromEntries(D.identifiers.map(i => [i.id, i]));
+  const SEG_ORDER = D.segments.map(s => s.id);
+  const segColor = id => `var(--seg-${id})`;
+  const STATUS_LABEL = { yes: "In C2C", partial: "Partial", planned: "Planned", no: "Not in C2C" };
+  const LINK_LABEL = { routine: "Routine operational match", c2c: "Matched in C2C", periodic: "Partial or voluntary", planned: "Planned", missing: "Missing link" };
+  const ACCESS_LABEL = { public_aggregate: "Public (aggregate)", public_detail: "Public (record level)", restricted: "By request or agreement", internal: "Agency use only", none: "Does not exist yet" };
+  const CONF_LABEL = { verified: "Verified 2025-26", agency_docs: "Agency documentation", needs_verification: "Needs verification" };
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const ageTxt = (a, b) => `${a < 0 ? "Prenatal" : a} to ${b >= 99 ? "adult" : b}`;
+  const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+  document.getElementById("asof").textContent = "As of " + fmtDate(D.as_of);
+  document.querySelectorAll(".asof-plain").forEach(n => n.textContent = fmtDate(D.as_of));
+  function fmtDate(iso) { const [y, m, d] = iso.split("-").map(Number); return new Date(y, m - 1, d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }); }
+
+  // Shared non-linear age scale: more room for early childhood.
+  const AGE_DOM = [-0.5, 0, 5, 18, 26, 40, 66];
+  const AGE_FR = [0, 0.05, 0.33, 0.63, 0.79, 0.9, 1];
+  function ageX(age, x0, x1) { const a = Math.max(AGE_DOM[0], Math.min(AGE_DOM[AGE_DOM.length - 1], age >= 99 ? 66 : age)); for (let i = 1; i < AGE_DOM.length; i++) { if (a <= AGE_DOM[i]) { const t = (a - AGE_DOM[i - 1]) / (AGE_DOM[i] - AGE_DOM[i - 1]); return x0 + (AGE_FR[i - 1] + t * (AGE_FR[i] - AGE_FR[i - 1])) * (x1 - x0); } } return x1; }
+  const AGE_TICKS = [[-0.5, "Prenatal"], [0, "0"], [1, "1"], [3, "3"], [5, "5"], [10, "10"], [14, "14"], [18, "18"], [22, "22"], [26, "26"], [40, "40"], [66, "65+"]];
+
+  // ---------- Tabs ----------
+  const VIEWS = [
+    ["overview", "Overview"], ["journey", "Journey map"], ["network", "Linkage network"], ["identifiers", "Identifier relay"],
+    ["gaps", "Gaps"], ["sources", "Source explorer"], ["roadmap", "10-year roadmap"],
+  ];
+  const tabbar = document.getElementById("tabbar"), viewsEl = document.getElementById("views");
+  const rendered = {};
+  VIEWS.forEach(([id, label]) => {
+    const b = document.createElement("button"); b.className = "tab"; b.setAttribute("role", "tab"); b.id = "tab-" + id; b.textContent = label;
+    b.setAttribute("aria-controls", "view-" + id); b.addEventListener("click", () => { location.hash = id; }); tabbar.appendChild(b);
+    const sec = document.createElement("section"); sec.className = "view"; sec.id = "view-" + id; sec.setAttribute("role", "tabpanel"); sec.hidden = true; sec.setAttribute("aria-labelledby", "tab-" + id); viewsEl.appendChild(sec);
+  });
+  function show() {
+    const id = (location.hash || "#overview").slice(1); const ok = VIEWS.some(v => v[0] === id) ? id : "overview";
+    VIEWS.forEach(([v]) => { document.getElementById("view-" + v).hidden = v !== ok; document.getElementById("tab-" + v).setAttribute("aria-selected", v === ok); });
+    if (!rendered[ok]) { RENDER[ok](document.getElementById("view-" + ok)); rendered[ok] = true; }
+    try { localStorage.setItem("d4tp-landscape-tab", ok); } catch (e) {}
+  }
+  window.addEventListener("hashchange", show);
+
+  // ---------- Drawer ----------
+  const drawer = document.getElementById("drawer");
+  document.getElementById("drawer-close").addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+  function closeDrawer() { drawer.classList.remove("open"); drawer.setAttribute("aria-hidden", "true"); }
+  function openSource(id) {
+    const s = byId[id]; if (!s) return;
+    document.getElementById("drawer-eyebrow").innerHTML = `<span class="segdot" style="background:${segColor(s.segment)}"></span>${esc(segById[s.segment].name)}`;
+    document.getElementById("drawer-title").textContent = s.name;
+    const links = D.linkages.filter(l => l.source === id || l.target === id);
+    const linkRow = l => { const other = l.source === id ? l.target : l.source; return `<li><button class="linkbtn" data-src="${other}">${esc(byId[other].name)}</button> <span class="hint">· ${esc(LINK_LABEL[l.status])}${l.identifier ? " · key: " + esc(l.identifier) : ""}</span><br><span class="hint">${esc(l.mechanism)}</span></li>`; };
+    const working = links.filter(l => l.status !== "missing"), missing = links.filter(l => l.status === "missing");
+    document.getElementById("drawer-content").innerHTML = `
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="st st-${s.c2c_status}">${STATUS_LABEL[s.c2c_status]}</span><span class="chip">${esc(ACCESS_LABEL[s.access])}</span><span class="chip conf-${s.confidence}">${esc(CONF_LABEL[s.confidence])}</span></div>
+      <dl>
+        <div><dt>Held by</dt><dd>${esc(s.owner)}</dd></div>
+        <div><dt>Who is in it</dt><dd>${esc(s.population)} <span class="hint">(ages ${ageTxt(s.age_min, s.age_max)})</span></dd></div>
+        <div><dt>Record level and type</dt><dd>${esc(s.unit)} · ${esc(s.system_type)}</dd></div>
+        <div><dt>Key variables</dt><dd><ul>${s.key_variables.map(v => `<li>${esc(v)}</li>`).join("")}</ul></dd></div>
+        <div><dt>Identifiers</dt><dd>${s.identifiers.length ? s.identifiers.map(i => `<span class="chip" style="margin:0 4px 4px 0">${esc(identById[i].name)}</span>`).join("") : "None that follow a person"}</dd></div>
+        <div><dt>C2C</dt><dd>${esc(s.c2c_note)}</dd></div>
+        <div><dt>Rules that govern sharing</dt><dd>${esc(s.legal.join("; "))}</dd></div>
+        ${s.notes ? `<div><dt>Notes</dt><dd>${esc(s.notes)}</dd></div>` : ""}
+        <div><dt>Working links (${working.length})</dt><dd>${working.length ? `<ul>${working.map(linkRow).join("")}</ul>` : "None documented"}</dd></div>
+        <div><dt>Missing links (${missing.length})</dt><dd>${missing.length ? `<ul>${missing.map(linkRow).join("")}</ul>` : "None flagged"}</dd></div>
+        <div><dt>Source</dt><dd><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url.replace(/^https?:\/\//, "").slice(0, 60))}</a></dd></div>
+      </dl>`;
+    drawer.querySelectorAll("[data-src]").forEach(b => b.addEventListener("click", () => openSource(b.dataset.src)));
+    drawer.classList.add("open"); drawer.setAttribute("aria-hidden", "false"); document.getElementById("drawer-close").focus({ preventScroll: true });
+  }
+
+  function legendStatus() { return `<div class="legend">${["yes", "partial", "planned", "no"].map(k => `<span><i style="background:var(--st-${k})"></i>${STATUS_LABEL[k]}</span>`).join("")}</div>`; }
+  function legendSeg() { return `<div class="legend">${D.segments.map(s => `<span><i style="background:${segColor(s.id)};border-radius:50%"></i>${esc(s.name)}</span>`).join("")}</div>`; }
+
+  const RENDER = {};
+
+  // ---------- Overview ----------
+  RENDER.overview = el => {
+    const n = D.sources.length, c = st => D.sources.filter(s => s.c2c_status === st).length;
+    const missing = D.linkages.filter(l => l.status === "missing").length;
+    const early = D.sources.filter(s => s.segment === "early" || s.segment === "birth");
+    const earlyIn = early.filter(s => s.c2c_status === "yes").length;
+    el.innerHTML = `
+      <div class="view-head"><span class="eyebrow">The landscape at a glance</span><h2>California links a lot of data after age 5, and very little before it</h2>
+      <p>We cataloged every significant public data source across the 0-to-workforce pathway and traced how each one connects to the next. The Cradle-to-Career Data System (C2C) is the hub. The chart shows how much of each segment it reaches today.</p></div>
+      <div class="kpis">
+        <div class="kpi"><span class="v num">${n}</span><span class="l">data sources cataloged across 7 segments</span></div>
+        <div class="kpi"><span class="v num">${c("yes")}</span><span class="l">submit data to C2C, plus ${c("partial")} partial and ${c("planned")} planned</span></div>
+        <div class="kpi alert"><span class="v num">${earlyIn} of ${early.length}</span><span class="l">birth and early childhood sources are C2C partners</span></div>
+        <div class="kpi"><span class="v num">${D.identifiers.length}</span><span class="l">different person identifiers in use, none spanning birth to work</span></div>
+        <div class="kpi alert"><span class="v num">${missing}</span><span class="l">needed links that do not exist today</span></div>
+      </div>
+      <div class="grid-2">
+        <div class="panel"><h3>C2C reach by segment</h3><div id="ov-chart"></div>${legendStatus()}<p class="hint">Click a bar segment to list its sources in the explorer.</p></div>
+        <div class="panel"><h3>Five findings for the pitch</h3>
+          <ol class="findings">
+            <li><div><strong>The first five years are a blind spot.</strong><span>A child can pass through up to nine early programs under different IDs or none. The SSID, the first durable ID, arrives at TK.</span></div></li>
+            <li><div><strong>The high school to college handoff is strong.</strong><span>CALPADS, CCC, CSU, UC, CSAC and CaliforniaColleges.edu all meet inside C2C. This is the model to extend in both directions.</span></div></li>
+            <li><div><strong>Careers are measured with a blunt tool.</strong><span>UI wage records carry no occupation or hours, miss gig and out-of-state work, and depend on SSNs many immigrant students lack.</span></div></li>
+            <li><div><strong>The edges are missing.</strong><span>Private and adult education, apprenticeship, corrections, homelessness and students who leave the state fall out of the picture.</span></div></li>
+            <li><div><strong>The barriers are governance, not technology.</strong><span>No ECIDS statute (AB 2092 held in 2026), no common definitions, and no durable funding for partner agencies.</span></div></li>
+          </ol>
+        </div>
+      </div>
+      <div class="panel"><h3>Take the data with you</h3>
+        <div class="downloads">
+          <a href="data/sources.csv">sources.csv</a><a href="data/linkages.csv">linkages.csv</a><a href="data/identifiers.csv">identifiers.csv</a>
+          <a href="data/gaps.csv">gaps.csv</a><a href="data/recommendations.csv">recommendations.csv</a><a href="data/sources.json">sources.json</a>
+          <a href="data/DATA_DICTIONARY.md">Data dictionary</a><a href="REPORT.md">Gap analysis and recommendations</a>
+        </div>
+      </div>`;
+    // stacked horizontal bars
+    const host = el.querySelector("#ov-chart");
+    const segs = D.segments; const W = 560, rowH = 34, left = 170, H = segs.length * rowH + 26;
+    const max = d3.max(segs, s => D.sources.filter(x => x.segment === s.id).length);
+    const x = d3.scaleLinear().domain([0, max]).range([left, W - 24]);
+    const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%").attr("role", "img").attr("aria-label", "Stacked bars of C2C status by segment");
+    x.ticks(5).forEach(t => { svg.append("line").attr("x1", x(t)).attr("x2", x(t)).attr("y1", 4).attr("y2", H - 20).attr("stroke", "var(--line)"); svg.append("text").attr("x", x(t)).attr("y", H - 6).attr("text-anchor", "middle").attr("class", "muted mono").attr("font-size", 10).text(t); });
+    segs.forEach((s, i) => {
+      const y = 6 + i * rowH; let acc = 0;
+      svg.append("text").attr("x", left - 10).attr("y", y + 16).attr("text-anchor", "end").attr("font-size", 12).text(s.name);
+      ["yes", "partial", "planned", "no"].forEach(st => {
+        const k = D.sources.filter(z => z.segment === s.id && z.c2c_status === st).length; if (!k) return;
+        const g = svg.append("g").style("cursor", "pointer").on("click", () => { SRC_FILTER.segment = s.id; SRC_FILTER.c2c = st; location.hash = "sources"; if (rendered.sources) applySrcFilter(); });
+        g.append("rect").attr("x", x(acc)).attr("y", y + 2).attr("width", x(acc + k) - x(acc) - 1).attr("height", rowH - 12).attr("rx", 3).attr("fill", `var(--st-${st})`);
+        if (x(acc + k) - x(acc) > 16) g.append("text").attr("x", (x(acc) + x(acc + k)) / 2).attr("y", y + 16).attr("text-anchor", "middle").attr("font-size", 11).attr("font-weight", 700).style("fill", st === "yes" || st === "partial" ? "#fff" : "var(--fg)").text(k);
+        g.append("title").text(`${s.name}: ${k} ${STATUS_LABEL[st].toLowerCase()}`);
+        acc += k;
+      });
+    });
+  };
+
+  // ---------- Journey ----------
+  RENDER.journey = el => {
+    el.innerHTML = `
+      <div class="view-head"><span class="eyebrow">Pathway and journey map</span><h2>Every data source, placed on the ages it covers</h2>
+      <p>Each bar is one data source in its segment lane, stretched across the ages of the people in it and colored by its relationship to C2C. The markers along the top rate how well data carries across each major handoff. Click any bar for details.</p></div>
+      <div class="panel"><div class="scroll-x"><svg id="journey-svg"></svg></div>${legendStatus()}</div>`;
+    const W = 1180, x0 = 190, x1 = W - 16, top = 106;
+    // pack each lane
+    const lanes = SEG_ORDER.map(seg => {
+      const items = D.sources.filter(s => s.segment === seg).sort((a, b) => a.age_min - b.age_min || b.age_max - a.age_max);
+      const rows = []; items.forEach(s => {
+        const a = ageX(s.age_min, x0, x1), bb = Math.max(ageX(s.age_max, x0, x1), a + 8), labelW = Math.min(s.name.length * 6.1 + 12, 360);
+        s._side = (bb - a) > labelW ? "in" : (bb + 6 + labelW <= x1 ? "right" : "left");
+        const start = s._side === "left" ? a - 6 - labelW : a, b = s._side === "right" ? bb + 6 + labelW : bb;
+        let r = rows.findIndex(end => end + 6 < start); if (r < 0) { rows.push(0); r = rows.length - 1; } rows[r] = b; s._row = r;
+      }); return { seg, items, n: Math.max(rows.length, 1) };
+    });
+    const barH = 20, gapH = 5;
+    let y = top; lanes.forEach(L => { L.y = y; L.h = L.n * (barH + gapH) + 16; y += L.h; });
+    const H = y + 10;
+    const svg = d3.select("#journey-svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", W).attr("height", H).attr("role", "img").attr("aria-label", "Journey map of data sources by age");
+    // stage bands
+    const stages = [[-0.5, 0, "Prenatal"], [0, 3, "Infant and toddler"], [3, 5, "Preschool"], [5, 18, "TK-12"], [18, 26, "College and training"], [26, 66, "Career"]];
+    stages.forEach(([a, b, t], i) => {
+      svg.append("rect").attr("x", ageX(a, x0, x1)).attr("y", top - 8).attr("width", ageX(b, x0, x1) - ageX(a, x0, x1)).attr("height", H - top).attr("fill", i % 2 ? "var(--surface-2)" : "transparent").attr("opacity", 0.6);
+      svg.append("text").attr("x", (ageX(a, x0, x1) + ageX(b, x0, x1)) / 2).attr("y", 76).attr("text-anchor", "middle").attr("font-size", 11).attr("font-weight", 600).attr("class", "muted").text(t);
+    });
+    AGE_TICKS.filter(([a]) => a >= 0).forEach(([a, t]) => { svg.append("text").attr("x", ageX(a, x0, x1)).attr("y", top - 14).attr("text-anchor", "middle").attr("class", "muted mono").attr("font-size", 9.5).text(t); });
+    // handoff markers
+    const HM = Object.fromEntries(D.heatmap.map(r => [r.id, r]));
+    const handoffs = [[0, "birth_ece", "Birth to early care"], [4.6, "ece_tk", "Early care to TK/K"], [18, "k12_post", "High school to college"], [22.5, "post_work", "College to work"]];
+    handoffs.forEach(([age, hid, label], hi) => {
+      const r = HM[hid]; const avg = d3.mean(r.scores); const cx = ageX(age, x0, x1);
+      const col = avg >= 3 ? "var(--h4)" : avg >= 2 ? "var(--h3)" : avg >= 1 ? "var(--h2)" : "var(--h1)";
+      svg.append("line").attr("x1", cx).attr("x2", cx).attr("y1", 30).attr("y2", H - 6).attr("stroke", col).attr("stroke-width", 2).attr("stroke-dasharray", "4 4");
+      const g = svg.append("g").attr("transform", `translate(${cx},${hi % 2 ? 48 : 20})`);
+      g.append("circle").attr("r", 13).attr("fill", col);
+      g.append("text").attr("text-anchor", "middle").attr("y", 4).attr("font-size", 10.5).attr("font-weight", 700).style("fill", avg >= 2.5 ? "#fff" : "var(--h-text-dark)").attr("class", "mono").text(avg.toFixed(1));
+      g.append("text").attr("x", 18).attr("y", 4).attr("font-size", 11).attr("font-weight", 600).text(label);
+      g.append("title").text(`${label}: average gap score ${avg.toFixed(1)} of 4. ${r.why}`);
+    });
+    svg.append("text").attr("x", 8).attr("y", 24).attr("font-size", 10.5).attr("class", "muted").text("Handoff gap score");
+    svg.append("text").attr("x", 8).attr("y", 38).attr("font-size", 10.5).attr("class", "muted").text("(0 strong, 4 critical)");
+    // lanes
+    lanes.forEach(L => {
+      svg.append("line").attr("x1", 8).attr("x2", W - 8).attr("y1", L.y - 4).attr("y2", L.y - 4).attr("stroke", "var(--line)");
+      svg.append("rect").attr("x", 8).attr("y", L.y + 2).attr("width", 5).attr("height", L.h - 14).attr("rx", 2).attr("fill", segColor(L.seg));
+      svg.append("text").attr("x", 20).attr("y", L.y + 16).attr("font-size", 12.5).attr("font-weight", 700).text(segById[L.seg].name);
+      svg.append("text").attr("x", 20).attr("y", L.y + 31).attr("font-size", 10.5).attr("class", "muted").text(`${L.items.length} sources`);
+      L.items.forEach(s => {
+        const a = ageX(s.age_min, x0, x1), b = Math.max(ageX(s.age_max, x0, x1), a + 8), yy = L.y + 4 + s._row * (barH + gapH);
+        const g = svg.append("g").attr("class", "bar").attr("tabindex", 0).attr("role", "button").attr("aria-label", s.name).on("click", () => openSource(s.id)).on("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openSource(s.id); } });
+        g.append("rect").attr("x", a).attr("y", yy).attr("width", b - a).attr("height", barH).attr("rx", 4).attr("fill", `var(--st-${s.c2c_status})`).attr("opacity", s.c2c_status === "no" ? 0.9 : 1);
+        if (s.c2c_status === "planned") g.select("rect").attr("stroke", "var(--fg)").attr("stroke-dasharray", "3 2").attr("stroke-width", 0.8);
+        const light = s.c2c_status === "yes" || s.c2c_status === "partial";
+        const fits = s._side === "in";
+        g.append("text").attr("x", fits ? a + 6 : s._side === "right" ? b + 6 : a - 6).attr("text-anchor", s._side === "left" ? "end" : "start").attr("y", yy + 14).attr("font-size", 11).style("fill", fits && light ? "#fff" : "var(--fg)").attr("font-weight", 600).text(s.name.length > 58 ? s.name.slice(0, 56) + "..." : s.name);
+        g.append("title").text(`${s.name} (${STATUS_LABEL[s.c2c_status]}), ages ${ageTxt(s.age_min, s.age_max)}`);
+      });
+    });
+  };
+
+  // ---------- Network ----------
+  RENDER.network = el => {
+    const statuses = ["c2c", "routine", "periodic", "planned", "missing"];
+    el.innerHTML = `
+      <div class="view-head"><span class="eyebrow">Linkage network</span><h2>Which systems talk to each other</h2>
+      <p>Each circle is a data source, colored by segment and sized by its number of connections. Systems are pulled left to right in journey order, with C2C at the center. Red dotted lines are links California needs and does not have. Drag to rearrange, click a circle for details.</p></div>
+      <div class="controls" id="net-toggles">${statuses.map(s => `<button class="toggle" aria-pressed="true" data-st="${s}"><span class="legend"><i class="line" style="border-color:var(--ln-${s});${s === "missing" ? "border-top-style:dotted" : s === "planned" || s === "periodic" ? "border-top-style:dashed" : ""}"></i></span>${LINK_LABEL[s]} <span class="num hint">${D.linkages.filter(l => l.status === s).length}</span></button>`).join("")}</div>
+      <div id="net-wrap"></div>
+      ${legendSeg()}
+      <p class="hint">Ring color shows C2C status: solid teal ring for partners, amber for planned.</p>`;
+    const wrap = el.querySelector("#net-wrap");
+    const W = wrap.clientWidth || 1000, H = wrap.clientHeight || 640;
+    const nodes = D.sources.map(s => ({ id: s.id, s }));
+    const links = D.linkages.map(l => ({ ...l }));
+    const deg = {}; links.forEach(l => { deg[l.source] = (deg[l.source] || 0) + 1; deg[l.target] = (deg[l.target] || 0) + 1; });
+    const r = d => d.id === "c2c" ? 26 : 6 + Math.sqrt(deg[d.id] || 1) * 2.6;
+    const segX = { birth: 0.08, early: 0.2, hhs: 0.3, k12: 0.45, hub: 0.5, post: 0.66, work: 0.86 };
+    const segY = { birth: 0.3, early: 0.55, hhs: 0.82, k12: 0.4, hub: 0.55, post: 0.4, work: 0.6 };
+    const svg = d3.select(wrap).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img").attr("aria-label", "Network of data source linkages");
+    const gAll = svg.append("g");
+    svg.call(d3.zoom().scaleExtent([0.5, 3]).on("zoom", e => gAll.attr("transform", e.transform)));
+    const link = gAll.append("g").selectAll("line").data(links).join("line")
+      .attr("stroke", d => `var(--ln-${d.status})`).attr("stroke-width", d => d.status === "c2c" ? 1.8 : d.status === "missing" ? 1.6 : 1.3)
+      .attr("stroke-dasharray", d => d.status === "missing" ? "2 4" : d.status === "planned" ? "6 4" : d.status === "periodic" ? "4 3" : null)
+      .attr("stroke-linecap", "round").attr("opacity", 0.85);
+    link.append("title").text(d => `${byId[d.source].name} to ${byId[d.target].name}: ${LINK_LABEL[d.status]}. ${d.mechanism}`);
+    const node = gAll.append("g").selectAll("g").data(nodes).join("g").attr("class", "node");
+    node.append("circle").attr("r", r).attr("fill", d => segColor(d.s.segment))
+      .attr("stroke", d => d.s.c2c_status === "yes" ? "var(--st-yes)" : d.s.c2c_status === "planned" ? "var(--st-planned)" : "var(--surface)")
+      .attr("stroke-width", d => d.s.c2c_status === "yes" || d.s.c2c_status === "planned" ? 3 : 1.5)
+      .on("click", (e, d) => openSource(d.id));
+    node.append("title").text(d => `${d.s.name} (${STATUS_LABEL[d.s.c2c_status]})`);
+    const short = n => n.replace(/\s*\(.*?\)\s*/g, " ").replace(/\s+/g, " ").trim();
+    node.append("text").attr("dy", d => r(d) + 11).attr("text-anchor", "middle").text(d => d.id === "c2c" ? "C2C" : (t => t.length > 28 ? t.slice(0, 26) + "..." : t)(short(d.s.name)));
+    node.filter(d => d.id === "c2c").append("text").attr("dy", 4).attr("text-anchor", "middle").style("fill", "#fff").style("stroke", "none").attr("font-weight", 700).attr("font-size", 11).text("C2C");
+    const sim = d3.forceSimulation(nodes)
+      .force("link", d3.forceLink(links).id(d => d.id).distance(l => l.status === "c2c" ? 150 : 90).strength(l => l.status === "c2c" ? 0.08 : 0.25))
+      .force("charge", d3.forceManyBody().strength(-170))
+      .force("x", d3.forceX(d => (d.id === "c2c" ? 0.5 : segX[d.s.segment]) * W).strength(d => d.id === "c2c" ? 0.9 : 0.22))
+      .force("y", d3.forceY(d => (d.id === "c2c" ? 0.5 : segY[d.s.segment]) * H).strength(d => d.id === "c2c" ? 0.9 : 0.1))
+      .force("collide", d3.forceCollide(d => r(d) + 14));
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { sim.stop(); for (let i = 0; i < 300; i++) sim.tick(); }
+    else { for (let i = 0; i < 120; i++) sim.tick(); }
+    function tick() {
+      nodes.forEach(d => { d.x = Math.max(20, Math.min(W - 20, d.x)); d.y = Math.max(20, Math.min(H - 26, d.y)); });
+      link.attr("x1", d => d.source.x).attr("y1", d => d.source.y).attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+      node.attr("transform", d => `translate(${d.x},${d.y})`);
+    }
+    tick(); sim.on("tick", tick);
+    node.call(d3.drag().on("start", (e, d) => { if (!e.active) sim.alphaTarget(0.2).restart(); d.fx = d.x; d.fy = d.y; })
+      .on("drag", (e, d) => { d.fx = e.x; d.fy = e.y; }).on("end", (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+    const on = new Set(statuses);
+    el.querySelectorAll("#net-toggles .toggle").forEach(b => b.addEventListener("click", () => {
+      const st = b.dataset.st; if (on.has(st)) on.delete(st); else on.add(st);
+      b.setAttribute("aria-pressed", on.has(st)); link.attr("display", d => on.has(d.status) ? null : "none");
+    }));
+  };
+
+  // ---------- Identifiers ----------
+  RENDER.identifiers = el => {
+    el.innerHTML = `
+      <div class="view-head"><span class="eyebrow">Identifier relay</span><h2>Each stage hands the next a different key, and early childhood has none to hand</h2>
+      <p>Bars show the ages over which each person identifier is typically present. Statewide education IDs begin at TK. Before that, a child's records sit under health, benefits or local program IDs that education systems never see. C2C bridges the later stages by matching people inside the system.</p></div>
+      <div class="panel"><div class="scroll-x"><svg id="id-svg"></svg></div>
+      <div class="legend" id="id-legend"></div></div>
+      <div class="panel" id="id-detail"><h3>Pick an identifier</h3><p class="hint">Click a bar to see who issues it and where it stops.</p></div>`;
+    const group = i => (["birth_cert", "calkids_id", "wic_id", "cair_id"].includes(i) ? "birth" : ["cin", "uci", "cws_id"].includes(i) ? "hhs" : ["local_child_id"].includes(i) ? "early" : ["ssid", "seid", "ctc_doc"].includes(i) ? "k12" : ["cccid", "csu_id", "uc_id", "itin_cadaa"].includes(i) ? "post" : ["ssn", "employer_id"].includes(i) ? "work" : "hub");
+    const GL = { birth: "Birth and health", hhs: "Human services", early: "Early learning", k12: "TK-12 and educators", post: "Postsecondary and aid", work: "Workforce and federal", hub: "Linkage" };
+    el.querySelector("#id-legend").innerHTML = Object.entries(GL).map(([k, v]) => `<span><i style="background:${segColor(k)}"></i>${v}</span>`).join("");
+    const order = ["birth_cert", "wic_id", "cair_id", "cin", "uci", "cws_id", "local_child_id", "calkids_id", "ssid", "seid", "ctc_doc", "cccid", "csu_id", "uc_id", "itin_cadaa", "ssn", "employer_id", "c2c_pid"];
+    const ids = order.map(i => identById[i]);
+    const W = 1100, x0 = 270, x1 = W - 20, top = 44, rowH = 27, H = top + ids.length * rowH + 20;
+    const svg = d3.select("#id-svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", W).attr("height", H).attr("role", "img").attr("aria-label", "Ages covered by each identifier");
+    // gap zone
+    svg.append("rect").attr("x", ageX(0, x0, x1)).attr("y", top - 6).attr("width", ageX(4.5, x0, x1) - ageX(0, x0, x1)).attr("height", H - top - 8).attr("fill", "var(--h4)").attr("opacity", 0.1);
+    svg.append("text").attr("x", ageX(0.2, x0, x1)).attr("y", H - 6).attr("font-size", 10.5).attr("font-weight", 700).style("fill", "var(--accent-2)").text("No ID that early learning and schools share, birth to TK");
+    AGE_TICKS.forEach(([a, t]) => { const x = ageX(a, x0, x1); svg.append("line").attr("x1", x).attr("x2", x).attr("y1", top - 6).attr("y2", H - 20).attr("stroke", "var(--line)"); svg.append("text").attr("x", x).attr("y", top - 14).attr("text-anchor", "middle").attr("class", "muted mono").attr("font-size", 9.5).text(t); });
+    ids.forEach((d, i) => {
+      const y = top + i * rowH, a = ageX(d.age_min, x0, x1), b = ageX(d.age_max, x0, x1);
+      const g = svg.append("g").style("cursor", "pointer").attr("tabindex", 0).attr("role", "button").attr("aria-label", d.name).on("click", () => idDetail(d)).on("keydown", e => { if (e.key === "Enter") idDetail(d); });
+      g.append("text").attr("x", x0 - 10).attr("y", y + 14).attr("text-anchor", "end").attr("font-size", 11.5).text(d.name.length > 44 ? d.name.slice(0, 42) + "..." : d.name);
+      g.append("rect").attr("x", a).attr("y", y + 3).attr("width", Math.max(b - a, 6)).attr("height", rowH - 9).attr("rx", 4).attr("fill", segColor(group(d.id))).attr("opacity", d.id === "c2c_pid" ? 1 : 0.85);
+      if (d.id === "c2c_pid") g.select("rect").attr("stroke", "var(--fg)").attr("stroke-width", 1.2);
+    });
+    function idDetail(d) {
+      const users = D.sources.filter(s => s.identifiers.includes(d.id));
+      el.querySelector("#id-detail").innerHTML = `<span class="eyebrow">${esc(d.issuer)}</span><h3>${esc(d.name)}</h3><p style="margin:0 0 8px">${esc(d.notes)}</p><p class="hint" style="margin:0 0 8px">Who has one: ${esc(d.scope)}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">${users.map(s => `<button class="chip linkbtn" style="text-decoration:none" data-src="${s.id}"><span class="dot" style="background:${segColor(s.segment)}"></span>${esc(s.name)}</button>`).join("") || "<span class='hint'>No cataloged source keys on it directly.</span>"}</div>`;
+      el.querySelectorAll("#id-detail [data-src]").forEach(b => b.addEventListener("click", () => openSource(b.dataset.src)));
+    }
+    idDetail(identById.local_child_id);
+  };
+
+  // ---------- Gaps ----------
+  RENDER.gaps = el => {
+    el.innerHTML = `
+      <div class="view-head"><span class="eyebrow">Gap analysis</span><h2>Where the links break, and why</h2>
+      <p>Each row is a handoff between segments, scored on seven dimensions from 0 (strong) to 4 (critical gap). Scores are our judgments from the sources and links in this database, meant to open conversations with agencies. Click a row for the reasoning.</p></div>
+      <div class="panel"><div class="scroll-x"><table class="heat" id="heat"></table></div>
+        <div class="legend" style="margin-top:8px">${[0, 1, 2, 3, 4].map(v => `<span><i style="background:var(--h${v})"></i>${["Strong", "Minor gaps", "Partial", "Weak", "Critical"][v]}</span>`).join("")}</div>
+        <p id="heat-why" style="margin:10px 0 0"></p></div>
+      <div class="view-head"><h2 style="font-size:1.2rem">13 gaps, ranked</h2></div>
+      <div class="controls" id="gap-types"></div>
+      <div class="gap-list" id="gap-list"></div>`;
+    const t = el.querySelector("#heat");
+    t.innerHTML = `<thead><tr><th>Handoff</th>${D.dimensions.map(d => `<th class="col">${esc(d.name)}</th>`).join("")}<th class="col">Average</th></tr></thead>
+      <tbody>${D.heatmap.map(r => `<tr data-id="${r.id}"><td class="rowname">${esc(r.name)}</td>${r.scores.map((v, i) => `<td class="cell" style="background:var(--h${v});color:${v >= 3 ? "var(--h-text-light)" : "var(--h-text-dark)"}" title="${esc(r.name)}: ${esc(D.dimensions[i].name)} scored ${v}">${v}</td>`).join("")}<td class="avg">${d3.mean(r.scores).toFixed(1)}</td></tr>`).join("")}</tbody>`;
+    const why = el.querySelector("#heat-why");
+    function sel(id) { t.querySelectorAll("tbody tr").forEach(tr => tr.classList.toggle("sel", tr.dataset.id === id)); const r = D.heatmap.find(x => x.id === id); why.innerHTML = `<strong>${esc(r.name)}.</strong> ${esc(r.why)}`; }
+    t.querySelectorAll("tbody tr").forEach(tr => tr.addEventListener("click", () => sel(tr.dataset.id)));
+    sel("ece_tk");
+    const types = [...new Set(D.gaps.map(g => g.type))];
+    let active = "all";
+    const tg = el.querySelector("#gap-types");
+    tg.innerHTML = ["all", ...types].map(x => `<button class="toggle" aria-pressed="${x === "all"}" data-t="${x}">${x === "all" ? "All types" : x[0].toUpperCase() + x.slice(1)}</button>`).join("");
+    tg.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { active = b.dataset.t; tg.querySelectorAll("button").forEach(z => z.setAttribute("aria-pressed", z === b)); draw(); }));
+    function draw() {
+      el.querySelector("#gap-list").innerHTML = D.gaps.filter(g => active === "all" || g.type === active).sort((a, b) => b.severity - a.severity).map(g => `
+        <article class="gap"><div class="top"><span class="chip"><span class="dot" style="background:${segColor(g.segment)}"></span>${esc(g.id)} · ${esc(g.type)}</span>
+        <span class="sev" title="Severity ${g.severity} of 5">${[1, 2, 3, 4, 5].map(i => `<b class="${i <= g.severity ? "on" : ""}"></b>`).join("")}</span></div>
+        <h4>${esc(g.title)}</h4><p>${esc(g.detail)}</p><p class="ev">Evidence: ${esc(g.evidence)}</p>
+        <div class="meta" style="display:flex;gap:5px;flex-wrap:wrap">${g.recs.map(r => `<a class="pchip" href="#roadmap" data-rec="${r}">${r}</a>`).join("")}</div></article>`).join("");
+      el.querySelectorAll("[data-rec]").forEach(a => a.addEventListener("click", () => { REC_FOCUS = a.dataset.rec; }));
+    }
+    draw();
+  };
+
+  // ---------- Sources ----------
+  const SRC_FILTER = { q: "", segment: "all", c2c: "all", access: "all" };
+  let applySrcFilter = () => {};
+  RENDER.sources = el => {
+    el.innerHTML = `
+      <div class="view-head"><span class="eyebrow">Source explorer</span><h2>The database: ${D.sources.length} data sources</h2>
+      <p>Search and filter the full catalog. Click a row for variables, identifiers, legal rules and links. The same data is available as CSV and JSON.</p></div>
+      <div class="controls">
+        <label for="f-q">Search<input type="search" id="f-q" placeholder="Agency, variable, program..."></label>
+        <label for="f-seg">Segment<select id="f-seg"><option value="all">All segments</option>${D.segments.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join("")}</select></label>
+        <label for="f-c2c">C2C status<select id="f-c2c"><option value="all">Any</option>${Object.entries(STATUS_LABEL).map(([k, v]) => `<option value="${k}">${v}</option>`).join("")}</select></label>
+        <label for="f-acc">Access<select id="f-acc"><option value="all">Any</option>${Object.entries(ACCESS_LABEL).map(([k, v]) => `<option value="${k}">${v}</option>`).join("")}</select></label>
+        <span class="hint num" id="f-count" style="align-self:end;padding-bottom:8px"></span>
+      </div>
+      <div class="panel" style="padding:0"><div class="scroll-x"><table class="src"><thead><tr><th>Source</th><th>Held by</th><th>Ages</th><th>C2C</th><th>Access</th><th>Links</th><th>Confidence</th></tr></thead><tbody id="src-body"></tbody></table></div></div>
+      <div class="downloads"><a href="data/sources.csv">Download sources.csv</a><a href="data/sources.json">sources.json</a><a href="data/linkages.csv">linkages.csv</a><a href="data/DATA_DICTIONARY.md">Data dictionary</a></div>`;
+    const q = el.querySelector("#f-q"), seg = el.querySelector("#f-seg"), c2c = el.querySelector("#f-c2c"), acc = el.querySelector("#f-acc");
+    applySrcFilter = () => {
+      q.value = SRC_FILTER.q; seg.value = SRC_FILTER.segment; c2c.value = SRC_FILTER.c2c; acc.value = SRC_FILTER.access;
+      const term = SRC_FILTER.q.toLowerCase();
+      const rows = D.sources.filter(s => (SRC_FILTER.segment === "all" || s.segment === SRC_FILTER.segment) && (SRC_FILTER.c2c === "all" || s.c2c_status === SRC_FILTER.c2c) && (SRC_FILTER.access === "all" || s.access === SRC_FILTER.access)
+        && (!term || [s.name, s.owner, s.population, s.key_variables.join(" "), s.notes, s.c2c_note].join(" ").toLowerCase().includes(term)))
+        .sort((a, b) => SEG_ORDER.indexOf(a.segment) - SEG_ORDER.indexOf(b.segment) || a.age_min - b.age_min);
+      el.querySelector("#f-count").textContent = `${rows.length} of ${D.sources.length}`;
+      el.querySelector("#src-body").innerHTML = rows.map(s => `<tr data-id="${s.id}" tabindex="0">
+        <td><span class="segdot" style="background:${segColor(s.segment)}"></span><strong>${esc(s.name)}</strong><br><span class="hint">${esc(s.key_variables.slice(0, 3).join(", "))}</span></td>
+        <td>${esc(s.owner)}</td><td class="num" style="white-space:nowrap">${ageTxt(s.age_min, s.age_max)}</td>
+        <td><span class="st st-${s.c2c_status}">${STATUS_LABEL[s.c2c_status]}</span></td><td>${esc(ACCESS_LABEL[s.access])}</td>
+        <td class="num">${s.linked_to.length}${s.missing_links.length ? ` <span class="conf-needs_verification">(+${s.missing_links.length} missing)</span>` : ""}</td>
+        <td class="conf-${s.confidence}">${esc(CONF_LABEL[s.confidence])}</td></tr>`).join("") || `<tr><td colspan="7" class="hint">No sources match. Clear a filter to see more.</td></tr>`;
+      el.querySelectorAll("#src-body tr[data-id]").forEach(tr => { tr.addEventListener("click", () => openSource(tr.dataset.id)); tr.addEventListener("keydown", e => { if (e.key === "Enter") openSource(tr.dataset.id); }); });
+    };
+    q.addEventListener("input", () => { SRC_FILTER.q = q.value; applySrcFilter(); });
+    seg.addEventListener("change", () => { SRC_FILTER.segment = seg.value; applySrcFilter(); });
+    c2c.addEventListener("change", () => { SRC_FILTER.c2c = c2c.value; applySrcFilter(); });
+    acc.addEventListener("change", () => { SRC_FILTER.access = acc.value; applySrcFilter(); });
+    applySrcFilter();
+  };
+
+  // ---------- Roadmap ----------
+  let REC_FOCUS = null;
+  RENDER.roadmap = el => {
+    const KIND = { law: ["Law", "var(--seg-post)"], plan: ["Plan", "var(--seg-hhs)"], launch: ["Launch", "var(--seg-k12)"], c2c: ["C2C board", "var(--accent)"], milestone: ["Milestone", "var(--seg-work)"], bill: ["Bill held", "var(--seg-birth)"] };
+    const phases = [...new Set(D.recommendations.map(r => r.horizon))];
+    el.innerHTML = `
+      <div class="view-head"><span class="eyebrow">Timeline and 10-year roadmap</span><h2>From a partial system to a lifelong learner record, 2027 to 2037</h2>
+      <p>Phase 1 lines up with the D4TP 2027-2028 policy agenda, so the coalition's near-term asks become the first step of a long-term statewide strategy. Filter by D4TP priority to see where each workgroup's work leads.</p></div>
+      <div class="controls" id="prio">${["All", "P1", "P2", "P3", "P4", "P5"].map((p, i) => `<button class="toggle" aria-pressed="${i === 0}" data-p="${p}">${p === "All" ? "All priorities" : p + " · " + { P1: "Early Learning", P2: "TK-12", P3: "Higher Ed", P4: "Workforce", P5: "Infrastructure" }[p]}</button>`).join("")}</div>
+      <div class="phases">${phases.map(ph => { const [a, b] = ph.split(": "); return `<div class="phase"><div class="phase-head"><span class="eyebrow">${esc(a)}</span><h3>${esc(b)}</h3></div>
+        ${D.recommendations.filter(r => r.horizon === ph).map(r => `<article class="rec" id="rec-${r.id}" data-p="${r.priority.join(" ")}"><div class="meta"><span class="pchip">${r.id}</span>${r.priority.map(p => `<span class="pchip">${p}</span>`).join("")}</div>
+          <h4>${esc(r.title)}</h4><p>${esc(r.what)}</p><p class="metric"><strong>Vehicle:</strong> ${esc(r.vehicle)} · <strong>Who acts:</strong> ${esc(r.bodies)}</p><p class="metric"><strong>Measure:</strong> ${esc(r.metric)}</p>
+          <div class="meta">${r.gaps.map(g => `<span class="chip">${g}: ${esc(D.gaps.find(x => x.id === g).title)}</span>`).join("")}</div></article>`).join("")}</div>`; }).join("")}</div>
+      <div class="grid-2">
+        <div class="panel"><h3>How we got here, 2019 to 2026</h3><ol class="timeline">${D.timeline.map(t => `<li style="--k:${KIND[t.kind][1]}"><span class="d">${t.date.replace("-", ".")}</span><span class="rail"></span><div class="body"><strong>${esc(t.title)}</strong><span><span class="chip" style="margin-right:6px">${KIND[t.kind][0]}</span>${esc(t.detail)}</span></div></li>`).join("")}</ol></div>
+        <div class="panel"><h3>The pitch in four lines</h3>
+          <ol class="findings">
+            <li><div><strong>The ask</strong><span>A 10-year statewide commitment to connect every public system that touches a Californian from birth to career, building on C2C rather than replacing it.</span></div></li>
+            <li><div><strong>Why now</strong><span>C2C doubled its partners in three years, its 2026-31 plan commits to early learning data, and CDMIS 2.0 (July 2027), Workforce Pell (AB 1534) and the Data Exchange Framework all change in the next 18 months.</span></div></li>
+            <li><div><strong>Why D4TP</strong><span>The coalition spans every segment on this map, and its five 2027-2028 priorities map onto the three phases.</span></div></li>
+            <li><div><strong>The guardrails</strong><span>Identity matching stays inside C2C, public tools use de-identified data, and existing bans on immigration and law enforcement use stay in place.</span></div></li>
+          </ol>
+          <h3 style="margin-top:16px">Measures of success</h3>
+          <ul style="margin:0;padding-left:18px;font-size:0.88rem">
+            <li>Share of children in state-funded ECE with a matchable ID</li><li>Unduplicated count of children 0 to 5 served, published yearly</li>
+            <li>Share of UI wage records with occupation and hours</li><li>Share of graduates with any known outcome, including students without SSNs</li>
+            <li>An annual linkage scorecard that re-scores the gap heatmap</li></ul>
+        </div>
+      </div>`;
+    el.querySelectorAll("#prio button").forEach(b => b.addEventListener("click", () => {
+      const p = b.dataset.p; el.querySelectorAll("#prio button").forEach(z => z.setAttribute("aria-pressed", z === b));
+      el.querySelectorAll(".rec").forEach(r => r.classList.toggle("dim", p !== "All" && !r.dataset.p.split(" ").includes(p)));
+    }));
+  };
+  window.addEventListener("hashchange", () => { if (REC_FOCUS && location.hash === "#roadmap") { const n = document.getElementById("rec-" + REC_FOCUS); if (n) { n.scrollIntoView({ block: "center" }); n.style.outline = "2px solid var(--accent)"; setTimeout(() => n.style.outline = "", 1600); } REC_FOCUS = null; } });
+
+  if (!location.hash) { try { const t = localStorage.getItem("d4tp-landscape-tab"); if (t) history.replaceState(null, "", "#" + t); } catch (e) {} }
+  show();
+})();
+</script>
+</body>
+</html>

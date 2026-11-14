@@ -1,0 +1,168 @@
+[
+  {
+    "id": "G1",
+    "type": "identifier",
+    "severity": 5,
+    "segment": "early",
+    "title": "No statewide child identifier before school",
+    "detail": "From birth to TK, a child may appear in birth records, Medi-Cal, WIC, home visiting, Early Start, CDSS child care, CSPP, Head Start and First 5, each under a different ID or none. The SSID is the first durable ID, and it arrives at age 4 or 5.",
+    "evidence": "CAPSDAC encourages but does not require SSID (CDE CAPSDAC Update #1, 2024). CDMIS and CDD-801A use local IDs.",
+    "recs": [
+      "R1",
+      "R2",
+      "R3"
+    ]
+  },
+  {
+    "id": "G2",
+    "type": "coverage",
+    "severity": 5,
+    "segment": "early",
+    "title": "Early learning and care is still outside C2C",
+    "detail": "C2C planned CDE early learning points (entry age, duration, family income) in 2023 but had not received them. The 2026-27 work plan only sets initial milestones for a future import. CDSS child care, Head Start and First 5 have no path at all.",
+    "evidence": "C2C Data Elements by Provider (planned status); C2C 2026-27 Work Plan; AB 2092 held May 2026.",
+    "recs": [
+      "R1",
+      "R3"
+    ]
+  },
+  {
+    "id": "G3",
+    "type": "governance",
+    "severity": 4,
+    "segment": "early",
+    "title": "No legal home or lead agency for an ECIDS",
+    "detail": "Early childhood data is split between CDE (CSPP), CDSS (child care, CalWORKs, licensing), CDPH (WIC, home visiting, births), DHCS (Medi-Cal), DDS (Early Start), First 5 and federal Head Start. AB 2092 would have named CDSS as lead but was held in Appropriations.",
+    "evidence": "Assembly Human Services analysis of AB 2092 (March 2026); Master Plan for Early Learning and Care (2020).",
+    "recs": [
+      "R3",
+      "R9"
+    ]
+  },
+  {
+    "id": "G4",
+    "type": "content",
+    "severity": 4,
+    "segment": "work",
+    "title": "Wage records lack occupation, hours and location",
+    "detail": "UI wage records show only quarterly earnings by employer. Without occupation or hours, the state cannot tell whether a nursing graduate works as a nurse, or whether low earnings mean low pay or part-time work.",
+    "evidence": "SB 1054 (Cabaldon, 2026) would add occupation, hours, worker type and monthly wages; held in Assembly Appropriations.",
+    "recs": [
+      "R4",
+      "R8"
+    ]
+  },
+  {
+    "id": "G5",
+    "type": "identifier",
+    "severity": 4,
+    "segment": "post",
+    "title": "SSN dependence leaves out immigrant students",
+    "detail": "Workforce outcomes depend on SSN matching. Undocumented and mixed-status students, CA Dream Act filers, and anyone who declines to give an SSN disappear from earnings outcomes, which biases every equity analysis.",
+    "evidence": "CCC LaunchBoard and C2C wage matching rely on SSN; CADAA filers use non-SSN IDs.",
+    "recs": [
+      "R10",
+      "R13"
+    ]
+  },
+  {
+    "id": "G6",
+    "type": "coverage",
+    "severity": 3,
+    "segment": "work",
+    "title": "Earnings outside UI coverage are invisible",
+    "detail": "Self-employed, gig, federal civilian, military and out-of-state workers have no UI wage record in California. FTB tax data and the federal SWIS exchange hold this information but are not available to C2C.",
+    "evidence": "SWIS use limited to WIOA performance; FTB confidentiality under Revenue and Taxation Code 19542.",
+    "recs": [
+      "R10"
+    ]
+  },
+  {
+    "id": "G7",
+    "type": "coverage",
+    "severity": 3,
+    "segment": "post",
+    "title": "Private, out-of-state and adult learners are partly missing",
+    "detail": "BPPE institutions report aggregates, AICCU participation is voluntary, K-12 adult schools are outside C2C, and the National Student Clearinghouse is not used, so a student who leaves for Arizona State or a private trade school looks like a dropout.",
+    "evidence": "C2C partner list; BPPE Student Performance Fact Sheets are institution-level.",
+    "recs": [
+      "R8",
+      "R10"
+    ]
+  },
+  {
+    "id": "G8",
+    "type": "governance",
+    "severity": 3,
+    "segment": "post",
+    "title": "FERPA interpretations block student debt and some segment data",
+    "detail": "CSU and UC have cited FERPA in declining student-level debt data, and federal loan data (NSLDS) is not shared with states. The 2024 student debt proposal at C2C stalled.",
+    "evidence": "D4TP 2026 Retreat Report, Priority 3; UC participation is requested, not required, under statute.",
+    "recs": [
+      "R7",
+      "R14"
+    ]
+  },
+  {
+    "id": "G9",
+    "type": "standards",
+    "severity": 3,
+    "segment": "hub",
+    "title": "Definitions differ across agencies",
+    "detail": "Race and ethnicity categories (including the MENA category), dual language learner status, transfer, completion, and program codes (TOP, CIP, SOC) differ across CDE, CCC, CSU, UC and workforce agencies.",
+    "evidence": "D4TP Priority 5 (standard definitions across CCC, CSU and UC); ECE workgroup on DLL definitions.",
+    "recs": [
+      "R6",
+      "R8"
+    ]
+  },
+  {
+    "id": "G10",
+    "type": "coverage",
+    "severity": 3,
+    "segment": "early",
+    "title": "The ECE workforce cannot be followed",
+    "detail": "Child Development Permits live at CTC, the Workforce Registry is voluntary, and ECE employers do not report staff to any state system. Turnover, wages and pathways into TK teaching are unknown at the state level.",
+    "evidence": "CSCCE 2025 workforce study notes its sample does not represent the whole workforce.",
+    "recs": [
+      "R11"
+    ]
+  },
+  {
+    "id": "G11",
+    "type": "coverage",
+    "severity": 3,
+    "segment": "hhs",
+    "title": "Vulnerable populations drop between systems",
+    "detail": "Justice-involved youth and adults, people experiencing homelessness, and youth aging out of foster care move across systems that do not link to education or wages.",
+    "evidence": "CDCR and HDIS are not C2C partners; foster flag ends at K-12 exit.",
+    "recs": [
+      "R12"
+    ]
+  },
+  {
+    "id": "G12",
+    "type": "capacity",
+    "severity": 3,
+    "segment": "hub",
+    "title": "Funding and staff capacity at partner agencies",
+    "detail": "Each new data point needs agency staff, file specs and legal review. CDT flagged C2C's schedule for corrective action in 2025, and partners carry the work on top of operations.",
+    "evidence": "CalMatters (March 2025) on CDT oversight; C2C budget change concept, August 2026.",
+    "recs": [
+      "R14"
+    ]
+  },
+  {
+    "id": "G13",
+    "type": "access",
+    "severity": 2,
+    "segment": "hub",
+    "title": "Linked insights are slow to reach families and schools",
+    "detail": "C2C is an analytical system with annual submissions. Schools still cannot see what happened to their graduates on the CCI, and families see little of the linked data.",
+    "evidence": "D4TP TK-12 recommendation to connect C2C data to the CCI and extend Student Pathways from 9 to 13 years.",
+    "recs": [
+      "R5",
+      "R15"
+    ]
+  }
+]

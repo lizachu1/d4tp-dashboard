@@ -1,0 +1,164 @@
+[
+  {
+    "id": "birth_cert",
+    "name": "Birth certificate (state file) number",
+    "issuer": "CDPH Vital Records",
+    "scope": "Statewide, every CA birth",
+    "age_min": -0.5,
+    "age_max": 0.5,
+    "notes": "Assigned at birth registration. Used to seed CalKIDS newborn accounts. Not carried forward by any education system."
+  },
+  {
+    "id": "calkids_id",
+    "name": "CalKIDS account ID",
+    "issuer": "ScholarShare Investment Board",
+    "scope": "Statewide, newborns since July 2022 and low-income public school students",
+    "age_min": 0,
+    "age_max": 26,
+    "notes": "Created from CDPH birth data (newborns) and CALPADS SSID (students). One of the few identifiers created at birth that later meets an education record."
+  },
+  {
+    "id": "cin",
+    "name": "Medi-Cal Client Index Number (CIN)",
+    "issuer": "DHCS / county SAWS",
+    "scope": "Statewide, anyone ever enrolled in Medi-Cal or CalFresh/CalWORKs",
+    "age_min": 0,
+    "age_max": 99,
+    "notes": "Shared across Medi-Cal, CalFresh and CalWORKs through MEDS and CalSAWS. Covers roughly half of California children. Not shared with ECE or schools except through direct-certification matches."
+  },
+  {
+    "id": "wic_id",
+    "name": "WIC participant ID",
+    "issuer": "CDPH WIC",
+    "scope": "Pregnant and postpartum people, infants and children under 5",
+    "age_min": -0.5,
+    "age_max": 5,
+    "notes": "Program-specific."
+  },
+  {
+    "id": "cair_id",
+    "name": "CAIR immunization record ID",
+    "issuer": "CDPH (CAIR2 and regional registries)",
+    "scope": "Children and adults with reported immunizations",
+    "age_min": 0,
+    "age_max": 99,
+    "notes": "Schools and child care sites can look up records to verify entry immunizations, but no ID is stored in education data."
+  },
+  {
+    "id": "uci",
+    "name": "DDS Unique Client Identifier (UCI)",
+    "issuer": "Department of Developmental Services",
+    "scope": "Early Start (0 to 3) and regional center consumers",
+    "age_min": 0,
+    "age_max": 99,
+    "notes": "Program-specific. DDS joined C2C in 2024, so DDS records are now matched into the P20W data set by person-matching rather than a shared ID."
+  },
+  {
+    "id": "cws_id",
+    "name": "CWS/CMS client ID",
+    "issuer": "CDSS (moving to CWS-CARES)",
+    "scope": "Children in child welfare and foster care",
+    "age_min": 0,
+    "age_max": 21,
+    "notes": "Matched weekly to CALPADS by CDE to flag foster youth."
+  },
+  {
+    "id": "local_child_id",
+    "name": "Local child or family case ID",
+    "issuer": "Individual ECE contractors, Head Start grantees, First 5 commissions",
+    "scope": "Program or agency only",
+    "age_min": 0,
+    "age_max": 5,
+    "notes": "There is no statewide child identifier in early learning. Each contractor assigns its own. This is the single largest break in the chain."
+  },
+  {
+    "id": "ssid",
+    "name": "Statewide Student Identifier (SSID)",
+    "issuer": "CDE (CALPADS)",
+    "scope": "Public TK-12 students, plus some LEA-run preschool and special education preschool",
+    "age_min": 3,
+    "age_max": 22,
+    "notes": "10-digit ID assigned at first public school enrollment. Encouraged but not required in CAPSDAC (LEA-run state preschool). Collected by CCCApply and CaliforniaColleges.edu, which helps C2C matching."
+  },
+  {
+    "id": "seid",
+    "name": "Statewide Educator Identifier (SEID)",
+    "issuer": "CDE (CALPADS)",
+    "scope": "Certificated and classified school staff",
+    "age_min": 18,
+    "age_max": 70,
+    "notes": "Links staff assignments in CALPADS to CTC credential records for TAMO."
+  },
+  {
+    "id": "ctc_doc",
+    "name": "CTC credential / permit document records",
+    "issuer": "Commission on Teacher Credentialing",
+    "scope": "Credential and Child Development Permit holders",
+    "age_min": 18,
+    "age_max": 70,
+    "notes": "Child Development Permits for ECE staff live here, but ECE employment is not reported back, so the ECE workforce is invisible after the permit is issued."
+  },
+  {
+    "id": "cccid",
+    "name": "CCCID / college student ID",
+    "issuer": "California Community Colleges (CCCApply and each college)",
+    "scope": "CCC applicants and students",
+    "age_min": 14,
+    "age_max": 99,
+    "notes": "CCCID is statewide for applicants. Each college also assigns a local ID. SSN is collected but optional."
+  },
+  {
+    "id": "csu_id",
+    "name": "CSU campus ID (EmplID)",
+    "issuer": "California State University",
+    "scope": "CSU applicants and students",
+    "age_min": 16,
+    "age_max": 99,
+    "notes": "Campus-specific."
+  },
+  {
+    "id": "uc_id",
+    "name": "UC campus student ID",
+    "issuer": "University of California",
+    "scope": "UC applicants and students",
+    "age_min": 16,
+    "age_max": 99,
+    "notes": "Campus-specific."
+  },
+  {
+    "id": "ssn",
+    "name": "Social Security Number",
+    "issuer": "Federal (SSA)",
+    "scope": "Most residents; missing for many immigrant students and young children in non-benefit programs",
+    "age_min": 0,
+    "age_max": 99,
+    "notes": "The de facto workforce key (UI wages, FAFSA, CalJOBS). Absent or optional in most education records. Relying on it leaves out undocumented students and anyone who withholds it."
+  },
+  {
+    "id": "itin_cadaa",
+    "name": "CA Dream Act Application ID / ITIN",
+    "issuer": "CSAC / IRS",
+    "scope": "Undocumented and mixed-status students applying for state aid",
+    "age_min": 16,
+    "age_max": 30,
+    "notes": "Lets CSAC serve students without an SSN, but these students drop out of SSN-based wage matching."
+  },
+  {
+    "id": "employer_id",
+    "name": "EDD employer account number / FEIN",
+    "issuer": "EDD / IRS",
+    "scope": "UI-covered employers",
+    "age_min": 16,
+    "age_max": 99,
+    "notes": "Approved as a new C2C P20W data point from EDD in May 2026 (employer ID and name), which opens industry analysis."
+  },
+  {
+    "id": "c2c_pid",
+    "name": "C2C person ID (master data management)",
+    "issuer": "Office of Cradle-to-Career Data (GovOps)",
+    "scope": "Everyone matched across C2C data partners",
+    "age_min": 0,
+    "age_max": 99,
+    "notes": "Internal ID produced by probabilistic matching of name, birth date, SSN where present, and partner IDs. Never shared outward. This is the closest thing California has to a lifelong learner ID."
+  }
+]
